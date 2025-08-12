@@ -4,8 +4,20 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Great Mind Profile</title>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-2HR8S7SQES"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-2HR8S7SQES');
+    </script>
+    <!-- Tailwind CSS for styling -->
     <script src="https://cdn.tailwindcss.com"></script>
+    <!-- html2canvas for image generation -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+    <!-- Google Fonts: Poppins -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800&display=swap" rel="stylesheet">
@@ -116,8 +128,9 @@
         }
     </style>
 </head>
-<body class="bg-gray-100 text-gray-800 relative">
+<body class="bg-gradient-to-br from-gray-50 to-gray-200 text-gray-800 relative">
 
+    <!-- Homepage Container (Visible by default) -->
     <div id="homepage-container" class="flex flex-col items-center justify-center min-h-screen p-4 text-center relative z-10 transition-opacity duration-500">
         <div class="mind-map-bg">
             <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
@@ -159,7 +172,7 @@
                         Great Mind Profile
                     </span>
                 </h1>
-                <h2 id="home-subtitle" class="text-lg md:text-2xl text-gray-600 font-semibold mt-2">A Multi-Level Personality Assessment</h2>
+                <h2 class="text-lg md:text-2xl text-gray-600 font-semibold mt-2">A Multi-Level Personality Assessment</h2>
             </header>
 
             <main class="max-w-2xl mx-auto mt-8">
@@ -175,6 +188,7 @@
         <section class="w-full max-w-6xl overflow-hidden py-12">
             <h2 class="text-3xl font-bold text-center mb-12">Why Choose Us?</h2>
             <div class="scrolling-wrapper">
+                <!-- Cards are duplicated for a seamless loop -->
                 <div class="card-container p-4"><div class="bg-blue-100 p-6 rounded-xl shadow-md h-full"><h3 class="text-xl font-bold mb-2 text-blue-800">Based on Science</h3><p class="text-gray-600">Our test is built on the HEXACO model, a robust framework trusted by psychologists for its accuracy and cross-cultural validity.</p></div></div>
                 <div class="card-container p-4"><div class="bg-green-100 p-6 rounded-xl shadow-md h-full"><h3 class="text-xl font-bold mb-2 text-green-800">Three-Level Analysis</h3><p class="text-gray-600">We go beyond simple traits by analyzing your situational judgments and life story themes to create a truly holistic profile.</p></div></div>
                 <div class="card-container p-4"><div class="bg-indigo-100 p-6 rounded-xl shadow-md h-full"><h3 class="text-xl font-bold mb-2 text-indigo-800">Actionable Insights</h3><p class="text-gray-600">Understand your strengths and potential challenges with clear, non-judgmental feedback designed for personal growth.</p></div></div>
@@ -189,6 +203,7 @@
         </footer>
     </div>
 
+    <!-- Test Container (Initially Hidden) -->
     <div id="test-container" class="hidden min-h-screen flex-col items-center justify-center p-4 transition-opacity duration-500">
         <div class="w-full max-w-2xl mb-8">
             <div class="flex justify-between mb-1">
@@ -208,6 +223,7 @@
         </div>
     </div>
     
+    <!-- Loading Container (Initially Hidden) -->
     <div id="loading-container" class="hidden min-h-screen flex-col items-center justify-center p-4">
         <div class="w-full max-w-md text-center">
             <h2 class="text-3xl font-bold text-gray-700 mb-4">Analyzing Your Profile...</h2>
@@ -218,6 +234,7 @@
     </div>
 
 
+    <!-- Results Container (Initially Hidden) -->
     <div id="results-container" class="hidden bg-gray-100 p-4 sm:p-6 md:p-8">
         <div id="results-content" class="max-w-4xl mx-auto pb-16">
             <div class="bg-white p-8 rounded-2xl shadow-md w-full mb-8 fade-in">
@@ -242,36 +259,6 @@
                      <button id="retake-test-btn" class="w-full sm:w-auto inline-block bg-gray-500 text-white font-bold text-lg px-8 py-3 rounded-full shadow-lg transform transition-transform duration-300 hover:scale-105 hover:bg-gray-600 focus:outline-none focus:ring-4 focus:ring-gray-400">Retake Test</button>
                 </div>
                  <p id="share-message" class="text-center text-gray-600 mt-4"></p>
-            </div>
-        </div>
-    </div>
-    
-    <div class="fixed bottom-0 left-0 p-4 z-50">
-        <button id="show-editor-btn" class="bg-indigo-600 text-white font-bold px-4 py-2 rounded-full shadow-lg hover:bg-indigo-700 transition">
-            Edit My Website
-        </button>
-    </div>
-
-    <div id="editor-panel" class="hidden fixed inset-0 bg-black bg-opacity-60 flex items-center justify-center p-4 z-50">
-        <div class="bg-white rounded-2xl p-6 shadow-xl w-full max-w-md">
-            <h3 class="text-xl font-bold mb-4">Edit Homepage</h3>
-            <div class="space-y-4">
-                <div>
-                    <label for="title-input" class="block text-sm font-medium text-gray-700">Main Title</label>
-                    <input type="text" id="title-input" class="mt-1 block w-full px-3 py-2 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500">
-                </div>
-                <div>
-                    <label for="subtitle-input" class="block text-sm font-medium text-gray-700">Subtitle</label>
-                    <input type="text" id="subtitle-input" class="mt-1 block w-full px-3 py-2 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500">
-                </div>
-                <div>
-                    <label for="description-input" class="block text-sm font-medium text-gray-700">Description Paragraph</label>
-                    <textarea id="description-input" rows="3" class="mt-1 block w-full px-3 py-2 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500"></textarea>
-                </div>
-            </div>
-            <div class="mt-6 flex justify-end space-x-3">
-                <button id="cancel-edit-btn" class="bg-gray-200 text-gray-800 font-bold px-4 py-2 rounded-full hover:bg-gray-300">Cancel</button>
-                <button id="save-edit-btn" class="bg-blue-600 text-white font-bold px-4 py-2 rounded-full hover:bg-blue-700">Save Changes</button>
             </div>
         </div>
     </div>
@@ -407,19 +394,6 @@
         const langIconBtn = document.getElementById('lang-icon-btn');
         const langPopup = document.getElementById('lang-popup');
         const closePopupBtn = document.getElementById('close-popup-btn');
-        
-        // --- NEW: Editor Elements ---
-        const showEditorBtn = document.getElementById('show-editor-btn');
-        const editorPanel = document.getElementById('editor-panel');
-        const cancelEditBtn = document.getElementById('cancel-edit-btn');
-        const saveEditBtn = document.getElementById('save-edit-btn');
-        const titleInput = document.getElementById('title-input');
-        const subtitleInput = document.getElementById('subtitle-input');
-        const descriptionInput = document.getElementById('description-input');
-        const homeTitleEl = document.getElementById('home-title').querySelector('span');
-        const homeSubtitleEl = document.getElementById('home-subtitle');
-        const homeDescriptionEl = document.getElementById('home-description');
-
 
         function shuffleArray(array) {
             for (let i = array.length - 1; i > 0; i--) {
@@ -697,51 +671,6 @@
                 setTimeout(() => { shareMessageEl.textContent = ''; }, 3000);
             }
         }
-        
-        // --- NEW: Editor Logic ---
-        function openEditor() {
-            // Load current text into the editor fields
-            titleInput.value = localStorage.getItem('gmp_title') || homeTitleEl.textContent.trim();
-            subtitleInput.value = localStorage.getItem('gmp_subtitle') || homeSubtitleEl.textContent.trim();
-            descriptionInput.value = localStorage.getItem('gmp_description') || homeDescriptionEl.innerText.trim().replace(/Our analysis is based on the scientifically validated <strong>HEXACO model<\/strong> for a surprisingly accurate personality profile./, 'Our analysis is based on the scientifically validated HEXACO model for a surprisingly accurate personality profile.');
-            editorPanel.classList.remove('hidden');
-        }
-
-        function closeEditor() {
-            editorPanel.classList.add('hidden');
-        }
-
-        function saveEditorChanges() {
-            const newTitle = titleInput.value;
-            const newSubtitle = subtitleInput.value;
-            const newDescription = descriptionInput.value.replace(/<strong>HEXACO model<\/strong>/, '<strong>HEXACO model</strong>');
-
-            // Save to localStorage
-            localStorage.setItem('gmp_title', newTitle);
-            localStorage.setItem('gmp_subtitle', newSubtitle);
-            localStorage.setItem('gmp_description', newDescription);
-            
-            // Update the page content
-            updatePageContent();
-            
-            closeEditor();
-        }
-        
-        function updatePageContent() {
-             const savedTitle = localStorage.getItem('gmp_title');
-             const savedSubtitle = localStorage.getItem('gmp_subtitle');
-             const savedDescription = localStorage.getItem('gmp_description');
-
-             if (savedTitle) {
-                 homeTitleEl.textContent = savedTitle;
-             }
-             if (savedSubtitle) {
-                homeSubtitleEl.textContent = savedSubtitle;
-             }
-             if (savedDescription) {
-                homeDescriptionEl.innerHTML = savedDescription.replace(/HEXACO model/g, '<strong>HEXACO model</strong>');
-             }
-        }
 
         // --- Event Listeners ---
         startTestBtn.addEventListener('click', startTest);
@@ -751,15 +680,6 @@
         shareBtn.addEventListener('click', handleShare);
         langIconBtn.addEventListener('click', () => langPopup.classList.remove('hidden'));
         closePopupBtn.addEventListener('click', () => langPopup.classList.add('hidden'));
-        
-        // --- NEW: Editor Event Listeners ---
-        showEditorBtn.addEventListener('click', openEditor);
-        cancelEditBtn.addEventListener('click', closeEditor);
-        saveEditBtn.addEventListener('click', saveEditorChanges);
-        
-        // --- NEW: Load saved content on page load ---
-        document.addEventListener('DOMContentLoaded', updatePageContent);
-
 
     </script>
 </body>
