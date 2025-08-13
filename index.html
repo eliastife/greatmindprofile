@@ -126,6 +126,9 @@
              transition: width 0.1s linear;
              background-image: linear-gradient(to right, #4f46e5, #d946ef, #f59e0b);
         }
+        /* RTL support */
+        html[dir="rtl"] .choice-btn { text-align: right; }
+        html[dir="rtl"] .scrolling-wrapper { animation-direction: reverse; }
     </style>
 </head>
 <body class="bg-gradient-to-br from-gray-50 to-gray-200 text-gray-800 relative">
@@ -158,21 +161,25 @@
         </button>
 
         <div id="lang-popup" class="hidden fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4 z-50">
-            <div class="bg-white rounded-2xl p-6 shadow-xl text-center max-w-sm">
-                <h3 class="text-xl font-bold mb-4">Languages</h3>
-                <p class="text-gray-600 mb-6">More languages coming soon!</p>
-                <button id="close-popup-btn" class="bg-blue-600 text-white font-bold px-6 py-2 rounded-full">OK</button>
+            <div class="bg-white rounded-2xl p-6 shadow-xl text-center max-w-sm w-full">
+                <h3 id="lang-popup-title" class="text-xl font-bold mb-4">Choose Language</h3>
+                <div class="space-y-2">
+                    <button class="lang-btn w-full text-left p-3 rounded-lg hover:bg-gray-100" data-lang="en">English</button>
+                    <button class="lang-btn w-full text-left p-3 rounded-lg hover:bg-gray-100" data-lang="ar">العربية</button>
+                    <p id="lang-popup-soon" class="text-gray-500 p-3">More languages coming soon...</p>
+                </div>
+                <button id="close-popup-btn" class="mt-4 bg-blue-600 text-white font-bold px-6 py-2 rounded-full w-full">Close</button>
             </div>
         </div>
 
         <div class="flex-grow flex flex-col items-center justify-center w-full max-w-4xl pt-20">
             <header class="relative mb-4">
-                <h1 id="home-title" class="font-headline text-5xl sm:text-6xl md:text-7xl leading-tight tracking-tighter title-shadow">
+                <h1 class="font-headline text-5xl sm:text-6xl md:text-7xl leading-tight tracking-tighter title-shadow">
                     <span class="bg-gradient-to-r from-blue-500 via-red-500 to-yellow-500 bg-clip-text text-transparent">
                         Great Mind Profile
                     </span>
                 </h1>
-                <h2 class="text-lg md:text-2xl text-gray-600 font-semibold mt-2">A Multi-Level Personality Assessment</h2>
+                <h2 id="home-tagline" class="text-lg md:text-2xl text-gray-600 font-semibold mt-2">A Multi-Level Personality Assessment</h2>
             </header>
 
             <main class="max-w-2xl mx-auto mt-8">
@@ -186,12 +193,12 @@
         </div>
 
         <section class="w-full max-w-6xl overflow-hidden py-12">
-            <h2 class="text-3xl font-bold text-center mb-12">Why Choose Us?</h2>
+            <h2 id="why-us-title" class="text-3xl font-bold text-center mb-12">Why Choose Us?</h2>
             <div class="scrolling-wrapper">
                 <!-- Cards are duplicated for a seamless loop -->
-                <div class="card-container p-4"><div class="bg-blue-100 p-6 rounded-xl shadow-md h-full"><h3 class="text-xl font-bold mb-2 text-blue-800">Based on Science</h3><p class="text-gray-600">Our test is built on the HEXACO model, a robust framework trusted by psychologists for its accuracy and cross-cultural validity.</p></div></div>
-                <div class="card-container p-4"><div class="bg-green-100 p-6 rounded-xl shadow-md h-full"><h3 class="text-xl font-bold mb-2 text-green-800">Three-Level Analysis</h3><p class="text-gray-600">We go beyond simple traits by analyzing your situational judgments and life story themes to create a truly holistic profile.</p></div></div>
-                <div class="card-container p-4"><div class="bg-indigo-100 p-6 rounded-xl shadow-md h-full"><h3 class="text-xl font-bold mb-2 text-indigo-800">Actionable Insights</h3><p class="text-gray-600">Understand your strengths and potential challenges with clear, non-judgmental feedback designed for personal growth.</p></div></div>
+                <div class="card-container p-4"><div class="bg-blue-100 p-6 rounded-xl shadow-md h-full"><h3 id="why-us-1-title" class="text-xl font-bold mb-2 text-blue-800">Based on Science</h3><p id="why-us-1-desc" class="text-gray-600">Our test is built on the HEXACO model, a robust framework trusted by psychologists for its accuracy and cross-cultural validity.</p></div></div>
+                <div class="card-container p-4"><div class="bg-green-100 p-6 rounded-xl shadow-md h-full"><h3 id="why-us-2-title" class="text-xl font-bold mb-2 text-green-800">Three-Level Analysis</h3><p id="why-us-2-desc" class="text-gray-600">We go beyond simple traits by analyzing your situational judgments and life story themes to create a truly holistic profile.</p></div></div>
+                <div class="card-container p-4"><div class="bg-indigo-100 p-6 rounded-xl shadow-md h-full"><h3 id="why-us-3-title" class="text-xl font-bold mb-2 text-indigo-800">Actionable Insights</h3><p id="why-us-3-desc" class="text-gray-600">Understand your strengths and potential challenges with clear, non-judgmental feedback designed for personal growth.</p></div></div>
                 <div class="card-container p-4"><div class="bg-blue-100 p-6 rounded-xl shadow-md h-full"><h3 class="text-xl font-bold mb-2 text-blue-800">Based on Science</h3><p class="text-gray-600">Our test is built on the HEXACO model, a robust framework trusted by psychologists for its accuracy and cross-cultural validity.</p></div></div>
                 <div class="card-container p-4"><div class="bg-green-100 p-6 rounded-xl shadow-md h-full"><h3 class="text-xl font-bold mb-2 text-green-800">Three-Level Analysis</h3><p class="text-gray-600">We go beyond simple traits by analyzing your situational judgments and life story themes to create a truly holistic profile.</p></div></div>
                 <div class="card-container p-4"><div class="bg-indigo-100 p-6 rounded-xl shadow-md h-full"><h3 class="text-xl font-bold mb-2 text-indigo-800">Actionable Insights</h3><p class="text-gray-600">Understand your strengths and potential challenges with clear, non-judgmental feedback designed for personal growth.</p></div></div>
@@ -218,7 +225,7 @@
             <h2 id="question-text" class="text-2xl md:text-3xl font-bold text-gray-800 text-center mb-8"></h2>
             <div id="answer-options"></div>
             <div class="mt-8 text-center">
-                <button id="back-btn" class="text-gray-500 hover:text-gray-800 font-semibold py-2 px-4">&larr; Back</button>
+                <button id="back-btn" class="text-gray-500 hover:text-gray-800 font-semibold py-2 px-4"></button>
             </div>
         </div>
     </div>
@@ -226,7 +233,7 @@
     <!-- Loading Container (Initially Hidden) -->
     <div id="loading-container" class="hidden min-h-screen flex-col items-center justify-center p-4">
         <div class="w-full max-w-md text-center">
-            <h2 class="text-3xl font-bold text-gray-700 mb-4">Analyzing Your Profile...</h2>
+            <h2 id="loading-text" class="text-3xl font-bold text-gray-700 mb-4">Analyzing Your Profile...</h2>
             <div class="w-full bg-gray-200 rounded-full h-4">
                 <div id="loading-bar-inner" class="h-4 rounded-full" style="width: 0%"></div>
             </div>
@@ -264,104 +271,250 @@
     </div>
 
     <script>
-        // --- Question Banks ---
+        // --- Questions (English only, used as keys) ---
         const level1Questions = [
-            { text: "I wouldn't use flattery to get ahead.", dimension: 'H', score: 1 },
-            { text: "If I want something from someone, I will laugh at their worst jokes.", dimension: 'H', score: -1 },
-            { text: "I feel a strong sense of entitlement for special treatment.", dimension: 'H', score: -1 },
-            { text: "I would never accept a bribe, even if it were very large.", dimension: 'H', score: 1 },
-            { text: "I'm not interested in showing off my wealth or status.", dimension: 'H', score: 1 },
-            { text: "I'd be tempted to use counterfeit money if I were sure I could get away with it.", dimension: 'H', score: -1 },
-            { text: "Having a lot of money is not especially important to me.", dimension: 'H', score: 1 },
-            { text: "I would get a lot of pleasure from owning expensive luxury goods.", dimension: 'H', score: -1 },
-            { text: "I think that I am an ordinary person who is no better than others.", dimension: 'H', score: 1 },
-            { text: "I sometimes feel that I am a worthless person.", dimension: 'E', score: 1 },
-            { text: "I worry a lot, even about things that are not very likely to happen.", dimension: 'E', score: 1 },
-            { text: "I get very sentimental when watching emotional movies.", dimension: 'E', score: 1 },
-            { text: "I remain calm in stressful situations.", dimension: 'E', score: -1 },
-            { text: "I rarely feel sad or blue.", dimension: 'E', score: -1 },
-            { text: "I am not a worrier.", dimension: 'E', score: -1 },
-            { text: "I feel like crying when I see other people crying.", dimension: 'E', score: 1 },
-            { text: "I am not easily frightened.", dimension: 'E', score: -1 },
-            { text: "I tend to be a very anxious person.", dimension: 'E', score: 1 },
-            { text: "I feel that I am an unpopular person.", dimension: 'X', score: -1 },
-            { text: "In social situations, I'm usually the one who makes the first move.", dimension: 'X', score: 1 },
-            { text: "I am the life of the party.", dimension: 'X', score: 1 },
-            { text: "I prefer to be in the background.", dimension: 'X', score: -1 },
-            { text: "I have a lot of energy.", dimension: 'X', score: 1 },
-            { text: "I don't like to draw attention to myself.", dimension: 'X', score: -1 },
-            { text: "I am a very enthusiastic person.", dimension: 'X', score: 1 },
-            { text: "I enjoy being alone.", dimension: 'X', score: -1 },
-            { text: "People sometimes tell me that I am too critical of others.", dimension: 'A', score: -1 },
-            { text: "I tend to be lenient in my judgments of others.", dimension: 'A', score: 1 },
-            { text: "I rarely hold a grudge, even against people who have harmed me.", dimension: 'A', score: 1 },
-            { text: "I get angry easily.", dimension: 'A', score: -1 },
-            { text: "I am a very patient person.", dimension: 'A', score: 1 },
-            { text: "I am not a very forgiving person.", dimension: 'A', score: -1 },
-            { text: "I am a very gentle person.", dimension: 'A', score: 1 },
-            { text: "I am not a very cooperative person.", dimension: 'A', score: -1 },
-            { text: "I often push myself to my limits when working on a task.", dimension: 'C', score: 1 },
-            { text: "I am a very organized person.", dimension: 'C', score: 1 },
-            { text: "I often make impulsive decisions.", dimension: 'C', score: -1 },
-            { text: "I make sure my work is perfect, down to the last detail.", dimension: 'C', score: 1 },
-            { text: "I am not a very disciplined person.", dimension: 'C', score: -1 },
-            { text: "I am a very reliable person.", dimension: 'C', score: 1 },
-            { text: "I am not a very careful person.", dimension: 'C', score: -1 },
-            { text: "I am a very diligent person.", dimension: 'C', score: 1 },
-            { text: "I would be bored by a visit to an art gallery.", dimension: 'O', score: -1 },
-            { text: "I am fascinated by the beauty of nature.", dimension: 'O', score: 1 },
-            { text: "I like to solve complex problems and puzzles.", dimension: 'O', score: 1 },
-            { text: "I think of myself as a highly creative person.", dimension: 'O', score: 1 },
-            { text: "I am not interested in abstract ideas.", dimension: 'O', score: -1 },
-            { text: "I have a rich vocabulary.", dimension: 'O', score: 1 },
-            { text: "I have a vivid imagination.", dimension: 'O', score: 1 },
-            { text: "I am not interested in theoretical discussions.", dimension: 'O', score: -1 },
+            { id: 'h1', dimension: 'H', score: 1 }, { id: 'h2', dimension: 'H', score: -1 }, { id: 'h3', dimension: 'H', score: -1 }, { id: 'h4', dimension: 'H', score: 1 }, { id: 'h5', dimension: 'H', score: 1 }, { id: 'h6', dimension: 'H', score: -1 }, { id: 'h7', dimension: 'H', score: 1 }, { id: 'h8', dimension: 'H', score: -1 }, { id: 'h9', dimension: 'H', score: 1 },
+            { id: 'e1', dimension: 'E', score: 1 }, { id: 'e2', dimension: 'E', score: 1 }, { id: 'e3', dimension: 'E', score: 1 }, { id: 'e4', dimension: 'E', score: -1 }, { id: 'e5', dimension: 'E', score: -1 }, { id: 'e6', dimension: 'E', score: -1 }, { id: 'e7', dimension: 'E', score: 1 }, { id: 'e8', dimension: 'E', score: -1 }, { id: 'e9', dimension: 'E', score: 1 },
+            { id: 'x1', dimension: 'X', score: -1 }, { id: 'x2', dimension: 'X', score: 1 }, { id: 'x3', dimension: 'X', score: 1 }, { id: 'x4', dimension: 'X', score: -1 }, { id: 'x5', dimension: 'X', score: 1 }, { id: 'x6', dimension: 'X', score: -1 }, { id: 'x7', dimension: 'X', score: 1 }, { id: 'x8', dimension: 'X', score: -1 },
+            { id: 'a1', dimension: 'A', score: -1 }, { id: 'a2', dimension: 'A', score: 1 }, { id: 'a3', dimension: 'A', score: 1 }, { id: 'a4', dimension: 'A', score: -1 }, { id: 'a5', dimension: 'A', score: 1 }, { id: 'a6', dimension: 'A', score: -1 }, { id: 'a7', dimension: 'A', score: 1 }, { id: 'a8', dimension: 'A', score: -1 },
+            { id: 'c1', dimension: 'C', score: 1 }, { id: 'c2', dimension: 'C', score: 1 }, { id: 'c3', dimension: 'C', score: -1 }, { id: 'c4', dimension: 'C', score: 1 }, { id: 'c5', dimension: 'C', score: -1 }, { id: 'c6', dimension: 'C', score: 1 }, { id: 'c7', dimension: 'C', score: -1 }, { id: 'c8', dimension: 'C', score: 1 },
+            { id: 'o1', dimension: 'O', score: -1 }, { id: 'o2', dimension: 'O', score: 1 }, { id: 'o3', dimension: 'O', score: 1 }, { id: 'o4', dimension: 'O', score: 1 }, { id: 'o5', dimension: 'O', score: -1 }, { id: 'o6', dimension: 'O', score: 1 }, { id: 'o7', dimension: 'O', score: 1 }, { id: 'o8', dimension: 'O', score: -1 },
         ];
         const level2Questions = [
-            { text: "You're in a group discussion and someone publicly criticizes an idea you just presented. How do you respond?", type: 'situational', options: [ { text: "Defend your idea immediately and point out the flaws in their criticism.", dimension: 'X' }, { text: "Acknowledge their point and suggest discussing it further after the discussion.", dimension: 'A' }, { text: "Say nothing but feel discouraged for the rest of the discussion.", dimension: 'E' }, { text: "Ask them to elaborate on their concerns so you can understand their perspective.", dimension: 'O' } ] },
-            { text: "You have an important personal deadline approaching, but a close friend asks for your help with an urgent problem. What do you do?", type: 'situational', options: [ { text: "Politely explain your deadline and offer to help them as soon as it's done.", dimension: 'C' }, { text: "Drop what you're doing immediately to help your friend; relationships are more important.", dimension: 'A' }, { text: "Feel anxious and torn, trying to juggle both at once and not doing either well.", dimension: 'E' }, { text: "Suggest an unconventional, quick solution for their problem so you can get back to your task.", dimension: 'O' } ] },
-            { text: "You find a way to get something done much faster, but it involves bending a rule you've agreed to follow. What's your move?", type: 'situational', options: [ { text: "Use the faster method. The result is what matters most.", dimension: 'H', score: -1 }, { text: "Stick to the rules. An agreement is an agreement.", dimension: 'H', score: 1 }, { text: "Propose a formal change to the rule, explaining the benefits of the new method.", dimension: 'C' }, { text: "Ask someone else for their opinion before doing anything.", dimension: 'E' } ] },
-            { text: "You're invited to a large, noisy party where you only know one person. What's your game plan?", type: 'situational', options: [ { text: "Jump right in and start introducing yourself to new people.", dimension: 'X' }, { text: "Find a quiet corner and observe people for a while before engaging.", dimension: 'X', score: -1 }, { text: "Stick close to the person you know all night.", dimension: 'E' }, { text: "Find the most interesting-looking person and start a deep conversation.", dimension: 'O' } ] },
-            { text: "Someone asks you for help with a complex task but gives you vague instructions. What is your first step?", type: 'situational', options: [ { text: "Create a detailed plan with your best assumptions and present it for their feedback.", dimension: 'C' }, { text: "Start experimenting with different approaches to see what works best.", dimension: 'O' }, { text: "Ask for clarification and specific examples before you begin.", dimension: 'E' }, { text: "Collaborate with them to brainstorm ideas and figure it out together.", dimension: 'A' } ] },
-            { text: "Someone in a group project isn't doing their share of the work, and it's affecting the outcome. How do you handle it?", type: 'situational', options: [ { text: "Confront them directly and honestly about the issue.", dimension: 'H', score: 1 }, { text: "Pick up their slack to avoid conflict and keep the project moving.", dimension: 'A' }, { text: "Bring up the issue with the group to find a collective solution.", dimension: 'C' }, { text: "Try to understand if they're struggling and offer your help.", dimension: 'E' } ] },
-            { text: "You have a free weekend with no plans. How do you spend it?", type: 'situational', options: [ { text: "Call up friends and organize a group activity.", dimension: 'X' }, { text: "Tackle a personal project or organize your home.", dimension: 'C' }, { text: "Visit a museum, read a book on a new topic, or explore a new place.", dimension: 'O' }, { text: "Relax at home and recharge your batteries in peace and quiet.", dimension: 'X', score: -1 } ] },
-            { text: "You made a significant mistake that affects others, but no one has noticed yet. What do you do?", type: 'situational', options: [ { text: "Own up to it immediately and propose a solution.", dimension: 'H', score: 1 }, { text: "Wait to see if anyone notices before saying anything.", dimension: 'H', score: -1 }, { text: "Try to fix it quietly without telling anyone.", dimension: 'C' }, { text: "Worry endlessly about being discovered.", dimension: 'E' } ] },
-            { text: "When faced with a difficult personal decision, you are most likely to:", type: 'situational', options: [ { text: "Trust your gut feelings and intuition.", dimension: 'O' }, { text: "Create a pro-con list and analyze it logically.", dimension: 'C' }, { text: "Talk it through with several friends to get their opinions.", dimension: 'X' }, { text: "Choose the option that will cause the least conflict with others.", dimension: 'A' } ] },
-            { text: "Someone cuts in front of you in a long line. Your immediate reaction is to:", type: 'situational', options: [ { text: "Politely point out that there is a line and you were next.", dimension: 'H', score: 1 }, { text: "Say nothing, but be visibly annoyed and complain to the person behind you.", dimension: 'A', score: -1 }, { text: "Let it go. It's not worth the confrontation.", dimension: 'A' }, { text: "Loudly call them out so everyone in line knows what they did.", dimension: 'X' } ] },
-            { text: "You have a choice between a life path that is stable and secure, and another that is riskier but more exciting. You choose:", type: 'situational', options: [ { text: "The stable and secure path. Predictability is important.", dimension: 'C' }, { text: "The risky but exciting path. You thrive on new challenges.", dimension: 'O' }, { text: "The path that offers the greatest personal gain, regardless of risk.", dimension: 'H', score: -1 }, { text: "The path that your mentors and family think is best for you.", dimension: 'E' } ] },
-            { text: "When learning a new skill, you prefer to:", type: 'situational', options: [ { text: "Follow a structured course with clear steps and objectives.", dimension: 'C' }, { text: "Jump in and learn through trial and error.", dimension: 'O' }, { text: "Learn with a group or a partner.", dimension: 'X' }, { text: "Find a teacher or mentor you trust and follow their guidance.", dimension: 'A' } ] },
-            { text: "A friend is telling you about a problem, you are most likely to:", type: 'situational', options: [ { text: "Listen patiently and offer emotional support.", dimension: 'E' }, { text: "Immediately start brainstorming practical solutions for them.", dimension: 'C' }, { text: "Share a story of a similar experience you had.", dimension: 'X' }, { text: "Help them see the problem from a completely different perspective.", dimension: 'O' } ] },
-            { text: "You've just received a significant financial gift. Your first instinct is to:", type: 'situational', options: [ { text: "Put it into a savings or investment account.", dimension: 'C' }, { text: "Splurge on a luxury item or a lavish vacation.", dimension: 'H', score: -1 }, { text: "Throw a big party for your friends and family.", dimension: 'X' }, { text: "Donate a portion to a cause you care about.", dimension: 'A' } ] }
+            { id: 's1', type: 'situational', options: [{ id: 's1a', dimension: 'X' }, { id: 's1b', dimension: 'A' }, { id: 's1c', dimension: 'E' }, { id: 's1d', dimension: 'O' }] },
+            { id: 's2', type: 'situational', options: [{ id: 's2a', dimension: 'C' }, { id: 's2b', dimension: 'A' }, { id: 's2c', dimension: 'E' }, { id: 's2d', dimension: 'O' }] },
+            { id: 's3', type: 'situational', options: [{ id: 's3a', dimension: 'H', score: -1 }, { id: 's3b', dimension: 'H', score: 1 }, { id: 's3c', dimension: 'C' }, { id: 's3d', dimension: 'E' }] },
+            { id: 's4', type: 'situational', options: [{ id: 's4a', dimension: 'X' }, { id: 's4b', dimension: 'X', score: -1 }, { id: 's4c', dimension: 'E' }, { id: 's4d', dimension: 'O' }] },
+            { id: 's5', type: 'situational', options: [{ id: 's5a', dimension: 'C' }, { id: 's5b', dimension: 'O' }, { id: 's5c', dimension: 'E' }, { id: 's5d', dimension: 'A' }] },
+            { id: 's6', type: 'situational', options: [{ id: 's6a', dimension: 'H', score: 1 }, { id: 's6b', dimension: 'A' }, { id: 's6c', dimension: 'C' }, { id: 's6d', dimension: 'E' }] },
+            { id: 's7', type: 'situational', options: [{ id: 's7a', dimension: 'X' }, { id: 's7b', dimension: 'C' }, { id: 's7c', dimension: 'O' }, { id: 's7d', dimension: 'X', score: -1 }] },
+            { id: 's8', type: 'situational', options: [{ id: 's8a', dimension: 'H', score: 1 }, { id: 's8b', dimension: 'H', score: -1 }, { id: 's8c', dimension: 'C' }, { id: 's8d', dimension: 'E' }] },
+            { id: 's9', type: 'situational', options: [{ id: 's9a', dimension: 'O' }, { id: 's9b', dimension: 'C' }, { id: 's9c', dimension: 'X' }, { id: 's9d', dimension: 'A' }] },
+            { id: 's10', type: 'situational', options: [{ id: 's10a', dimension: 'H', score: 1 }, { id: 's10b', dimension: 'A', score: -1 }, { id: 's10c', dimension: 'A' }, { id: 's10d', dimension: 'X' }] },
+            { id: 's11', type: 'situational', options: [{ id: 's11a', dimension: 'C' }, { id: 's11b', dimension: 'O' }, { id: 's11c', dimension: 'H', score: -1 }, { id: 's11d', dimension: 'E' }] },
+            { id: 's12', type: 'situational', options: [{ id: 's12a', dimension: 'C' }, { id: 's12b', dimension: 'O' }, { id: 's12c', dimension: 'X' }, { id: 's12d', dimension: 'A' }] },
+            { id: 's13', type: 'situational', options: [{ id: 's13a', dimension: 'E' }, { id: 's13b', dimension: 'C' }, { id: 's13c', dimension: 'X' }, { id: 's13d', dimension: 'O' }] },
+            { id: 's14', type: 'situational', options: [{ id: 's14a', dimension: 'C' }, { id: 's14b', dimension: 'H', score: -1 }, { id: 's14c', dimension: 'X' }, { id: 's14d', dimension: 'A' }] }
         ];
         const level3Question = {
-            text: "Which of these core themes best reflects your personal life story so far?",
-            type: 'narrative',
-            options: [
-                { text: "<strong>Growth:</strong> A story of overcoming challenges and continuously improving yourself.", choiceId: 'growth' },
-                { text: "<strong>Redemption:</strong> A story of recovering from a negative event that ultimately led to a positive outcome.", choiceId: 'redemption' },
-                { text: "<strong>Agency:</strong> A story of taking control of your life and shaping your own destiny.", choiceId: 'agency' },
-                { text: "<strong>Connection:</strong> A story of finding meaning through deep, supportive relationships with others.", choiceId: 'connection' }
-            ]
+            id: 'n1', type: 'narrative',
+            options: [ { id: 'n1a', choiceId: 'growth' }, { id: 'n1b', choiceId: 'redemption' }, { id: 'n1c', choiceId: 'agency' }, { id: 'n1d', choiceId: 'connection' } ]
         };
 
-        // --- Descriptions and Profiles ---
+        // --- Descriptions and Profiles (English only, used as keys) ---
         const profiles = {
-            H: { title: "The Principled Realist", color: "text-gray-700", bgColor: "bg-slate-100", high: { facets: ["Sincerity", "Fairness", "Modesty"], summary: "You are guided by a strong sense of fairness and sincerity. You prefer to cooperate with others on equal terms, without a desire for special status or wealth. This makes you a trustworthy and genuine individual.", breakdown: "Your high score in <strong>Honesty-Humility</strong> shows you are sincere and principled. <strong>Strength:</strong> You build trust easily and are seen as a fair-minded person. <strong>Challenge:</strong> You might be uncomfortable in environments that require competitive self-promotion or aggressive tactics." }, low: { facets: ["Strategic", "Status-Driven", "Pragmatic"], summary: "You are a pragmatic and adaptable individual, comfortable with social hierarchies and using strategy to achieve your goals. You are not afraid to leverage situations to your advantage and are motivated by personal success.", breakdown: "Your low score in <strong>Honesty-Humility</strong> suggests you are strategic and self-assured. <strong>Strength:</strong> You are effective at navigating competitive situations and are not easily taken advantage of. <strong>Challenge:</strong> Others might sometimes perceive your actions as manipulative or overly self-interested." } },
-            E: { title: "The Sensitive Soul", color: "text-purple-600", bgColor: "bg-purple-100", high: { facets: ["Empathy", "Fearfulness", "Sentimentality"], summary: "You are highly attuned to your emotions and the world around you. You experience feelings deeply, which allows you to form strong empathetic connections with others and be sensitive to potential dangers.", breakdown: "Your high score in <strong>Emotionality</strong> indicates you are empathetic and sensitive. <strong>Strength:</strong> Your ability to connect with others' feelings and your caution can help you avoid risky situations. <strong>Challenge:</strong> You may be prone to anxiety or worry, which can sometimes be overwhelming." }, low: { facets: ["Bravery", "Confidence", "Stability"], summary: "You are emotionally resilient and remain calm even in stressful situations. You face challenges with a steady demeanor and are not easily rattled by physical or social threats.", breakdown: "Your low score in <strong>Emotionality</strong> shows you are brave and emotionally stable. <strong>Strength:</strong> You are a rock for others during a crisis and can handle high-pressure environments. <strong>Challenge:</strong> You might sometimes find it difficult to understand or express deeper, more vulnerable emotions." } },
-            X: { title: "The Social Catalyst", color: "text-orange-500", bgColor: "bg-orange-100", high: { facets: ["Sociability", "Liveliness", "Social Boldness"], summary: "You are energetic, enthusiastic, and thrive in social settings. You naturally take the lead, enjoy being the center of attention, and draw energy from being around other people.", breakdown: "Your high score in <strong>Extraversion</strong> means you are outgoing and socially confident. <strong>Strength:</strong> You are a natural leader and networker, able to inspire and energize groups. <strong>Challenge:</strong> You may feel under-stimulated or bored when spending time alone." }, low: { facets: ["Independence", "Reflection", "Reserve"], summary: "You are thoughtful and reserved, preferring quiet environments and meaningful one-on-one interactions over large social gatherings. You find your energy in reflection and solitude.", breakdown: "Your low score in <strong>Extraversion</strong> suggests you are independent and reflective. <strong>Strength:</strong> You are comfortable with your own company and can focus deeply on tasks without social distraction. <strong>Challenge:</strong> You might be overlooked in large group settings or find it draining to engage in extensive social activities." } },
-            A: { title: "The Harmonizer", color: "text-green-500", bgColor: "bg-green-100", high: { facets: ["Patience", "Forgivingness", "Gentleness"], summary: "You are patient, cooperative, and easy-going. You are willing to compromise and forgive, and you generally avoid confrontation, preferring to maintain harmonious relationships with others.", breakdown: "Your high score in <strong>Agreeableness</strong> shows you are gentle and accommodating. <strong>Strength:</strong> You are an excellent team player and a supportive friend, able to smooth over conflicts. <strong>Challenge:</strong> Your reluctance to criticize might lead you to be overly tolerant of others' faults." }, low: { facets: ["Independent", "Frank", "Assertive"], summary: "You are a direct and independent thinker who is not afraid to challenge others and express a critical opinion. You hold firm to your beliefs and are willing to engage in arguments to defend your point of view.", breakdown: "Your low score in <strong>Agreeableness</strong> indicates you are independent-minded and frank. <strong>Strength:</strong> Your willingness to critique can lead to better outcomes and prevent bad decisions. <strong>Challenge:</strong> Others may sometimes see you as stubborn or argumentative." } },
-            C: { title: "The Architect", color: "text-blue-600", bgColor: "bg-blue-100", high: { facets: ["Diligence", "Organization", "Perfectionism"], summary: "You are organized, disciplined, and goal-oriented. You approach tasks with a structured plan and are driven to achieve a high standard of work, making you a reliable and diligent individual.", breakdown: "Your high score in <strong>Conscientiousness</strong> means you are organized and industrious. <strong>Strength:</strong> You are highly reliable and can be counted on to get the job done right. <strong>Challenge:</strong> You might be prone to perfectionism or find it difficult to adapt when plans change unexpectedly." }, low: { facets: ["Flexibility", "Spontaneity", "Adaptability"], summary: "You are flexible and spontaneous, comfortable with a lack of structure and able to adapt to changing priorities. You are not overly concerned with rules and prefer to live in the moment.", breakdown: "Your low score in <strong>Conscientiousness</strong> suggests you are flexible and spontaneous. <strong>Strength:</strong> You are highly adaptable and can thrive in unpredictable environments. <strong>Challenge:</strong> You may struggle with disorganization or have difficulty meeting deadlines." } },
-            O: { title: "The Innovator", color: "text-indigo-500", bgColor: "bg-indigo-100", high: { facets: ["Creativity", "Inquisitiveness", "Unconventionality"], summary: "You are intellectually curious, creative, and open to unconventional ideas and new experiences. You have a deep appreciation for beauty, art, and abstract thinking.", breakdown: "Your high score in <strong>Openness to Experience</strong> shows you are creative and inquisitive. <strong>Strength:</strong> You are a natural innovator, able to see possibilities that others miss. <strong>Challenge:</strong> You might sometimes be seen as impractical or find it difficult to focus on routine tasks." }, low: { facets: ["Pragmatism", "Tradition", "Concreteness"], summary: "You are practical, down-to-earth, and prefer the conventional and familiar. You find value in tradition and are most comfortable with straightforward, concrete solutions.", breakdown: "Your low score in <strong>Openness to Experience</strong> indicates you are pragmatic and conventional. <strong>Strength:</strong> You bring a grounded, common-sense approach to problems. <strong>Challenge:</strong> You may be resistant to change or overlook novel solutions." } }
+            H: { title: "The Principled Realist", color: "text-gray-700", bgColor: "bg-slate-100", high: { facets: ["Sincerity", "Fairness", "Modesty"], summary: "summary_H_high", breakdown: "breakdown_H_high" }, low: { facets: ["Strategic", "Status-Driven", "Pragmatic"], summary: "summary_H_low", breakdown: "breakdown_H_low" } },
+            E: { title: "The Sensitive Soul", color: "text-purple-600", bgColor: "bg-purple-100", high: { facets: ["Empathy", "Fearfulness", "Sentimentality"], summary: "summary_E_high", breakdown: "breakdown_E_high" }, low: { facets: ["Bravery", "Confidence", "Stability"], summary: "summary_E_low", breakdown: "breakdown_E_low" } },
+            X: { title: "The Social Catalyst", color: "text-orange-500", bgColor: "bg-orange-100", high: { facets: ["Sociability", "Liveliness", "Social Boldness"], summary: "summary_X_high", breakdown: "breakdown_X_high" }, low: { facets: ["Independence", "Reflection", "Reserve"], summary: "summary_X_low", breakdown: "breakdown_X_low" } },
+            A: { title: "The Harmonizer", color: "text-green-500", bgColor: "bg-green-100", high: { facets: ["Patience", "Forgivingness", "Gentleness"], summary: "summary_A_high", breakdown: "breakdown_A_high" }, low: { facets: ["Independent", "Frank", "Assertive"], summary: "summary_A_low", breakdown: "breakdown_A_low" } },
+            C: { title: "The Architect", color: "text-blue-600", bgColor: "bg-blue-100", high: { facets: ["Diligence", "Organization", "Perfectionism"], summary: "summary_C_high", breakdown: "breakdown_C_high" }, low: { facets: ["Flexibility", "Spontaneity", "Adaptability"], summary: "summary_C_low", breakdown: "breakdown_C_low" } },
+            O: { title: "The Innovator", color: "text-indigo-500", bgColor: "bg-indigo-100", high: { facets: ["Creativity", "Inquisitiveness", "Unconventionality"], summary: "summary_O_high", breakdown: "breakdown_O_high" }, low: { facets: ["Pragmatism", "Tradition", "Concreteness"], summary: "summary_O_low", breakdown: "breakdown_O_low" } }
         };
         
-        const level3Narratives = {
-            growth: "Your life story is one of <strong>Growth</strong>. This indicates you see life as a journey of learning and self-development, viewing challenges not as setbacks, but as opportunities to become a better version of yourself.",
-            redemption: "Your life story follows a theme of <strong>Redemption</strong>. This suggests you have faced significant adversity but have found positive meaning and strength from it, turning a negative past into a positive future.",
-            agency: "Your life story is driven by a theme of <strong>Agency</strong>. You see yourself as the author of your own destiny, actively making choices and taking actions to create the life you want to live.",
-            connection: "Your life story is centered on the theme of <strong>Connection</strong>. You find your greatest sense of purpose and meaning in forming deep, supportive, and lasting bonds with friends, family, and your community."
+        // --- Full Translation Object ---
+        const translations = {
+            en: {
+                // UI Text
+                homeTagline: "A Multi-Level Personality Assessment",
+                whyUsTitle: "Why Choose Us?",
+                whyUs1Title: "Based on Science", whyUs1Desc: "Our test is built on the HEXACO model, a robust framework trusted by psychologists for its accuracy and cross-cultural validity.",
+                whyUs2Title: "Three-Level Analysis", whyUs2Desc: "We go beyond simple traits by analyzing your situational judgments and life story themes to create a truly holistic profile.",
+                whyUs3Title: "Actionable Insights", whyUs3Desc: "Understand your strengths and potential challenges with clear, non-judgmental feedback designed for personal growth.",
+                homeDescription: "Discover your unique strengths. Our analysis is based on the scientifically validated <strong>HEXACO model</strong> for a surprisingly accurate personality profile.",
+                startBtn: "Start the Test!",
+                footerText: "&copy; 2024 Personality Post. All Rights Reserved.",
+                progressPart1: "Part 1: Core Traits",
+                progressPart2: "Part 2: Situational Judgement",
+                progressPart3: "Part 3: Life Story",
+                questionOf: "Question {current} of {total}",
+                backBtn: "&larr; Back",
+                resultsMainTitle: "Your Integrated Profile:",
+                resultsBreakdownTitle: "Your Trait Breakdown",
+                resultsNextStepsTitle: "Next Steps",
+                downloadBtn: "Download Results",
+                shareBtn: "Share with Friends",
+                retakeBtn: "Retake Test",
+                high: "High",
+                low: "Low",
+                subtypesPrefix: "Key Sub-Types:",
+                level2Title: "In Action:",
+                level2Summary: "Your responses to situational questions suggest that when faced with challenges, you tend to prioritize actions related to <strong>{profile}</strong>, reinforcing your core traits in your daily decisions.",
+                level3Title: "Your Life Story:",
+                level3Default: "You have a unique perspective on your life's journey.",
+                shareMessage: "I took the Great Mind Profile test and my profile is \"{profile}\"! Check your personality test on www.test.com for free!",
+                downloading: "Generating image...",
+                downloaded: "Results image downloaded!",
+                downloadError: "Could not download results.",
+                sharing: "Shared successfully!",
+                shareError: "Could not share results.",
+                shareNotSupported: "Share feature not supported on this browser.",
+                copiedToClipboard: "Link copied to clipboard!",
+                copyError: "Could not copy link.",
+                loadingText: "Analyzing Your Profile...",
+                stronglyAgree: "Strongly Agree", agree: "Agree", neutral: "Neutral", disagree: "Disagree", stronglyDisagree: "Strongly Disagree",
+                // Level 1 Questions
+                h1: "I wouldn't use flattery to get ahead.", h2: "If I want something from someone, I will laugh at their worst jokes.", h3: "I feel a strong sense of entitlement for special treatment.", h4: "I would never accept a bribe, even if it were very large.", h5: "I'm not interested in showing off my wealth or status.", h6: "I'd be tempted to use counterfeit money if I were sure I could get away with it.", h7: "Having a lot of money is not especially important to me.", h8: "I would get a lot of pleasure from owning expensive luxury goods.", h9: "I think that I am an ordinary person who is no better than others.",
+                e1: "I sometimes feel that I am a worthless person.", e2: "I worry a lot, even about things that are not very likely to happen.", e3: "I get very sentimental when watching emotional movies.", e4: "I remain calm in stressful situations.", e5: "I rarely feel sad or blue.", e6: "I am not a worrier.", e7: "I feel like crying when I see other people crying.", e8: "I am not easily frightened.", e9: "I tend to be a very anxious person.",
+                x1: "I feel that I am an unpopular person.", x2: "In social situations, I'm usually the one who makes the first move.", x3: "I am the life of the party.", x4: "I prefer to be in the background.", x5: "I have a lot of energy.", x6: "I don't like to draw attention to myself.", x7: "I am a very enthusiastic person.", x8: "I enjoy being alone.",
+                a1: "People sometimes tell me that I am too critical of others.", a2: "I tend to be lenient in my judgments of others.", a3: "I rarely hold a grudge, even against people who have harmed me.", a4: "I get angry easily.", a5: "I am a very patient person.", a6: "I am not a very forgiving person.", a7: "I am a very gentle person.", a8: "I am not a very cooperative person.",
+                c1: "I often push myself to my limits when working on a task.", c2: "I am a very organized person.", c3: "I often make impulsive decisions.", c4: "I make sure my work is perfect, down to the last detail.", c5: "I am not a very disciplined person.", c6: "I am a very reliable person.", c7: "I am not a very careful person.", c8: "I am a very diligent person.",
+                o1: "I would be bored by a visit to an art gallery.", o2: "I am fascinated by the beauty of nature.", o3: "I like to solve complex problems and puzzles.", o4: "I think of myself as a highly creative person.", o5: "I am not interested in abstract ideas.", o6: "I have a rich vocabulary.", o7: "I have a vivid imagination.", o8: "I am not interested in theoretical discussions.",
+                // Level 2 Questions
+                s1: "You're in a group discussion and someone publicly criticizes an idea you just presented. How do you respond?", s1a: "Defend your idea immediately and point out the flaws in their criticism.", s1b: "Acknowledge their point and suggest discussing it further after the discussion.", s1c: "Say nothing but feel discouraged for the rest of the discussion.", s1d: "Ask them to elaborate on their concerns so you can understand their perspective.",
+                s2: "You have an important personal deadline approaching, but a close friend asks for your help with an urgent problem. What do you do?", s2a: "Politely explain your deadline and offer to help them as soon as it's done.", s2b: "Drop what you're doing immediately to help your friend; relationships are more important.", s2c: "Feel anxious and torn, trying to juggle both at once and not doing either well.", s2d: "Suggest an unconventional, quick solution for their problem so you can get back to your task.",
+                s3: "You find a way to get something done much faster, but it involves bending a rule you've agreed to follow. What's your move?", s3a: "Use the faster method. The result is what matters most.", s3b: "Stick to the rules. An agreement is an agreement.", s3c: "Propose a formal change to the rule, explaining the benefits of the new method.", s3d: "Ask someone else for their opinion before doing anything.",
+                s4: "You're invited to a large, noisy party where you only know one person. What's your game plan?", s4a: "Jump right in and start introducing yourself to new people.", s4b: "Find a quiet corner and observe people for a while before engaging.", s4c: "Stick close to the person you know all night.", s4d: "Find the most interesting-looking person and start a deep conversation.",
+                s5: "Someone asks you for help with a complex task but gives you vague instructions. What is your first step?", s5a: "Create a detailed plan with your best assumptions and present it for their feedback.", s5b: "Start experimenting with different approaches to see what works best.", s5c: "Ask for clarification and specific examples before you begin.", s5d: "Collaborate with them to brainstorm ideas and figure it out together.",
+                s6: "Someone in a group project isn't doing their share of the work, and it's affecting the outcome. How do you handle it?", s6a: "Confront them directly and honestly about the issue.", s6b: "Pick up their slack to avoid conflict and keep the project moving.", s6c: "Bring up the issue with the group to find a collective solution.", s6d: "Try to understand if they're struggling and offer your help.",
+                s7: "You have a free weekend with no plans. How do you spend it?", s7a: "Call up friends and organize a group activity.", s7b: "Tackle a personal project or organize your home.", s7c: "Visit a museum, read a book on a new topic, or explore a new place.", s7d: "Relax at home and recharge your batteries in peace and quiet.",
+                s8: "You made a significant mistake that affects others, but no one has noticed yet. What do you do?", s8a: "Own up to it immediately and propose a solution.", s8b: "Wait to see if anyone notices before saying anything.", s8c: "Try to fix it quietly without telling anyone.", s8d: "Worry endlessly about being discovered.",
+                s9: "When faced with a difficult personal decision, you are most likely to:", s9a: "Trust your gut feelings and intuition.", s9b: "Create a pro-con list and analyze it logically.", s9c: "Talk it through with several friends to get their opinions.", s9d: "Choose the option that will cause the least conflict with others.",
+                s10: "Someone cuts in front of you in a long line. Your immediate reaction is to:", s10a: "Politely point out that there is a line and you were next.", s10b: "Say nothing, but be visibly annoyed and complain to the person behind you.", s10c: "Let it go. It's not worth the confrontation.", s10d: "Loudly call them out so everyone in line knows what they did.",
+                s11: "You have a choice between a life path that is stable and secure, and another that is riskier but more exciting. You choose:", s11a: "The stable and secure path. Predictability is important.", s11b: "The risky but exciting path. You thrive on new challenges.", s11c: "The path that offers the greatest personal gain, regardless of risk.", s11d: "The path that your mentors and family think is best for you.",
+                s12: "When learning a new skill, you prefer to:", s12a: "Follow a structured course with clear steps and objectives.", s12b: "Jump in and learn through trial and error.", s12c: "Learn with a group or a partner.", s12d: "Find a teacher or mentor you trust and follow their guidance.",
+                s13: "A friend is telling you about a problem, you are most likely to:", s13a: "Listen patiently and offer emotional support.", s13b: "Immediately start brainstorming practical solutions for them.", s13c: "Share a story of a similar experience you had.", s13d: "Help them see the problem from a completely different perspective.",
+                s14: "You've just received a significant financial gift. Your first instinct is to:", s14a: "Put it into a savings or investment account.", s14b: "Splurge on a luxury item or a lavish vacation.", s14c: "Throw a big party for your friends and family.", s14d: "Donate a portion to a cause you care about.",
+                // Level 3 Question
+                n1: "Which of these core themes best reflects your personal life story so far?", n1a: "<strong>Growth:</strong> A story of overcoming challenges and continuously improving yourself.", n1b: "<strong>Redemption:</strong> A story of recovering from a negative event that ultimately led to a positive outcome.", n1c: "<strong>Agency:</strong> A story of taking control of your life and shaping your own destiny.", n1d: "<strong>Connection:</strong> A story of finding meaning through deep, supportive relationships with others.",
+                // Profiles
+                "The Principled Realist": "The Principled Realist", "The Sensitive Soul": "The Sensitive Soul", "The Social Catalyst": "The Social Catalyst", "The Harmonizer": "The Harmonizer", "The Architect": "The Architect", "The Innovator": "The Innovator",
+                "Sincerity": "Sincerity", "Fairness": "Fairness", "Modesty": "Modesty", "Strategic": "Strategic", "Status-Driven": "Status-Driven", "Pragmatic": "Pragmatic", "Empathy": "Empathy", "Fearfulness": "Fearfulness", "Sentimentality": "Sentimentality", "Bravery": "Bravery", "Confidence": "Confidence", "Stability": "Stability", "Sociability": "Sociability", "Liveliness": "Liveliness", "Social Boldness": "Social Boldness", "Independence": "Independence", "Reflection": "Reflection", "Reserve": "Reserve", "Patience": "Patience", "Forgivingness": "Forgivingness", "Gentleness": "Gentleness", "Independent": "Independent", "Frank": "Frank", "Assertive": "Assertive", "Diligence": "Diligence", "Organization": "Organization", "Perfectionism": "Perfectionism", "Flexibility": "Flexibility", "Spontaneity": "Spontaneity", "Adaptability": "Adaptability", "Creativity": "Creativity", "Inquisitiveness": "Inquisitiveness", "Unconventionality": "Unconventionality", "Pragmatism": "Pragmatism", "Tradition": "Tradition", "Concreteness": "Concreteness",
+                "Honesty-Humility": "Honesty-Humility", "Emotionality": "Emotionality", "Extraversion": "Extraversion", "Agreeableness": "Agreeableness", "Conscientiousness": "Conscientiousness", "Openness to Experience": "Openness to Experience",
+                // Breakdowns
+                "breakdown_H_high": "Your high score in <strong>Honesty-Humility</strong> shows you are sincere and principled. <strong>Strength:</strong> You build trust easily and are seen as a fair-minded person. <strong>Challenge:</strong> You might be uncomfortable in environments that require competitive self-promotion or aggressive tactics.",
+                "breakdown_H_low": "Your low score in <strong>Honesty-Humility</strong> suggests you are strategic and self-assured. <strong>Strength:</strong> You are effective at navigating competitive situations and are not easily taken advantage of. <strong>Challenge:</strong> Others might sometimes perceive your actions as manipulative or overly self-interested.",
+                "breakdown_E_high": "Your high score in <strong>Emotionality</strong> indicates you are empathetic and sensitive. <strong>Strength:</strong> Your ability to connect with others' feelings and your caution can help you avoid risky situations. <strong>Challenge:</strong> You may be prone to anxiety or worry, which can sometimes be overwhelming.",
+                "breakdown_E_low": "Your low score in <strong>Emotionality</strong> shows you are brave and emotionally stable. <strong>Strength:</strong> You are a rock for others during a crisis and can handle high-pressure environments. <strong>Challenge:</strong> You might sometimes find it difficult to understand or express deeper, more vulnerable emotions.",
+                "breakdown_X_high": "Your high score in <strong>Extraversion</strong> means you are outgoing and socially confident. <strong>Strength:</strong> You are a natural leader and networker, able to inspire and energize groups. <strong>Challenge:</strong> You may feel under-stimulated or bored when spending time alone.",
+                "breakdown_X_low": "Your low score in <strong>Extraversion</strong> suggests you are independent and reflective. <strong>Strength:</strong> You are comfortable with your own company and can focus deeply on tasks without social distraction. <strong>Challenge:</strong> You might be overlooked in large group settings or find it draining to engage in extensive social activities.",
+                "breakdown_A_high": "Your high score in <strong>Agreeableness</strong> shows you are gentle and accommodating. <strong>Strength:</strong> You are an excellent team player and a supportive friend, able to smooth over conflicts. <strong>Challenge:</strong> Your reluctance to criticize might lead you to be overly tolerant of others' faults.",
+                "breakdown_A_low": "Your low score in <strong>Agreeableness</strong> indicates you are independent-minded and frank. <strong>Strength:</strong> Your willingness to critique can lead to better outcomes and prevent bad decisions. <strong>Challenge:</strong> Others may sometimes see you as stubborn or argumentative.",
+                "breakdown_C_high": "Your high score in <strong>Conscientiousness</strong> means you are organized and industrious. <strong>Strength:</strong> You are highly reliable and can be counted on to get the job done right. <strong>Challenge:</strong> You might be prone to perfectionism or find it difficult to adapt when plans change unexpectedly.",
+                "breakdown_C_low": "Your low score in <strong>Conscientiousness</strong> suggests you are flexible and spontaneous. <strong>Strength:</strong> You are highly adaptable and can thrive in unpredictable environments. <strong>Challenge:</strong> You may struggle with disorganization or have difficulty meeting deadlines.",
+                "breakdown_O_high": "Your high score in <strong>Openness to Experience</strong> shows you are creative and inquisitive. <strong>Strength:</strong> You are a natural innovator, able to see possibilities that others miss. <strong>Challenge:</strong> You might sometimes be seen as impractical or find it difficult to focus on routine tasks.",
+                "breakdown_O_low": "Your low score in <strong>Openness to Experience</strong> indicates you are pragmatic and conventional. <strong>Strength:</strong> You bring a grounded, common-sense approach to problems. <strong>Challenge:</strong> You may be resistant to change or overlook novel solutions.",
+                // Summaries
+                "summary_H_high": "You are guided by a strong sense of fairness and sincerity. You prefer to cooperate with others on equal terms, without a desire for special status or wealth. This makes you a trustworthy and genuine individual.",
+                "summary_H_low": "You are a pragmatic and adaptable individual, comfortable with social hierarchies and using strategy to achieve your goals. You are not afraid to leverage situations to your advantage and are motivated by personal success.",
+                "summary_E_high": "You are highly attuned to your emotions and the world around you. You experience feelings deeply, which allows you to form strong empathetic connections with others and be sensitive to potential dangers.",
+                "summary_E_low": "You are emotionally resilient and remain calm even in stressful situations. You face challenges with a steady demeanor and are not easily rattled by physical or social threats.",
+                "summary_X_high": "You are energetic, enthusiastic, and thrive in social settings. You naturally take the lead, enjoy being the center of attention, and draw energy from being around other people.",
+                "summary_X_low": "You are thoughtful and reserved, preferring quiet environments and meaningful one-on-one interactions over large social gatherings. You find your energy in reflection and solitude.",
+                "summary_A_high": "You are patient, cooperative, and easy-going. You are willing to compromise and forgive, and you generally avoid confrontation, preferring to maintain harmonious relationships with others.",
+                "summary_A_low": "You are a direct and independent thinker who is not afraid to challenge others and express a critical opinion. You hold firm to your beliefs and are willing to engage in arguments to defend your point of view.",
+                "summary_C_high": "You are organized, disciplined, and goal-oriented. You approach tasks with a structured plan and are driven to achieve a high standard of work, making you a reliable and diligent individual.",
+                "summary_C_low": "You are flexible and spontaneous, comfortable with a lack of structure and able to adapt to changing priorities. You are not overly concerned with rules and prefer to live in the moment.",
+                "summary_O_high": "You are intellectually curious, creative, and open to unconventional ideas and new experiences. You have a deep appreciation for beauty, art, and abstract thinking.",
+                "summary_O_low": "You are practical, down-to-earth, and prefer the conventional and familiar. You find value in tradition and are most comfortable with straightforward, concrete solutions.",
+                // Narratives
+                "growth": "Your life story is one of <strong>Growth</strong>. This indicates you see life as a journey of learning and self-development, viewing challenges not as setbacks, but as opportunities to become a better version of yourself.",
+                "redemption": "Your life story follows a theme of <strong>Redemption</strong>. This suggests you have faced significant adversity but have found positive meaning and strength from it, turning a negative past into a positive future.",
+                "agency": "Your life story is driven by a theme of <strong>Agency</strong>. You see yourself as the author of your own destiny, actively making choices and taking actions to create the life you want to live.",
+                "connection": "Your life story is centered on the theme of <strong>Connection</strong>. You find your greatest sense of purpose and meaning in forming deep, supportive, and lasting bonds with friends, family, and your community."
+            },
+            ar: {
+                // UI Text
+                homeTagline: "تقييم شخصية متعدد المستويات",
+                whyUsTitle: "لماذا تختارنا؟",
+                whyUs1Title: "مبني على العلم", whyUs1Desc: "اختبارنا مبني على نموذج HEXACO، وهو إطار قوي يثق به علماء النفس لدقته وصلاحيته عبر الثقافات.",
+                whyUs2Title: "تحليل ثلاثي المستويات", whyUs2Desc: "نتجاوز السمات البسيطة من خلال تحليل أحكامك الظرفية ومواضيع قصة حياتك لإنشاء ملف شخصي شامل حقًا.",
+                whyUs3Title: "رؤى قابلة للتنفيذ", whyUs3Desc: "افهم نقاط قوتك والتحديات المحتملة من خلال ملاحظات واضحة وغير قضائية مصممة للنمو الشخصي.",
+                homeDescription: "اكتشف نقاط قوتك الفريدة. يعتمد تحليلنا على نموذج <strong>HEXACO</strong> المعتمد علميًا للحصول على ملف شخصي دقيق بشكل مدهش.",
+                startBtn: "ابدأ الاختبار!",
+                footerText: "&copy; 2024 Personality Post. جميع الحقوق محفوظة.",
+                progressPart1: "الجزء الأول: السمات الأساسية",
+                progressPart2: "الجزء الثاني: الحكم الظرفي",
+                progressPart3: "الجزء الثالث: قصة حياتك",
+                questionOf: "سؤال {current} من {total}",
+                backBtn: "رجوع &rarr;",
+                resultsMainTitle: "ملفك الشخصي المتكامل:",
+                resultsBreakdownTitle: "تفصيل سماتك",
+                resultsNextStepsTitle: "الخطوات التالية",
+                downloadBtn: "تحميل النتائج",
+                shareBtn: "شارك مع الأصدقاء",
+                retakeBtn: "إعادة الاختبار",
+                high: "مرتفع",
+                low: "منخفض",
+                subtypesPrefix: "الأنواع الفرعية الرئيسية:",
+                level2Title: "في الواقع:",
+                level2Summary: "تشير إجاباتك على الأسئلة الظرفية إلى أنه عند مواجهة التحديات، فإنك تميل إلى إعطاء الأولوية للإجراءات المتعلقة بـ <strong>{profile}</strong>، مما يعزز سماتك الأساسية في قراراتك اليومية.",
+                level3Title: "قصة حياتك:",
+                level3Default: "لديك منظور فريد لرحلة حياتك.",
+                shareMessage: "لقد أجريت اختبار Great Mind Profile وملفي الشخصي هو \"{profile}\"! اكتشف نوع شخصيتك على www.test.com مجانًا!",
+                downloading: "جاري إنشاء الصورة...",
+                downloaded: "تم تحميل صورة النتائج!",
+                downloadError: "لم يتم تحميل النتائج.",
+                sharing: "تمت المشاركة بنجاح!",
+                shareError: "لم تتم مشاركة النتائج.",
+                shareNotSupported: "ميزة المشاركة غير مدعومة في هذا المتصفح.",
+                copiedToClipboard: "تم نسخ الرابط إلى الحافظة!",
+                copyError: "تعذر نسخ الرابط.",
+                loadingText: "جاري تحليل ملفك الشخصي...",
+                stronglyAgree: "أوافق بشدة", agree: "أوافق", neutral: "محايد", disagree: "لا أوافق", stronglyDisagree: "لا أوافق بشدة",
+                // Level 1 Questions
+                h1: "لن أستخدم الإطراء للتقدم.", h2: "إذا أردت شيئًا من شخص ما ، فسأضحك على أسوأ نكاته.", h3: "أشعر بإحساس قوي بالاستحقاق لمعاملة خاصة.", h4: "لن أقبل رشوة أبدًا ، حتى لو كانت كبيرة جدًا.", h5: "لست مهتمًا بالتباهي بثروتي أو مكانتي.", h6: "سأغرى باستخدام نقود مزيفة إذا كنت متأكدًا من أنني أستطيع الإفلات من العقاب.", h7: "امتلاك الكثير من المال ليس بالأمر المهم بشكل خاص بالنسبة لي.", h8: "سأحصل على الكثير من المتعة من امتلاك سلع فاخرة باهظة الثمن.", h9: "أعتقد أنني شخص عادي لست أفضل من الآخرين.",
+                e1: "أشعر أحيانًا بأنني شخص لا قيمة له.", e2: "أقلق كثيرًا ، حتى بشأن الأشياء التي من غير المحتمل حدوثها.", e3: "أصبح عاطفيًا جدًا عند مشاهدة الأفلام العاطفية.", e4: "أبقى هادئًا في المواقف العصيبة.", e5: "نادراً ما أشعر بالحزن أو الكآبة.", e6: "أنا لست قلقًا.", e7: "أشعر بالرغبة في البكاء عندما أرى أشخاصًا آخرين يبكون.", e8: "أنا لا أخاف بسهولة.", e9: "أميل إلى أن أكون شخصًا قلقًا للغاية.",
+                x1: "أشعر أنني شخص غير محبوب.", x2: "في المواقف الاجتماعية ، عادة ما أكون أنا من يقوم بالخطوة الأولى.", x3: "أنا روح الحفلة.", x4: "أفضل أن أكون في الخلفية.", x5: "لدي الكثير من الطاقة.", x6: "لا أحب لفت الانتباه إلى نفسي.", x7: "أنا شخص متحمس جدًا.", x8: "أستمتع بكوني وحيدًا.",
+                a1: "يخبرني الناس أحيانًا أنني شديد النقد للآخرين.", a2: "أميل إلى أن أكون متساهلاً في أحكامي على الآخرين.", a3: "نادراً ما أحمل ضغينة ، حتى ضد الأشخاص الذين أذوني.", a4: "أغضب بسهولة.", a5: "أنا شخص صبور جدًا.", a6: "أنا لست شخصًا متسامحًا جدًا.", a7: "أنا شخص لطيف جدًا.", a8: "أنا لست شخصًا متعاونًا جدًا.",
+                c1: "غالبًا ما أدفع نفسي إلى أقصى حدودي عند العمل في مهمة ما.", c2: "أنا شخص منظم جدًا.", c3: "غالبًا ما أتخذ قرارات متهورة.", c4: "أتأكد من أن عملي مثالي ، وصولاً إلى أدق التفاصيل.", c5: "أنا لست شخصًا منضبطًا جدًا.", c6: "أنا شخص موثوق به للغاية.", c7: "أنا لست شخصًا حذرًا جدًا.", c8: "أنا شخص مجتهد جدًا.",
+                o1: "سأشعر بالملل من زيارة معرض فني.", o2: "أنا مفتون بجمال الطبيعة.", o3: "أحب حل المشكلات والألغاز المعقدة.", o4: "أعتقد أنني شخص مبدع للغاية.", o5: "أنا لست مهتمًا بالأفكار المجردة.", o6: "لدي مفردات غنية.", o7: "لدي خيال حي.", o8: "أنا لست مهتمًا بالمناقشات النظرية.",
+                // Level 2 Questions
+                s1: "أنت في مناقشة جماعية وانتقد أحدهم علنًا فكرة قدمتها للتو. كيف ترد؟", s1a: "دافع عن فكرتك على الفور وأشر إلى العيوب في نقدهم.", s1b: "اعترف بوجهة نظرهم واقترح مناقشتها بشكل أكبر بعد المناقشة.", s1c: "لا تقل شيئًا ولكن تشعر بالإحباط لبقية المناقشة.", s1d: "اطلب منهم توضيح مخاوفهم حتى تتمكن من فهم وجهة نظرهم.",
+                s2: "لديك موعد نهائي شخصي مهم يقترب ، لكن صديقًا مقربًا يطلب مساعدتك في مشكلة عاجلة. ماذا تفعل؟", s2a: "اشرح بأدب الموعد النهائي الخاص بك واعرض مساعدتهم بمجرد الانتهاء منه.", s2b: "اترك ما تفعله على الفور لمساعدة صديقك ؛ فالعلاقات أكثر أهمية.", s2c: "تشعر بالقلق والتمزق ، وتحاول التوفيق بين الأمرين في وقت واحد وعدم القيام بأي منهما بشكل جيد.", s2d: "اقترح حلاً سريعًا غير تقليدي لمشكلتهم حتى تتمكن من العودة إلى مهمتك.",
+                s3: "لقد وجدت طريقة لإنجاز شيء ما بشكل أسرع بكثير ، ولكنه يتضمن خرق قاعدة وافقت على اتباعها. ما هي خطوتك؟", s3a: "استخدم الطريقة الأسرع. النتيجة هي الأهم.", s3b: "التزم بالقواعد. الاتفاق هو اتفاق.", s3c: "اقترح تغييرًا رسميًا على القاعدة ، مع شرح فوائد الطريقة الجديدة.", s3d: "اطلب رأي شخص آخر قبل فعل أي شيء.",
+                s4: "لقد تمت دعوتك إلى حفلة كبيرة وصاخبة حيث لا تعرف سوى شخص واحد. ما هي خطتك؟", s4a: "اقفز مباشرة وابدأ في تقديم نفسك لأشخاص جدد.", s4b: "ابحث عن زاوية هادئة وراقب الناس لفترة من الوقت قبل المشاركة.", s4c: "ابق قريبًا من الشخص الذي تعرفه طوال الليل.", s4d: "ابحث عن الشخص الأكثر إثارة للاهتمام وابدأ محادثة عميقة.",
+                s5: "يطلب منك شخص ما المساعدة في مهمة معقدة ولكنه يعطيك تعليمات غامضة. ما هي خطوتك الأولى؟", s5a: "أنشئ خطة مفصلة بأفضل افتراضاتك وقدمها لملاحظاتهم.", s5b: "ابدأ في تجربة طرق مختلفة لمعرفة الأفضل.", s5c: "اطلب توضيحًا وأمثلة محددة قبل أن تبدأ.", s5d: "تعاون معهم لتبادل الأفكار وحلها معًا.",
+                s6: "شخص ما في مشروع جماعي لا يقوم بنصيبه من العمل ، وهذا يؤثر على النتيجة. كيف تتعامل مع الأمر؟", s6a: "واجهه مباشرة وبصراحة بشأن المشكلة.", s6b: "قم بعمله لتجنب الصراع والحفاظ على استمرارية المشروع.", s6c: "اطرح المشكلة مع المجموعة لإيجاد حل جماعي.", s6d: "حاول أن تفهم ما إذا كانوا يعانون وقدم مساعدتك.",
+                s7: "لديك عطلة نهاية أسبوع مجانية بدون خطط. كيف تقضيها؟", s7a: "اتصل بالأصدقاء ونظم نشاطًا جماعيًا.", s7b: "تعامل مع مشروع شخصي أو نظم منزلك.", s7c: "قم بزيارة متحف ، أو اقرأ كتابًا عن موضوع جديد ، أو استكشف مكانًا جديدًا.", s7d: "استرخ في المنزل وأعد شحن بطارياتك في هدوء وسكينة.",
+                s8: "لقد ارتكبت خطأً كبيرًا يؤثر على الآخرين ، لكن لم يلاحظه أحد بعد. ماذا تفعل؟", s8a: "اعترف به على الفور واقترح حلاً.", s8b: "انتظر لترى ما إذا كان أي شخص سيلاحظ قبل أن تقول أي شيء.", s8c: "حاول إصلاحه بهدوء دون إخبار أي شخص.", s8d: "تقلق إلى ما لا نهاية بشأن اكتشافك.",
+                s9: "عندما تواجه قرارًا شخصيًا صعبًا ، فمن المرجح أن:", s9a: "تثق بمشاعرك وحدسك.", s9b: "تنشئ قائمة إيجابيات وسلبيات وتحللها منطقيًا.", s9c: "تتحدث عنها مع العديد من الأصدقاء للحصول على آرائهم.", s9d: "تختار الخيار الذي سيسبب أقل قدر من الصراع مع الآخرين.",
+                s10: "شخص ما يتقدم عليك في طابور طويل. رد فعلك الفوري هو:", s10a: "أشر بأدب إلى وجود طابور وأنك كنت التالي.", s10b: "لا تقل شيئًا ، لكن كن منزعجًا بشكل واضح واشتكِ إلى الشخص الذي يقف خلفك.", s10c: "دعه يذهب. الأمر لا يستحق المواجهة.", s10d: "نادِ عليهم بصوت عالٍ حتى يعرف كل من في الطابور ما فعلوه.",
+                s11: "لديك خيار بين مسار حياة مستقر وآمن ، وآخر أكثر خطورة ولكنه أكثر إثارة. تختار:", s11a: "المسار المستقر والآمن. القدرة على التنبؤ مهمة.", s11b: "المسار المحفوف بالمخاطر ولكنه مثير. أنت تزدهر في التحديات الجديدة.", s11c: "المسار الذي يوفر أكبر قدر من المكاسب الشخصية ، بغض النظر عن المخاطر.", s11d: "المسار الذي يعتقد مرشدوك وعائلتك أنه الأفضل لك.",
+                s12: "عند تعلم مهارة جديدة ، تفضل:", s12a: "اتباع دورة منظمة بخطوات وأهداف واضحة.", s12b: "القفز والتعلم من خلال التجربة والخطأ.", s12c: "التعلم مع مجموعة أو شريك.", s12d: "ابحث عن معلم أو مرشد تثق به واتبع إرشاداته.",
+                s13: "صديق يخبرك عن مشكلة ، فمن المرجح أن:", s13a: "تستمع بصبر وتقدم الدعم العاطفي.", s13b: "تبدأ على الفور في تبادل الأفكار حول حلول عملية لهم.", s13c: "تشارك قصة تجربة مماثلة مررت بها.", s13d: "تساعدهم على رؤية المشكلة من منظور مختلف تمامًا.",
+                s14: "لقد تلقيت للتو هدية مالية كبيرة. غريزتك الأولى هي:", s14a: "ضعها في حساب توفير أو استثمار.", s14b: "أنفقها على سلعة فاخرة أو إجازة فخمة.", s14c: "أقم حفلة كبيرة لأصدقائك وعائلتك.", s14d: "تبرع بجزء لقضية تهتم بها.",
+                // Level 3 Question
+                n1: "أي من هذه الموضوعات الأساسية يعكس قصة حياتك الشخصية بشكل أفضل حتى الآن؟", n1a: "<strong>النمو:</strong> قصة التغلب على التحديات وتحسين نفسك باستمرار.", n1b: "<strong>الفداء:</strong> قصة التعافي من حدث سلبي أدى في النهاية إلى نتيجة إيجابية.", n1c: "<strong>الوكالة:</strong> قصة السيطرة على حياتك وتشكيل مصيرك.", n1d: "<strong>الاتصال:</strong> قصة إيجاد المعنى من خلال روابط عميقة وداعمة مع الآخرين.",
+                // Profiles
+                "The Principled Realist": "الواقعي المبدئي", "The Sensitive Soul": "الروح الحساسة", "The Social Catalyst": "المحفز الاجتماعي", "The Harmonizer": "المنسق", "The Architect": "المهندس", "The Innovator": "المبتكر",
+                "Sincerity": "الإخلاص", "Fairness": "العدل", "Modesty": "التواضع", "Strategic": "استراتيجي", "Status-Driven": "مهتم بالمكانة", "Pragmatic": "عملي", "Empathy": "التعاطف", "Fearfulness": "الخوف", "Sentimentality": "العاطفية", "Bravery": "الشجاعة", "Confidence": "الثقة", "Stability": "الاستقرار", "Sociability": "اجتماعي", "Liveliness": "الحيوية", "Social Boldness": "الجرأة الاجتماعية", "Independence": "الاستقلال", "Reflection": "التأمل", "Reserve": "التحفظ", "Patience": "الصبر", "Forgivingness": "التسامح", "Gentleness": "اللطف", "Independent": "مستقل", "Frank": "صريح", "Assertive": "حازم", "Diligence": "الاجتهاد", "Organization": "التنظيم", "Perfectionism": "الكمالية", "Flexibility": "المرونة", "Spontaneity": "العفوية", "Adaptability": "القدرة على التكيف", "Creativity": "الإبداع", "Inquisitiveness": "الفضول", "Unconventionality": "غير تقليدي", "Pragmatism": "الواقعية", "Tradition": "التقاليد", "Concreteness": "الملموسة",
+                "Honesty-Humility": "الصدق والتواضع", "Emotionality": "العاطفية", "Extraversion": "الانبساط", "Agreeableness": "القبول", "Conscientiousness": "الضمير الحي", "Openness to Experience": "الانفتاح على التجربة",
+                // Breakdowns
+                "breakdown_H_high": "نتيجتك المرتفعة في <strong>الصدق والتواضع</strong> تظهر أنك صادق ومبدئي. <strong>القوة:</strong> تبني الثقة بسهولة وتُعتبر شخصًا عادلاً. <strong>التحدي:</strong> قد تشعر بعدم الارتياح في البيئات التي تتطلب ترويجًا ذاتيًا تنافسيًا أو تكتيكات عدوانية.",
+                "breakdown_H_low": "نتيجتك المنخفضة في <strong>الصدق والتواضع</strong> تشير إلى أنك استراتيجي وواثق من نفسك. <strong>القوة:</strong> أنت فعال في التعامل مع المواقف التنافسية ولا يتم استغلالك بسهولة. <strong>التحدي:</strong> قد يرى الآخرون أحيانًا أفعالك على أنها تلاعب أو أنانية مفرطة.",
+                "breakdown_E_high": "نتيجتك المرتفعة في <strong>العاطفية</strong> تشير إلى أنك متعاطف وحساس. <strong>القوة:</strong> قدرتك على التواصل مع مشاعر الآخرين وحذرك يمكن أن يساعدك على تجنب المواقف الخطرة. <strong>التحدي:</strong> قد تكون عرضة للقلق أو القلق ، والذي قد يكون أحيانًا مربكًا.",
+                "breakdown_E_low": "نتيجتك المنخفضة في <strong>العاطفية</strong> تظهر أنك شجاع ومستقر عاطفياً. <strong>القوة:</strong> أنت صخرة للآخرين أثناء الأزمات ويمكنك التعامل مع البيئات عالية الضغط. <strong>التحدي:</strong> قد تجد أحيانًا صعوبة في فهم أو التعبير عن المشاعر الأعمق والأكثر ضعفًا.",
+                "breakdown_X_high": "نتيجتك المرتفعة في <strong>الانبساط</strong> تعني أنك منفتح وواثق اجتماعيًا. <strong>القوة:</strong> أنت قائد طبيعي وصانع شبكات علاقات ، قادر على إلهام وتنشيط المجموعات. <strong>التحدي:</strong> قد تشعر بنقص التحفيز أو الملل عند قضاء الوقت بمفردك.",
+                "breakdown_X_low": "نتيجتك المنخفضة في <strong>الانبساط</strong> تشير إلى أنك مستقل ومتأمل. <strong>القوة:</strong> أنت مرتاح مع نفسك ويمكنك التركيز بعمق على المهام دون تشتيت اجتماعي. <strong>التحدي:</strong> قد يتم تجاهلك في إعدادات المجموعة الكبيرة أو تجد أنه من المستنزف المشاركة في أنشطة اجتماعية واسعة النطاق.",
+                "breakdown_A_high": "نتيجتك المرتفعة في <strong>القبول</strong> تظهر أنك لطيف ومتعاون. <strong>القوة:</strong> أنت لاعب فريق ممتاز وصديق داعم ، قادر على تسوية النزاعات. <strong>التحدي:</strong> قد يؤدي ترددك في النقد إلى أن تكون متسامحًا بشكل مفرط مع أخطاء الآخرين.",
+                "breakdown_A_low": "نتيجتك المنخفضة في <strong>القبول</strong> تشير إلى أنك مستقل الفكر وصريح. <strong>القوة:</strong> استعدادك للنقد يمكن أن يؤدي إلى نتائج أفضل ويمنع القرارات السيئة. <strong>التحدي:</strong> قد يراك الآخرون أحيانًا عنيدًا أو مجادلاً.",
+                "breakdown_C_high": "نتيجتك المرتفعة في <strong>الضمير الحي</strong> تعني أنك منظم ومجتهد. <strong>القوة:</strong> أنت موثوق به للغاية ويمكن الاعتماد عليك لإنجاز المهمة بشكل صحيح. <strong>التحدي:</strong> قد تكون عرضة للكمالية أو تجد صعوبة في التكيف عندما تتغير الخطط بشكل غير متوقع.",
+                "breakdown_C_low": "نتيجتك المنخفضة في <strong>الضمير الحي</strong> تشير إلى أنك مرن وعفوي. <strong>القوة:</strong> أنت قابل للتكيف بدرجة عالية ويمكن أن تزدهر في بيئات لا يمكن التنبؤ بها. <strong>التحدي:</strong> قد تكافح مع عدم التنظيم أو تجد صعوبة في الوفاء بالمواعيد النهائية.",
+                "breakdown_O_high": "نتيجتك المرتفعة في <strong>الانفتاح على التجربة</strong> تظهر أنك مبدع وفضولي. <strong>القوة:</strong> أنت مبتكر بالفطرة ، قادر على رؤية الاحتمالات التي يفوتها الآخرون. <strong>التحدي:</strong> قد يُنظر إليك أحيانًا على أنك غير عملي أو تجد صعوبة في التركيز على المهام الروتينية.",
+                "breakdown_O_low": "نتيجتك المنخفضة في <strong>الانفتاح على التجربة</strong> تشير إلى أنك عملي وتقليدي. <strong>القوة:</strong> أنت تقدم نهجًا واقعيًا ومنطقيًا للمشكلات. <strong>التحدي:</strong> قد تكون مقاومًا للتغيير أو تتجاهل الحلول الجديدة.",
+                // Summaries
+                "summary_H_high": "أنت تسترشد بإحساس قوي بالعدل والإخلاص. تفضل التعاون مع الآخرين على قدم المساواة ، دون رغبة في مكانة خاصة أو ثروة. هذا يجعلك شخصًا جديرًا بالثقة وحقيقيًا.",
+                "summary_H_low": "أنت فرد عملي وقابل للتكيف ، مرتاح للتسلسلات الهرمية الاجتماعية واستخدام الاستراتيجية لتحقيق أهدافك. لا تخشى الاستفادة من المواقف لصالحك وتحفزك النجاح الشخصي.",
+                "summary_E_high": "أنت متناغم للغاية مع مشاعرك والعالم من حولك. تختبر المشاعر بعمق ، مما يتيح لك تكوين روابط تعاطفية قوية مع الآخرين وتكون حساسًا للمخاطر المحتملة.",
+                "summary_E_low": "أنت مرن عاطفياً وتبقى هادئًا حتى في المواقف العصيبة. تواجه التحديات بسلوك ثابت ولا تهتز بسهولة بالتهديدات الجسدية أو الاجتماعية.",
+                "summary_X_high": "أنت نشيط ومتحمس وتزدهر في البيئات الاجتماعية. تتولى زمام المبادرة بشكل طبيعي ، وتستمتع بكونك مركز الاهتمام ، وتستمد الطاقة من التواجد حول أشخاص آخرين.",
+                "summary_X_low": "أنت مدروس ومتحفظ ، وتفضل البيئات الهادئة والتفاعلات الهادفة بين شخصين على التجمعات الاجتماعية الكبيرة. تجد طاقتك في التفكير والعزلة.",
+                "summary_A_high": "أنت صبور ومتعاون وسهل المعشر. أنت على استعداد لتقديم تنازلات والتسامح ، وتتجنب المواجهة بشكل عام ، وتفضل الحفاظ على علاقات متناغمة مع الآخرين.",
+                "summary_A_low": "أنت مفكر مباشر ومستقل لا يخشى تحدي الآخرين والتعبير عن رأي نقدي. تتمسك بمعتقداتك وأنت على استعداد للدخول في جدالات للدفاع عن وجهة نظرك.",
+                "summary_C_high": "أنت منظم ومنضبط وموجه نحو الأهداف. تتعامل مع المهام بخطة منظمة وتدفعك لتحقيق مستوى عالٍ من العمل ، مما يجعلك فردًا موثوقًا به ومجتهدًا.",
+                "summary_C_low": "أنت مرن وعفوي ، ومرتاح لعدم وجود هيكل وقادر على التكيف مع الأولويات المتغيرة. لست مهتمًا بشكل مفرط بالقواعد وتفضل العيش في الوقت الحاضر.",
+                "summary_O_high": "أنت فضولي فكريًا ومبدع ومنفتح على الأفكار غير التقليدية والتجارب الجديدة. لديك تقدير عميق للجمال والفن والتفكير المجرد.",
+                "summary_O_low": "أنت عملي وواقعي وتفضل ما هو تقليدي ومألوف. تجد قيمة في التقاليد وأنت مرتاح أكثر مع الحلول المباشرة والملموسة.",
+                // Narratives
+                "growth": "قصة حياتك هي قصة <strong>نمو</strong>. يشير هذا إلى أنك ترى الحياة كرحلة تعلم وتطور ذاتي ، وتنظر إلى التحديات ليس على أنها نكسات ، بل كفرص لتصبح نسخة أفضل من نفسك.",
+                "redemption": "قصة حياتك تتبع موضوع <strong>الفداء</strong>. هذا يشير إلى أنك واجهت محنة كبيرة لكنك وجدت معنى وقوة إيجابية منها ، وحولت ماضيًا سلبيًا إلى مستقبل إيجابي.",
+                "agency": "قصة حياتك مدفوعة بموضوع <strong>الوكالة</strong>. ترى نفسك كمؤلف لمصيرك ، وتتخذ خيارات وتتخذ إجراءات بفاعلية لخلق الحياة التي تريد أن تعيشها.",
+                "connection": "تتمحور قصة حياتك حول موضوع <strong>الاتصال</strong>. تجد أعظم إحساس بالهدف والمعنى في تكوين روابط عميقة وداعمة ودائمة مع الأصدقاء والعائلة ومجتمعك."
+            }
         };
-
+        
         // --- Application State & Logic ---
+        let currentLanguage = 'en';
         let questions = [];
         let currentQuestionIndex = 0;
         let userAnswers = [];
@@ -394,6 +547,46 @@
         const langIconBtn = document.getElementById('lang-icon-btn');
         const langPopup = document.getElementById('lang-popup');
         const closePopupBtn = document.getElementById('close-popup-btn');
+        const langBtns = document.querySelectorAll('.lang-btn');
+
+        function setLanguage(lang) {
+            currentLanguage = lang;
+            const t = translations[lang] || translations.en;
+            
+            document.documentElement.lang = lang;
+            document.documentElement.dir = lang === 'ar' ? 'rtl' : 'ltr';
+
+            document.getElementById('home-tagline').textContent = t.homeTagline;
+            document.getElementById('home-description').innerHTML = t.homeDescription;
+            startTestBtn.textContent = t.startBtn;
+            document.getElementById('why-us-title').textContent = t.whyUsTitle;
+            document.getElementById('why-us-1-title').textContent = t.whyUs1Title;
+            document.getElementById('why-us-1-desc').textContent = t.whyUs1Desc;
+            document.getElementById('why-us-2-title').textContent = t.whyUs2Title;
+            document.getElementById('why-us-2-desc').textContent = t.whyUs2Desc;
+            document.getElementById('why-us-3-title').textContent = t.whyUs3Title;
+            document.getElementById('why-us-3-desc').textContent = t.whyUs3Desc;
+            document.getElementById('footer-text').innerHTML = t.footerText;
+            backBtn.innerHTML = t.backBtn;
+            document.getElementById('loading-text').textContent = t.loadingText;
+            document.getElementById('results-main-title').textContent = t.resultsMainTitle;
+            document.getElementById('results-breakdown-title').textContent = t.resultsBreakdownTitle;
+            document.getElementById('results-next-steps-title').textContent = t.resultsNextStepsTitle;
+            downloadBtn.textContent = t.downloadBtn;
+            shareBtn.textContent = t.shareBtn;
+            retakeTestBtn.textContent = t.retakeBtn;
+            document.getElementById('lang-popup-title').textContent = lang === 'ar' ? 'اختر اللغة' : 'Choose Language';
+            document.getElementById('lang-popup-soon').textContent = lang === 'ar' ? 'المزيد من اللغات قريبا...' : 'More languages coming soon...';
+            document.getElementById('close-popup-btn').textContent = lang === 'ar' ? 'إغلاق' : 'Close';
+        }
+
+        function getTranslation(key, replacements = {}) {
+            let text = (translations[currentLanguage] && translations[currentLanguage][key]) || translations.en[key] || `[${key}]`;
+            for (const placeholder in replacements) {
+                text = text.replace(`{${placeholder}}`, replacements[placeholder]);
+            }
+            return text;
+        }
 
         function shuffleArray(array) {
             for (let i = array.length - 1; i > 0; i--) {
@@ -434,19 +627,19 @@
             
             if (currentQuestionIndex < questions.length) {
                 const question = questions[currentQuestionIndex];
-                questionTextEl.textContent = question.text;
+                questionTextEl.textContent = getTranslation(question.id);
                 
                 if (currentQuestionIndex < level1Questions.length) {
-                    progressTitleEl.textContent = 'Part 1: Core Traits';
+                    progressTitleEl.textContent = getTranslation('progressPart1');
                 } else if (currentQuestionIndex < level1Questions.length + level2Questions.length) {
-                    progressTitleEl.textContent = 'Part 2: Situational Judgement';
+                    progressTitleEl.textContent = getTranslation('progressPart2');
                 } else {
-                    progressTitleEl.textContent = 'Part 3: Life Story';
+                    progressTitleEl.textContent = getTranslation('progressPart3');
                 }
 
                 const progress = ((currentQuestionIndex + 1) / questions.length) * 100;
                 progressBarEl.style.width = `${progress}%`;
-                progressTextEl.textContent = `Question ${currentQuestionIndex + 1} of ${questions.length}`;
+                progressTextEl.textContent = getTranslation('questionOf', { current: currentQuestionIndex + 1, total: questions.length });
 
                 renderAnswerOptions(question);
             } else {
@@ -461,7 +654,7 @@
             if (question.type === 'situational' || question.type === 'narrative') {
                 question.options.forEach((option, index) => {
                     const button = document.createElement('button');
-                    button.innerHTML = option.text;
+                    button.innerHTML = getTranslation(option.id);
                     button.className = `choice-btn ${choiceColors[index % choiceColors.length]}`;
                     button.onclick = () => handleChoiceClick(option);
                     answerOptionsEl.appendChild(button);
@@ -469,11 +662,11 @@
             } else {
                 const buttonHTML = `
                     <div class="grid grid-cols-1 sm:grid-cols-5 gap-3 text-center">
-                        <button data-value="5" class="answer-btn bg-green-500 hover:bg-green-600 text-white font-bold py-3 px-4 rounded-full transition-transform transform hover:scale-105">Strongly Agree</button>
-                        <button data-value="4" class="answer-btn bg-green-300 hover:bg-green-400 text-white font-bold py-3 px-4 rounded-full transition-transform transform hover:scale-105">Agree</button>
-                        <button data-value="3" class="answer-btn bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-3 px-4 rounded-full transition-transform transform hover:scale-105">Neutral</button>
-                        <button data-value="2" class="answer-btn bg-red-300 hover:bg-red-400 text-white font-bold py-3 px-4 rounded-full transition-transform transform hover:scale-105">Disagree</button>
-                        <button data-value="1" class="answer-btn bg-red-500 hover:bg-red-600 text-white font-bold py-3 px-4 rounded-full transition-transform transform hover:scale-105">Strongly Disagree</button>
+                        <button data-value="5" class="answer-btn bg-green-500 hover:bg-green-600 text-white font-bold py-3 px-4 rounded-full transition-transform transform hover:scale-105">${getTranslation('stronglyAgree')}</button>
+                        <button data-value="4" class="answer-btn bg-green-300 hover:bg-green-400 text-white font-bold py-3 px-4 rounded-full transition-transform transform hover:scale-105">${getTranslation('agree')}</button>
+                        <button data-value="3" class="answer-btn bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-3 px-4 rounded-full transition-transform transform hover:scale-105">${getTranslation('neutral')}</button>
+                        <button data-value="2" class="answer-btn bg-red-300 hover:bg-red-400 text-white font-bold py-3 px-4 rounded-full transition-transform transform hover:scale-105">${getTranslation('disagree')}</button>
+                        <button data-value="1" class="answer-btn bg-red-500 hover:bg-red-600 text-white font-bold py-3 px-4 rounded-full transition-transform transform hover:scale-105">${getTranslation('stronglyDisagree')}</button>
                     </div>
                 `;
                 answerOptionsEl.innerHTML = buttonHTML;
@@ -580,14 +773,14 @@
             profileTitleEl.className = 'text-2xl md:text-3xl font-bold text-center mb-2';
             profileTitleEl.classList.add(profileColor);
 
-            profileTitleEl.textContent = mainProfileData.title;
+            profileTitleEl.textContent = getTranslation(mainProfileData.title);
             const facetsData = mainProfileData[isPrimaryHigh ? 'high' : 'low'].facets;
-            profileSubtypesEl.innerHTML = `Key Sub-Types: ${facetsData.map(f => `<strong>${f}</strong>`).join(', ')}`;
-            profileSummaryEl.textContent = mainProfileData[isPrimaryHigh ? 'high' : 'low'].summary;
+            profileSubtypesEl.innerHTML = `${getTranslation('subtypesPrefix')} ${facetsData.map(f => `<strong>${getTranslation(f)}</strong>`).join(', ')}`;
+            profileSummaryEl.textContent = getTranslation(mainProfileData[isPrimaryHigh ? 'high' : 'low'].summary);
             
             let level2PrimaryDim = Object.keys(level2Counts).reduce((a, b) => level2Counts[a] > level2Counts[b] ? a : b);
-            level2SummaryEl.innerHTML = `<h4 class="font-bold text-lg mb-2">In Action:</h4><p>Your responses to situational questions suggest that when faced with challenges, you tend to prioritize actions related to <strong>${profiles[level2PrimaryDim].title.toLowerCase()}</strong>, reinforcing your core traits in your daily decisions.</p>`;
-            level3SummaryEl.innerHTML = `<h4 class="font-bold text-lg mb-2">Your Life Story:</h4><p>${level3Narratives[narrativeChoice] || "You have a unique perspective on your life's journey."}</p>`;
+            level2SummaryEl.innerHTML = `<h4 class="font-bold text-lg mb-2">${getTranslation('level2Title')}</h4><p>${getTranslation('level2Summary', {profile: getTranslation(profiles[level2PrimaryDim].title).toLowerCase()})}</p>`;
+            level3SummaryEl.innerHTML = `<h4 class="font-bold text-lg mb-2">${getTranslation('level3Title')}</h4><p>${getTranslation(narrativeChoice) || getTranslation('level3Default')}</p>`;
 
             traitDetailsEl.innerHTML = '';
             const dimensionNames = {
@@ -599,14 +792,14 @@
                 if (maxScores[dim] > 0) {
                     const normalizedScore = (level1Scores[dim] / maxScores[dim]) * 100;
                     const isHigh = normalizedScore >= 50;
-                    const breakdownText = profiles[dim][isPrimaryHigh ? 'high' : 'low'].breakdown;
+                    const breakdownText = getTranslation(profiles[dim][isHigh ? 'high' : 'low'].breakdown);
                     const breakdownColor = profiles[dim].bgColor;
 
                     const traitHtml = `
                         <div class="p-4 rounded-xl shadow-sm ${breakdownColor}">
                             <div class="flex justify-between items-end mb-1">
-                                <h4 class="text-lg font-bold">${dimensionNames[dim]}</h4>
-                                <span class="font-semibold text-gray-600">${isHigh ? 'High' : 'Low'}</span>
+                                <h4 class="text-lg font-bold">${getTranslation(dimensionNames[dim])}</h4>
+                                <span class="font-semibold text-gray-600">${getTranslation(isHigh ? 'high' : 'low')}</span>
                             </div>
                             <div class="w-full bg-gray-200 rounded-full h-4 mb-2">
                                 <div class="score-bar-gradient h-4 rounded-full" style="width: ${normalizedScore}%"></div>
@@ -621,7 +814,7 @@
 
         async function handleDownload() {
             const content = document.getElementById('results-content');
-            shareMessageEl.textContent = 'Generating image...';
+            shareMessageEl.textContent = getTranslation('downloading');
             try {
                 const canvas = await html2canvas(content, { 
                     backgroundColor: '#f3f4f6',
@@ -631,17 +824,17 @@
                 link.href = canvas.toDataURL('image/png');
                 link.download = 'my-personality-results.png';
                 link.click();
-                shareMessageEl.textContent = 'Results image downloaded!';
+                shareMessageEl.textContent = getTranslation('downloaded');
             } catch(err) {
                 console.error("Download failed", err);
-                shareMessageEl.textContent = 'Could not download results.';
+                shareMessageEl.textContent = getTranslation('downloadError');
             } finally {
                 setTimeout(() => { shareMessageEl.textContent = ''; }, 3000);
             }
         }
 
         async function handleShare() {
-            const shareText = `I took the Great Mind Profile test and my profile is "${profileTitleEl.textContent}"! Check your personality test on www.test.com for free!`;
+            const shareText = getTranslation('shareMessage', { profile: profileTitleEl.textContent });
             const shareData = {
                 title: 'My Personality Results',
                 text: shareText,
@@ -658,15 +851,15 @@
                     textArea.select();
                     try {
                         document.execCommand('copy');
-                        shareMessageEl.textContent = 'Link copied to clipboard!';
+                        shareMessageEl.textContent = getTranslation('copiedToClipboard');
                     } catch (err) {
-                        shareMessageEl.textContent = 'Could not copy link.';
+                        shareMessageEl.textContent = getTranslation('copyError');
                     }
                     document.body.removeChild(textArea);
                 }
             } catch (err) {
                 console.error("Share failed", err);
-                shareMessageEl.textContent = 'Could not share results.';
+                shareMessageEl.textContent = getTranslation('shareError');
             } finally {
                 setTimeout(() => { shareMessageEl.textContent = ''; }, 3000);
             }
@@ -680,6 +873,13 @@
         shareBtn.addEventListener('click', handleShare);
         langIconBtn.addEventListener('click', () => langPopup.classList.remove('hidden'));
         closePopupBtn.addEventListener('click', () => langPopup.classList.add('hidden'));
+        langBtns.forEach(btn => btn.addEventListener('click', (e) => {
+            setLanguage(e.target.dataset.lang);
+            langPopup.classList.add('hidden');
+        }));
+
+        // Set initial language
+        setLanguage('en');
 
     </script>
 </body>
