@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" dir="ltr">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -126,13 +126,54 @@
              transition: width 0.1s linear;
              background-image: linear-gradient(to right, #4f46e5, #d946ef, #f59e0b);
         }
-        /* RTL support */
-        html[dir="rtl"] .choice-btn { text-align: right; }
-        html[dir="rtl"] .scrolling-wrapper { animation-direction: reverse; }
+        
+        /* Sidebar Styles */
+        #sidebar {
+            transition: transform 0.3s ease-in-out;
+        }
+        
+        /* 16 Personalities Test Styles */
+        .personality-answer-btn {
+            transition: all 0.2s ease-in-out;
+        }
+        .personality-answer-btn:hover {
+            transform: scale(1.05);
+        }
     </style>
 </head>
 <body class="bg-gradient-to-br from-gray-50 to-gray-200 text-gray-800 relative">
+    
+    <!-- Navigation Bar -->
+    <nav class="fixed top-0 left-0 right-0 bg-gradient-to-r from-blue-100/80 via-purple-100/80 to-pink-100/80 backdrop-blur-sm shadow-md z-30">
+        <div class="max-w-6xl mx-auto px-4">
+            <div class="flex justify-between items-center h-16">
+                <a href="#" id="nav-logo" class="text-2xl font-bold text-gray-800">Great Mind Profile</a>
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="#" id="nav-home" class="text-gray-600 hover:text-blue-600 font-semibold">Home</a>
+                    <a href="#" id="nav-model" class="text-gray-600 hover:text-blue-600 font-semibold">Our Scientific Model</a>
+                    <a href="#" id="nav-16personalities" class="text-gray-600 hover:text-blue-600 font-semibold">16 Personalities Test</a>
+                </div>
+                <div class="md:hidden">
+                    <button id="burger-menu" class="p-2 rounded-md">
+                        <svg class="w-6 h-6 text-gray-800" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" stroke="currentColor">
+                            <path d="M4 6h16M4 12h16M4 18h16"></path>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
 
+    <!-- Sidebar -->
+    <div id="sidebar" class="fixed top-0 right-0 h-full w-64 bg-white shadow-lg z-40 transform translate-x-full">
+        <div class="p-5 pt-20">
+            <a href="#" id="sidebar-home" class="block py-2 text-lg text-gray-700 hover:text-blue-600">Home</a>
+            <a href="#" id="sidebar-model" class="block py-2 text-lg text-gray-700 hover:text-blue-600">Our Scientific Model</a>
+            <a href="#" id="sidebar-16personalities" class="block py-2 text-lg text-gray-700 hover:text-blue-600">16 Personalities Test</a>
+             <p class="text-gray-500 mt-4 pt-4 border-t">More features coming soon!</p>
+        </div>
+    </div>
+    
     <!-- Homepage Container (Visible by default) -->
     <div id="homepage-container" class="flex flex-col items-center justify-center min-h-screen p-4 text-center relative z-10 transition-opacity duration-500">
         <div class="mind-map-bg">
@@ -150,47 +191,81 @@
             </svg>
         </div>
         
-        <button id="lang-icon-btn" class="absolute top-4 right-4 text-gray-600 hover:text-black p-2 rounded-full hover:bg-gray-200 transition">
-            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21.3,12a9.3,9.3,0,1,1-9.3-9.3A9.3,9.3,0,0,1,21.3,12Z" />
-              <line x1="3.6" y1="9" x2="20.4" y2="9" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"/>
-              <line x1="3.6" y1="15" x2="20.4" y2="15" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"/>
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12,2.7a15.7,15.7,0,0,1,0,18.6" />
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12,2.7a15.7,15.7,0,0,0,0,18.6" />
-            </svg>
-        </button>
-
-        <div id="lang-popup" class="hidden fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4 z-50">
-            <div class="bg-white rounded-2xl p-6 shadow-xl text-center max-w-sm w-full">
-                <h3 id="lang-popup-title" class="text-xl font-bold mb-4">Choose Language</h3>
-                <div class="space-y-2">
-                    <button class="lang-btn w-full text-left p-3 rounded-lg hover:bg-gray-100" data-lang="en">English</button>
-                    <button class="lang-btn w-full text-left p-3 rounded-lg hover:bg-gray-100" data-lang="ar">العربية</button>
-                    <p id="lang-popup-soon" class="text-gray-500 p-3">More languages coming soon...</p>
+        <div class="flex-grow flex flex-col items-center justify-center w-full max-w-6xl pt-20">
+             <div class="grid md:grid-cols-2 items-center gap-8">
+                <div class="text-center md:text-left">
+                    <h2 class="text-xl md:text-2xl text-blue-600 font-semibold mb-2">Unlock Your Great Mind</h2>
+                    <header class="relative mb-4">
+                        <h1 class="font-headline text-5xl sm:text-6xl md:text-7xl leading-tight tracking-tighter title-shadow">
+                            <span class="bg-gradient-to-r from-blue-500 via-red-500 to-yellow-500 bg-clip-text text-transparent">
+                                Great Mind Profile
+                            </span>
+                        </h1>
+                        <h2 id="home-tagline" class="text-lg md:text-2xl text-gray-600 font-semibold mt-2">A Multi-Level Personality Assessment</h2>
+                    </header>
+                    <main class="max-w-2xl mx-auto md:mx-0 mt-8">
+                        <p id="home-description" class="text-lg md:text-xl text-gray-700 mb-8">
+                            Discover your unique strengths. Our analysis is based on the scientifically validated <strong>HEXACO model</strong> for a surprisingly accurate personality profile. 
+                            <a href="#" id="learn-more-link" class="text-blue-600 font-semibold hover:underline">Learn more about our model.</a>
+                        </p>
+                        <button id="start-test-btn" class="inline-block bg-gray-800 text-white font-bold text-xl px-10 py-4 rounded-full shadow-lg transform transition-transform duration-300 hover:scale-105 hover:bg-black focus:outline-none focus:ring-4 focus:ring-gray-400">
+                            Start the Test
+                        </button>
+                    </main>
                 </div>
-                <button id="close-popup-btn" class="mt-4 bg-blue-600 text-white font-bold px-6 py-2 rounded-full w-full">Close</button>
+                <div class="hidden md:block">
+                    <svg width="100%" viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg">
+                        <defs>
+                            <linearGradient id="heroGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                                <stop offset="0%" stop-color="#60a5fa" />
+                                <stop offset="100%" stop-color="#c084fc" />
+                            </linearGradient>
+                            <filter id="glow">
+                                <feGaussianBlur stdDeviation="2.5" result="coloredBlur"/>
+                                <feMerge>
+                                    <feMergeNode in="coloredBlur"/>
+                                    <feMergeNode in="SourceGraphic"/>
+                                </feMerge>
+                            </filter>
+                        </defs>
+                        <g opacity="0.7" filter="url(#glow)">
+                            <path d="M 200 50 L 325 125 L 325 275 L 200 350 L 75 275 L 75 125 Z" fill="none" stroke="url(#heroGradient)" stroke-width="2"/>
+                            <circle cx="200" cy="200" r="60" fill="none" stroke="url(#heroGradient)" stroke-width="2"/>
+                            <circle cx="200" cy="50" r="10" fill="#60a5fa"/>
+                            <circle cx="325" cy="125" r="10" fill="#818cf8"/>
+                            <circle cx="325" cy="275" r="10" fill="#a78bfa"/>
+                            <circle cx="200" cy="350" r="10" fill="#c084fc"/>
+                            <circle cx="75" cy="275" r="10" fill="#a78bfa"/>
+                            <circle cx="75" cy="125" r="10" fill="#818cf8"/>
+                            <line x1="200" y1="200" x2="200" y2="50" stroke="#a5b4fc" stroke-width="1.5"/>
+                            <line x1="200" y1="200" x2="325" y2="125" stroke="#a5b4fc" stroke-width="1.5"/>
+                            <line x1="200" y1="200" x2="325" y2="275" stroke="#a5b4fc" stroke-width="1.5"/>
+                            <line x1="200" y1="200" x2="200" y2="350" stroke="#a5b4fc" stroke-width="1.5"/>
+                            <line x1="200" y1="200" x2="75" y2="275" stroke="#a5b4fc" stroke-width="1.5"/>
+                            <line x1="200" y1="200" x2="75" y2="125" stroke="#a5b4fc" stroke-width="1.5"/>
+                        </g>
+                    </svg>
+                </div>
             </div>
         </div>
-
-        <div class="flex-grow flex flex-col items-center justify-center w-full max-w-4xl pt-20">
-            <header class="relative mb-4">
-                <h1 class="font-headline text-5xl sm:text-6xl md:text-7xl leading-tight tracking-tighter title-shadow">
-                    <span class="bg-gradient-to-r from-blue-500 via-red-500 to-yellow-500 bg-clip-text text-transparent">
-                        Great Mind Profile
-                    </span>
-                </h1>
-                <h2 id="home-tagline" class="text-lg md:text-2xl text-gray-600 font-semibold mt-2">A Multi-Level Personality Assessment</h2>
-            </header>
-
-            <main class="max-w-2xl mx-auto mt-8">
-                <p id="home-description" class="text-lg md:text-xl text-gray-700 mb-12">
-                    Discover your unique strengths. Our analysis is based on the scientifically validated <strong>HEXACO model</strong> for a surprisingly accurate personality profile.
-                </p>
-                <button id="start-test-btn" class="inline-block bg-gray-800 text-white font-bold text-xl px-10 py-4 rounded-full shadow-lg transform transition-transform duration-300 hover:scale-105 hover:bg-black focus:outline-none focus:ring-4 focus:ring-gray-400">
-                    Start the Test!
-                </button>
-            </main>
-        </div>
+        
+        <!-- Social Proof Section -->
+        <section class="w-full max-w-4xl mx-auto py-12">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
+                <div class="p-4">
+                    <h3 class="text-4xl font-bold text-blue-600">10,000+</h3>
+                    <p class="text-gray-600 font-semibold">Profiles Generated</p>
+                </div>
+                <div class="p-4">
+                    <h3 class="text-4xl font-bold text-green-600">6</h3>
+                    <p class="text-gray-600 font-semibold">Core Personality Dimensions</p>
+                </div>
+                <div class="p-4">
+                    <h3 class="text-4xl font-bold text-indigo-600">95%</h3>
+                    <p class="text-gray-600 font-semibold">User Satisfaction Rate</p>
+                </div>
+            </div>
+        </section>
 
         <section class="w-full max-w-6xl overflow-hidden py-12">
             <h2 id="why-us-title" class="text-3xl font-bold text-center mb-12">Why Choose Us?</h2>
@@ -209,9 +284,62 @@
             <p id="footer-text" class="text-gray-500 text-sm">&copy; 2024 Personality Post. All Rights Reserved.</p>
         </footer>
     </div>
+    
+    <!-- Model Explanation Container (Initially Hidden) -->
+    <div id="model-container" class="hidden min-h-screen p-4 sm:p-6 md:p-8 pt-24">
+        <div class="max-w-4xl mx-auto bg-white p-8 rounded-2xl shadow-lg">
+            <h1 class="font-headline text-4xl md:text-5xl text-center mb-4 title-shadow bg-gradient-to-r from-blue-500 via-red-500 to-yellow-500 bg-clip-text text-transparent">Our Scientific Approach</h1>
+            <p class="text-center text-gray-600 text-lg mb-12">We are committed to providing personality assessments that are not just engaging, but also scientifically robust and deeply insightful. Here’s a look at the established psychological frameworks that power our tests.</p>
+
+            <div class="space-y-12">
+                <div class="p-6 bg-blue-50 rounded-xl">
+                    <h2 class="text-3xl font-bold text-blue-800 mb-4">The Great Mind Profile: A HEXACO-Based Assessment</h2>
+                    <p class="text-gray-700 text-lg mb-6">Our main test is built upon the modern and scientifically advanced <strong>HEXACO model</strong>. Developed through large-scale studies across multiple languages, it provides a nuanced picture of personality by identifying six core dimensions.</p>
+                    <div class="grid md:grid-cols-2 gap-6 text-gray-700">
+                        <div class="p-4 bg-white rounded-lg shadow-sm">
+                            <h3 class="font-bold text-xl text-blue-700">Honesty-Humility (H)</h3>
+                            <p>The tendency to be fair, sincere, and modest. This is the model's key innovation.</p>
+                        </div>
+                        <div class="p-4 bg-white rounded-lg shadow-sm">
+                            <h3 class="font-bold text-xl text-purple-700">Emotionality (E)</h3>
+                            <p>Reflects one's sensitivity to danger and need for emotional support.</p>
+                        </div>
+                        <div class="p-4 bg-white rounded-lg shadow-sm">
+                            <h3 class="font-bold text-xl text-orange-700">Extraversion (X)</h3>
+                            <p>Measures one's social engagement, energy, and confidence.</p>
+                        </div>
+                        <div class="p-4 bg-white rounded-lg shadow-sm">
+                            <h3 class="font-bold text-xl text-green-700">Agreeableness (A)</h3>
+                            <p>Focuses on interpersonal tolerance, defined by patience and forgiveness.</p>
+                        </div>
+                        <div class="p-4 bg-white rounded-lg shadow-sm">
+                            <h3 class="font-bold text-xl text-blue-700">Conscientiousness (C)</h3>
+                            <p>Relates to goal-directed and organized behavior.</p>
+                        </div>
+                        <div class="p-4 bg-white rounded-lg shadow-sm">
+                            <h3 class="font-bold text-xl text-indigo-700">Openness to Experience (O)</h3>
+                            <p>Captures intellectual and aesthetic curiosity.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="p-6 bg-cyan-50 rounded-xl">
+                    <h2 class="text-3xl font-bold text-cyan-800 mb-4">A Classic Alternative: The 16 Personality Types</h2>
+                    <p class="text-gray-700 text-lg mb-6">We also offer a test based on the influential theory of psychological types proposed by Carl Jung, popularized by the Myers-Briggs Type Indicator (MBTI). This model maps personality onto four dichotomies:</p>
+                    <ul class="list-disc list-inside space-y-2 text-lg text-gray-700">
+                        <li><strong>Introversion (I) or Extraversion (E):</strong> How individuals focus their energy.</li>
+                        <li><strong>Sensing (S) or Intuition (N):</strong> How individuals perceive information.</li>
+                        <li><strong>Thinking (T) or Feeling (F):</strong> How individuals make decisions.</li>
+                        <li><strong>Judging (J) or Perceiving (P):</strong> How individuals prefer to live their outer life.</li>
+                    </ul>
+                    <p class="text-gray-700 text-lg mt-4">Our assessment uses a series of questions to determine your preference on each scale, resulting in a 4-letter type that provides a snapshot of your unique cognitive style.</p>
+                </div>
+            </div>
+        </div>
+    </div>
 
     <!-- Test Container (Initially Hidden) -->
-    <div id="test-container" class="hidden min-h-screen flex-col items-center justify-center p-4 transition-opacity duration-500">
+    <div id="test-container" class="hidden min-h-screen flex-col items-center justify-center p-4 transition-opacity duration-500 pt-24">
         <div class="w-full max-w-2xl mb-8">
             <div class="flex justify-between mb-1">
                 <span id="progress-title" class="text-base font-medium text-gray-700"></span>
@@ -230,6 +358,78 @@
         </div>
     </div>
     
+    <!-- 16 Personalities Test Container (Initially Hidden) -->
+    <div id="personality-test-container" class="hidden min-h-screen flex-col items-center justify-center p-4 pt-24">
+        <div id="personality-intro" class="text-center max-w-3xl mx-auto">
+             <h1 class="font-headline text-4xl md:text-5xl text-center mb-4 title-shadow bg-gradient-to-r from-teal-400 via-cyan-500 to-sky-600 bg-clip-text text-transparent">The 16 Personality Types</h1>
+             <p class="text-lg text-gray-700 mb-8">This test is based on the influential theory of psychological types proposed by Carl Jung. Discover how your preferences in four key areas combine to form one of 16 distinct personality types. Answer honestly to get the most accurate result.</p>
+             <button id="start-personality-test-btn" class="inline-block bg-cyan-600 text-white font-bold text-xl px-10 py-4 rounded-full shadow-lg transform transition-transform duration-300 hover:scale-105 hover:bg-cyan-700 focus:outline-none focus:ring-4 focus:ring-cyan-300">Start the Test</button>
+        </div>
+
+        <div id="personality-question-container" class="hidden w-full max-w-2xl">
+            <div class="w-full bg-gray-200 rounded-full h-2.5 mb-4">
+                <div id="personality-progress-bar" class="bg-cyan-500 h-2.5 rounded-full" style="width: 0%"></div>
+            </div>
+            <div class="bg-white p-8 rounded-2xl shadow-md">
+                <h2 id="personality-question-text" class="text-2xl md:text-3xl font-bold text-gray-800 text-center mb-8"></h2>
+                <div id="personality-answer-options" class="grid grid-cols-1 sm:grid-cols-5 gap-3 text-center">
+                    <!-- Buttons will be generated by JS -->
+                </div>
+                <div class="mt-8 text-center">
+                    <button id="personality-back-btn" class="text-gray-500 hover:text-gray-800 font-semibold py-2 px-4">&larr; Back</button>
+                </div>
+            </div>
+        </div>
+        
+        <div id="personality-results-container" class="hidden max-w-3xl mx-auto">
+            <div id="personality-results-content" class="bg-white p-8 rounded-2xl shadow-lg">
+                <p class="text-gray-600 font-semibold text-center">Your Personality Type is:</p>
+                <h2 id="personality-type-title" class="text-5xl font-extrabold mb-2 text-center"></h2>
+                <h3 id="personality-type-name" class="text-3xl font-bold text-gray-800 mb-6 text-center"></h3>
+                <p id="personality-type-description" class="text-lg text-gray-700 text-left mb-8"></p>
+                
+                <div class="grid md:grid-cols-2 gap-8 text-left">
+                    <div>
+                        <h4 class="text-2xl font-bold text-green-600 mb-3">Strengths</h4>
+                        <ul id="personality-strengths" class="list-disc list-inside space-y-2 text-gray-700"></ul>
+                    </div>
+                    <div>
+                        <h4 class="text-2xl font-bold text-red-600 mb-3">Weaknesses</h4>
+                        <ul id="personality-weaknesses" class="list-disc list-inside space-y-2 text-gray-700"></ul>
+                    </div>
+                </div>
+                
+                <div class="mt-8">
+                     <h4 class="text-2xl font-bold text-indigo-600 mb-3 text-center">Potential Career Paths</h4>
+                     <p id="personality-careers" class="text-center text-gray-700"></p>
+                </div>
+                
+                <div class="mt-8">
+                     <h4 class="text-2xl font-bold text-yellow-600 mb-3 text-center">Famous People</h4>
+                     <p id="personality-famous" class="text-center text-gray-700"></p>
+                </div>
+            </div>
+            <div class="mt-8 text-center space-y-4">
+                <div class="flex flex-wrap justify-center items-center gap-4">
+                    <button id="download-personality-btn" class="w-full sm:w-auto inline-block bg-gray-800 text-white font-bold text-lg px-8 py-3 rounded-full shadow-lg transform transition-transform duration-300 hover:scale-105 hover:bg-black focus:outline-none focus:ring-4 focus:ring-gray-400">Download Results</button>
+                    <button id="retake-personality-test-btn" class="w-full sm:w-auto inline-block bg-gray-500 text-white font-bold text-lg px-8 py-3 rounded-full shadow-lg transform transition-transform duration-300 hover:scale-105 hover:bg-gray-600 focus:outline-none focus:ring-4 focus:ring-gray-400">Retake Test</button>
+                </div>
+                <div class="flex justify-center items-center gap-4 pt-4">
+                    <button onclick="handlePersonalityShare('facebook')" class="text-blue-600 hover:text-blue-800 transition">
+                        <svg class="w-8 h-8" viewBox="0 0 24 24" fill="currentColor"><path d="M22 12c0-5.52-4.48-10-10-10S2 6.48 2 12c0 4.84 3.44 8.87 8 9.8V15H8v-3h2V9.5C10 7.57 11.57 6 13.5 6H16v3h-1.5c-1 0-1 .5-1 1v2h3l-.5 3h-2.5v6.95c5.05-.95 9-5.46 9-10.95z"/></svg>
+                    </button>
+                    <button onclick="handlePersonalityShare('twitter')" class="text-black hover:text-gray-700 transition">
+                        <svg class="w-8 h-8" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+                    </button>
+                    <button onclick="handlePersonalityShare('whatsapp')" class="text-green-500 hover:text-green-700 transition">
+                       <svg class="w-8 h-8" viewBox="0 0 24 24" fill="currentColor"><path d="M12.04 2c-5.46 0-9.91 4.45-9.91 9.91 0 1.75.46 3.38 1.25 4.82l-1.34 4.89 5.01-1.32c1.39.71 2.97 1.12 4.59 1.12h.01c5.46 0 9.91-4.45 9.91-9.91s-4.45-9.91-9.91-9.91zm0 18.16c-1.47 0-2.89-.38-4.16-1.09l-.3-.18-3.09.81.83-3.02-.2-.32c-.8-1.31-1.28-2.84-1.28-4.45 0-4.54 3.68-8.22 8.22-8.22 4.54 0 8.22 3.68 8.22 8.22s-3.68 8.22-8.22 8.22zm4.45-6.21c-.24-.12-1.42-.7-1.64-.78-.22-.08-.38-.12-.54.12-.16.24-.62.78-.76.94-.14.16-.28.18-.52.06-.24-.12-1.02-.38-1.94-1.2s-1.4-1.83-1.56-2.13c-.16-.3-.02-.46.1-.6.11-.13.24-.34.37-.51.12-.16.16-.28.24-.47.08-.19.04-.35-.02-.47-.06-.12-.54-1.29-0.74-1.77-.2-.48-.4-.41-.54-.42-.14 0-.3 0-.47 0s-.42.06-.64.3c-.22.24-.86.84-.86 2.05s.88 2.38 1 2.54c.12.16 1.74 2.65 4.22 3.72.59.26 1.05.41 1.41.52.6.19 1.14.16 1.56.1.48-.06 1.42-.58 1.62-1.14.2-.56.2-1.04.14-1.14-.06-.11-.22-.18-.46-.3z"/></svg>
+                    </button>
+                </div>
+                <p id="personality-share-message" class="text-center text-gray-600 mt-2"></p>
+            </div>
+        </div>
+    </div>
+    
     <!-- Loading Container (Initially Hidden) -->
     <div id="loading-container" class="hidden min-h-screen flex-col items-center justify-center p-4">
         <div class="w-full max-w-md text-center">
@@ -242,7 +442,7 @@
 
 
     <!-- Results Container (Initially Hidden) -->
-    <div id="results-container" class="hidden bg-gray-100 p-4 sm:p-6 md:p-8">
+    <div id="results-container" class="hidden bg-gray-100 p-4 sm:p-6 md:p-8 pt-24">
         <div id="results-content" class="max-w-4xl mx-auto pb-16">
             <div class="bg-white p-8 rounded-2xl shadow-md w-full mb-8 fade-in">
                 <h2 id="results-main-title" class="text-3xl md:text-4xl font-extrabold text-center mb-2">Your Integrated Profile:</h2>
@@ -264,6 +464,7 @@
                      <button id="download-btn" class="w-full sm:w-auto inline-block bg-gray-800 text-white font-bold text-lg px-8 py-3 rounded-full shadow-lg transform transition-transform duration-300 hover:scale-105 hover:bg-black focus:outline-none focus:ring-4 focus:ring-gray-400">Download Results</button>
                      <button id="share-btn" class="w-full sm:w-auto inline-block bg-blue-600 text-white font-bold text-lg px-8 py-3 rounded-full shadow-lg transform transition-transform duration-300 hover:scale-105 hover:bg-blue-700 focus:outline-none focus:ring-4 focus:ring-blue-300">Share with Friends</button>
                      <button id="retake-test-btn" class="w-full sm:w-auto inline-block bg-gray-500 text-white font-bold text-lg px-8 py-3 rounded-full shadow-lg transform transition-transform duration-300 hover:scale-105 hover:bg-gray-600 focus:outline-none focus:ring-4 focus:ring-gray-400">Retake Test</button>
+                     <button id="go-to-16p-test-btn" class="w-full sm:w-auto inline-block bg-cyan-600 text-white font-bold text-lg px-8 py-3 rounded-full shadow-lg transform transition-transform duration-300 hover:scale-105 hover:bg-cyan-700 focus:outline-none focus:ring-4 focus:ring-cyan-300">Try the 16 Personalities Test</button>
                 </div>
                  <p id="share-message" class="text-center text-gray-600 mt-4"></p>
             </div>
@@ -271,7 +472,7 @@
     </div>
 
     <script>
-        // --- Questions (English only, used as keys) ---
+        // --- HEXACO Test Data & Logic ---
         const level1Questions = [
             { id: 'h1', dimension: 'H', score: 1 }, { id: 'h2', dimension: 'H', score: -1 }, { id: 'h3', dimension: 'H', score: -1 }, { id: 'h4', dimension: 'H', score: 1 }, { id: 'h5', dimension: 'H', score: 1 }, { id: 'h6', dimension: 'H', score: -1 }, { id: 'h7', dimension: 'H', score: 1 }, { id: 'h8', dimension: 'H', score: -1 }, { id: 'h9', dimension: 'H', score: 1 },
             { id: 'e1', dimension: 'E', score: 1 }, { id: 'e2', dimension: 'E', score: 1 }, { id: 'e3', dimension: 'E', score: 1 }, { id: 'e4', dimension: 'E', score: -1 }, { id: 'e5', dimension: 'E', score: -1 }, { id: 'e6', dimension: 'E', score: -1 }, { id: 'e7', dimension: 'E', score: 1 }, { id: 'e8', dimension: 'E', score: -1 }, { id: 'e9', dimension: 'E', score: 1 },
@@ -301,7 +502,6 @@
             options: [ { id: 'n1a', choiceId: 'growth' }, { id: 'n1b', choiceId: 'redemption' }, { id: 'n1c', choiceId: 'agency' }, { id: 'n1d', choiceId: 'connection' } ]
         };
 
-        // --- Descriptions and Profiles (English only, used as keys) ---
         const profiles = {
             H: { title: "The Principled Realist", color: "text-gray-700", bgColor: "bg-slate-100", high: { facets: ["Sincerity", "Fairness", "Modesty"], summary: "summary_H_high", breakdown: "breakdown_H_high" }, low: { facets: ["Strategic", "Status-Driven", "Pragmatic"], summary: "summary_H_low", breakdown: "breakdown_H_low" } },
             E: { title: "The Sensitive Soul", color: "text-purple-600", bgColor: "bg-purple-100", high: { facets: ["Empathy", "Fearfulness", "Sentimentality"], summary: "summary_E_high", breakdown: "breakdown_E_high" }, low: { facets: ["Bravery", "Confidence", "Stability"], summary: "summary_E_low", breakdown: "breakdown_E_low" } },
@@ -311,7 +511,6 @@
             O: { title: "The Innovator", color: "text-indigo-500", bgColor: "bg-indigo-100", high: { facets: ["Creativity", "Inquisitiveness", "Unconventionality"], summary: "summary_O_high", breakdown: "breakdown_O_high" }, low: { facets: ["Pragmatism", "Tradition", "Concreteness"], summary: "summary_O_low", breakdown: "breakdown_O_low" } }
         };
         
-        // --- Full Translation Object ---
         const translations = {
             en: {
                 // UI Text
@@ -411,118 +610,104 @@
                 "redemption": "Your life story follows a theme of <strong>Redemption</strong>. This suggests you have faced significant adversity but have found positive meaning and strength from it, turning a negative past into a positive future.",
                 "agency": "Your life story is driven by a theme of <strong>Agency</strong>. You see yourself as the author of your own destiny, actively making choices and taking actions to create the life you want to live.",
                 "connection": "Your life story is centered on the theme of <strong>Connection</strong>. You find your greatest sense of purpose and meaning in forming deep, supportive, and lasting bonds with friends, family, and your community."
-            },
-            ar: {
-                // UI Text
-                homeTagline: "تقييم شخصية متعدد المستويات",
-                whyUsTitle: "لماذا تختارنا؟",
-                whyUs1Title: "مبني على العلم", whyUs1Desc: "اختبارنا مبني على نموذج HEXACO، وهو إطار قوي يثق به علماء النفس لدقته وصلاحيته عبر الثقافات.",
-                whyUs2Title: "تحليل ثلاثي المستويات", whyUs2Desc: "نتجاوز السمات البسيطة من خلال تحليل أحكامك الظرفية ومواضيع قصة حياتك لإنشاء ملف شخصي شامل حقًا.",
-                whyUs3Title: "رؤى قابلة للتنفيذ", whyUs3Desc: "افهم نقاط قوتك والتحديات المحتملة من خلال ملاحظات واضحة وغير قضائية مصممة للنمو الشخصي.",
-                homeDescription: "اكتشف نقاط قوتك الفريدة. يعتمد تحليلنا على نموذج <strong>HEXACO</strong> المعتمد علميًا للحصول على ملف شخصي دقيق بشكل مدهش.",
-                startBtn: "ابدأ الاختبار!",
-                footerText: "&copy; 2024 Personality Post. جميع الحقوق محفوظة.",
-                progressPart1: "الجزء الأول: السمات الأساسية",
-                progressPart2: "الجزء الثاني: الحكم الظرفي",
-                progressPart3: "الجزء الثالث: قصة حياتك",
-                questionOf: "سؤال {current} من {total}",
-                backBtn: "رجوع &rarr;",
-                resultsMainTitle: "ملفك الشخصي المتكامل:",
-                resultsBreakdownTitle: "تفصيل سماتك",
-                resultsNextStepsTitle: "الخطوات التالية",
-                downloadBtn: "تحميل النتائج",
-                shareBtn: "شارك مع الأصدقاء",
-                retakeBtn: "إعادة الاختبار",
-                high: "مرتفع",
-                low: "منخفض",
-                subtypesPrefix: "الأنواع الفرعية الرئيسية:",
-                level2Title: "في الواقع:",
-                level2Summary: "تشير إجاباتك على الأسئلة الظرفية إلى أنه عند مواجهة التحديات، فإنك تميل إلى إعطاء الأولوية للإجراءات المتعلقة بـ <strong>{profile}</strong>، مما يعزز سماتك الأساسية في قراراتك اليومية.",
-                level3Title: "قصة حياتك:",
-                level3Default: "لديك منظور فريد لرحلة حياتك.",
-                shareMessage: "لقد أجريت اختبار Great Mind Profile وملفي الشخصي هو \"{profile}\"! اكتشف نوع شخصيتك على www.test.com مجانًا!",
-                downloading: "جاري إنشاء الصورة...",
-                downloaded: "تم تحميل صورة النتائج!",
-                downloadError: "لم يتم تحميل النتائج.",
-                sharing: "تمت المشاركة بنجاح!",
-                shareError: "لم تتم مشاركة النتائج.",
-                shareNotSupported: "ميزة المشاركة غير مدعومة في هذا المتصفح.",
-                copiedToClipboard: "تم نسخ الرابط إلى الحافظة!",
-                copyError: "تعذر نسخ الرابط.",
-                loadingText: "جاري تحليل ملفك الشخصي...",
-                stronglyAgree: "أوافق بشدة", agree: "أوافق", neutral: "محايد", disagree: "لا أوافق", stronglyDisagree: "لا أوافق بشدة",
-                // Level 1 Questions
-                h1: "لن أستخدم الإطراء للتقدم.", h2: "إذا أردت شيئًا من شخص ما ، فسأضحك على أسوأ نكاته.", h3: "أشعر بإحساس قوي بالاستحقاق لمعاملة خاصة.", h4: "لن أقبل رشوة أبدًا ، حتى لو كانت كبيرة جدًا.", h5: "لست مهتمًا بالتباهي بثروتي أو مكانتي.", h6: "سأغرى باستخدام نقود مزيفة إذا كنت متأكدًا من أنني أستطيع الإفلات من العقاب.", h7: "امتلاك الكثير من المال ليس بالأمر المهم بشكل خاص بالنسبة لي.", h8: "سأحصل على الكثير من المتعة من امتلاك سلع فاخرة باهظة الثمن.", h9: "أعتقد أنني شخص عادي لست أفضل من الآخرين.",
-                e1: "أشعر أحيانًا بأنني شخص لا قيمة له.", e2: "أقلق كثيرًا ، حتى بشأن الأشياء التي من غير المحتمل حدوثها.", e3: "أصبح عاطفيًا جدًا عند مشاهدة الأفلام العاطفية.", e4: "أبقى هادئًا في المواقف العصيبة.", e5: "نادراً ما أشعر بالحزن أو الكآبة.", e6: "أنا لست قلقًا.", e7: "أشعر بالرغبة في البكاء عندما أرى أشخاصًا آخرين يبكون.", e8: "أنا لا أخاف بسهولة.", e9: "أميل إلى أن أكون شخصًا قلقًا للغاية.",
-                x1: "أشعر أنني شخص غير محبوب.", x2: "في المواقف الاجتماعية ، عادة ما أكون أنا من يقوم بالخطوة الأولى.", x3: "أنا روح الحفلة.", x4: "أفضل أن أكون في الخلفية.", x5: "لدي الكثير من الطاقة.", x6: "لا أحب لفت الانتباه إلى نفسي.", x7: "أنا شخص متحمس جدًا.", x8: "أستمتع بكوني وحيدًا.",
-                a1: "يخبرني الناس أحيانًا أنني شديد النقد للآخرين.", a2: "أميل إلى أن أكون متساهلاً في أحكامي على الآخرين.", a3: "نادراً ما أحمل ضغينة ، حتى ضد الأشخاص الذين أذوني.", a4: "أغضب بسهولة.", a5: "أنا شخص صبور جدًا.", a6: "أنا لست شخصًا متسامحًا جدًا.", a7: "أنا شخص لطيف جدًا.", a8: "أنا لست شخصًا متعاونًا جدًا.",
-                c1: "غالبًا ما أدفع نفسي إلى أقصى حدودي عند العمل في مهمة ما.", c2: "أنا شخص منظم جدًا.", c3: "غالبًا ما أتخذ قرارات متهورة.", c4: "أتأكد من أن عملي مثالي ، وصولاً إلى أدق التفاصيل.", c5: "أنا لست شخصًا منضبطًا جدًا.", c6: "أنا شخص موثوق به للغاية.", c7: "أنا لست شخصًا حذرًا جدًا.", c8: "أنا شخص مجتهد جدًا.",
-                o1: "سأشعر بالملل من زيارة معرض فني.", o2: "أنا مفتون بجمال الطبيعة.", o3: "أحب حل المشكلات والألغاز المعقدة.", o4: "أعتقد أنني شخص مبدع للغاية.", o5: "أنا لست مهتمًا بالأفكار المجردة.", o6: "لدي مفردات غنية.", o7: "لدي خيال حي.", o8: "أنا لست مهتمًا بالمناقشات النظرية.",
-                // Level 2 Questions
-                s1: "أنت في مناقشة جماعية وانتقد أحدهم علنًا فكرة قدمتها للتو. كيف ترد؟", s1a: "دافع عن فكرتك على الفور وأشر إلى العيوب في نقدهم.", s1b: "اعترف بوجهة نظرهم واقترح مناقشتها بشكل أكبر بعد المناقشة.", s1c: "لا تقل شيئًا ولكن تشعر بالإحباط لبقية المناقشة.", s1d: "اطلب منهم توضيح مخاوفهم حتى تتمكن من فهم وجهة نظرهم.",
-                s2: "لديك موعد نهائي شخصي مهم يقترب ، لكن صديقًا مقربًا يطلب مساعدتك في مشكلة عاجلة. ماذا تفعل؟", s2a: "اشرح بأدب الموعد النهائي الخاص بك واعرض مساعدتهم بمجرد الانتهاء منه.", s2b: "اترك ما تفعله على الفور لمساعدة صديقك ؛ فالعلاقات أكثر أهمية.", s2c: "تشعر بالقلق والتمزق ، وتحاول التوفيق بين الأمرين في وقت واحد وعدم القيام بأي منهما بشكل جيد.", s2d: "اقترح حلاً سريعًا غير تقليدي لمشكلتهم حتى تتمكن من العودة إلى مهمتك.",
-                s3: "لقد وجدت طريقة لإنجاز شيء ما بشكل أسرع بكثير ، ولكنه يتضمن خرق قاعدة وافقت على اتباعها. ما هي خطوتك؟", s3a: "استخدم الطريقة الأسرع. النتيجة هي الأهم.", s3b: "التزم بالقواعد. الاتفاق هو اتفاق.", s3c: "اقترح تغييرًا رسميًا على القاعدة ، مع شرح فوائد الطريقة الجديدة.", s3d: "اطلب رأي شخص آخر قبل فعل أي شيء.",
-                s4: "لقد تمت دعوتك إلى حفلة كبيرة وصاخبة حيث لا تعرف سوى شخص واحد. ما هي خطتك؟", s4a: "اقفز مباشرة وابدأ في تقديم نفسك لأشخاص جدد.", s4b: "ابحث عن زاوية هادئة وراقب الناس لفترة من الوقت قبل المشاركة.", s4c: "ابق قريبًا من الشخص الذي تعرفه طوال الليل.", s4d: "ابحث عن الشخص الأكثر إثارة للاهتمام وابدأ محادثة عميقة.",
-                s5: "يطلب منك شخص ما المساعدة في مهمة معقدة ولكنه يعطيك تعليمات غامضة. ما هي خطوتك الأولى؟", s5a: "أنشئ خطة مفصلة بأفضل افتراضاتك وقدمها لملاحظاتهم.", s5b: "ابدأ في تجربة طرق مختلفة لمعرفة الأفضل.", s5c: "اطلب توضيحًا وأمثلة محددة قبل أن تبدأ.", s5d: "تعاون معهم لتبادل الأفكار وحلها معًا.",
-                s6: "شخص ما في مشروع جماعي لا يقوم بنصيبه من العمل ، وهذا يؤثر على النتيجة. كيف تتعامل مع الأمر؟", s6a: "واجهه مباشرة وبصراحة بشأن المشكلة.", s6b: "قم بعمله لتجنب الصراع والحفاظ على استمرارية المشروع.", s6c: "اطرح المشكلة مع المجموعة لإيجاد حل جماعي.", s6d: "حاول أن تفهم ما إذا كانوا يعانون وقدم مساعدتك.",
-                s7: "لديك عطلة نهاية أسبوع مجانية بدون خطط. كيف تقضيها؟", s7a: "اتصل بالأصدقاء ونظم نشاطًا جماعيًا.", s7b: "تعامل مع مشروع شخصي أو نظم منزلك.", s7c: "قم بزيارة متحف ، أو اقرأ كتابًا عن موضوع جديد ، أو استكشف مكانًا جديدًا.", s7d: "استرخ في المنزل وأعد شحن بطارياتك في هدوء وسكينة.",
-                s8: "لقد ارتكبت خطأً كبيرًا يؤثر على الآخرين ، لكن لم يلاحظه أحد بعد. ماذا تفعل؟", s8a: "اعترف به على الفور واقترح حلاً.", s8b: "انتظر لترى ما إذا كان أي شخص سيلاحظ قبل أن تقول أي شيء.", s8c: "حاول إصلاحه بهدوء دون إخبار أي شخص.", s8d: "تقلق إلى ما لا نهاية بشأن اكتشافك.",
-                s9: "عندما تواجه قرارًا شخصيًا صعبًا ، فمن المرجح أن:", s9a: "تثق بمشاعرك وحدسك.", s9b: "تنشئ قائمة إيجابيات وسلبيات وتحللها منطقيًا.", s9c: "تتحدث عنها مع العديد من الأصدقاء للحصول على آرائهم.", s9d: "تختار الخيار الذي سيسبب أقل قدر من الصراع مع الآخرين.",
-                s10: "شخص ما يتقدم عليك في طابور طويل. رد فعلك الفوري هو:", s10a: "أشر بأدب إلى وجود طابور وأنك كنت التالي.", s10b: "لا تقل شيئًا ، لكن كن منزعجًا بشكل واضح واشتكِ إلى الشخص الذي يقف خلفك.", s10c: "دعه يذهب. الأمر لا يستحق المواجهة.", s10d: "نادِ عليهم بصوت عالٍ حتى يعرف كل من في الطابور ما فعلوه.",
-                s11: "لديك خيار بين مسار حياة مستقر وآمن ، وآخر أكثر خطورة ولكنه أكثر إثارة. تختار:", s11a: "المسار المستقر والآمن. القدرة على التنبؤ مهمة.", s11b: "المسار المحفوف بالمخاطر ولكنه مثير. أنت تزدهر في التحديات الجديدة.", s11c: "المسار الذي يوفر أكبر قدر من المكاسب الشخصية ، بغض النظر عن المخاطر.", s11d: "المسار الذي يعتقد مرشدوك وعائلتك أنه الأفضل لك.",
-                s12: "عند تعلم مهارة جديدة ، تفضل:", s12a: "اتباع دورة منظمة بخطوات وأهداف واضحة.", s12b: "القفز والتعلم من خلال التجربة والخطأ.", s12c: "التعلم مع مجموعة أو شريك.", s12d: "ابحث عن معلم أو مرشد تثق به واتبع إرشاداته.",
-                s13: "صديق يخبرك عن مشكلة ، فمن المرجح أن:", s13a: "تستمع بصبر وتقدم الدعم العاطفي.", s13b: "تبدأ على الفور في تبادل الأفكار حول حلول عملية لهم.", s13c: "تشارك قصة تجربة مماثلة مررت بها.", s13d: "تساعدهم على رؤية المشكلة من منظور مختلف تمامًا.",
-                s14: "لقد تلقيت للتو هدية مالية كبيرة. غريزتك الأولى هي:", s14a: "ضعها في حساب توفير أو استثمار.", s14b: "أنفقها على سلعة فاخرة أو إجازة فخمة.", s14c: "أقم حفلة كبيرة لأصدقائك وعائلتك.", s14d: "تبرع بجزء لقضية تهتم بها.",
-                // Level 3 Question
-                n1: "أي من هذه الموضوعات الأساسية يعكس قصة حياتك الشخصية بشكل أفضل حتى الآن؟", n1a: "<strong>النمو:</strong> قصة التغلب على التحديات وتحسين نفسك باستمرار.", n1b: "<strong>الفداء:</strong> قصة التعافي من حدث سلبي أدى في النهاية إلى نتيجة إيجابية.", n1c: "<strong>الوكالة:</strong> قصة السيطرة على حياتك وتشكيل مصيرك.", n1d: "<strong>الاتصال:</strong> قصة إيجاد المعنى من خلال روابط عميقة وداعمة مع الآخرين.",
-                // Profiles
-                "The Principled Realist": "الواقعي المبدئي", "The Sensitive Soul": "الروح الحساسة", "The Social Catalyst": "المحفز الاجتماعي", "The Harmonizer": "المنسق", "The Architect": "المهندس", "The Innovator": "المبتكر",
-                "Sincerity": "الإخلاص", "Fairness": "العدل", "Modesty": "التواضع", "Strategic": "استراتيجي", "Status-Driven": "مهتم بالمكانة", "Pragmatic": "عملي", "Empathy": "التعاطف", "Fearfulness": "الخوف", "Sentimentality": "العاطفية", "Bravery": "الشجاعة", "Confidence": "الثقة", "Stability": "الاستقرار", "Sociability": "اجتماعي", "Liveliness": "الحيوية", "Social Boldness": "الجرأة الاجتماعية", "Independence": "الاستقلال", "Reflection": "التأمل", "Reserve": "التحفظ", "Patience": "الصبر", "Forgivingness": "التسامح", "Gentleness": "اللطف", "Independent": "مستقل", "Frank": "صريح", "Assertive": "حازم", "Diligence": "الاجتهاد", "Organization": "التنظيم", "Perfectionism": "الكمالية", "Flexibility": "المرونة", "Spontaneity": "العفوية", "Adaptability": "القدرة على التكيف", "Creativity": "الإبداع", "Inquisitiveness": "الفضول", "Unconventionality": "غير تقليدي", "Pragmatism": "الواقعية", "Tradition": "التقاليد", "Concreteness": "الملموسة",
-                "Honesty-Humility": "الصدق والتواضع", "Emotionality": "العاطفية", "Extraversion": "الانبساط", "Agreeableness": "القبول", "Conscientiousness": "الضمير الحي", "Openness to Experience": "الانفتاح على التجربة",
-                // Breakdowns
-                "breakdown_H_high": "نتيجتك المرتفعة في <strong>الصدق والتواضع</strong> تظهر أنك صادق ومبدئي. <strong>القوة:</strong> تبني الثقة بسهولة وتُعتبر شخصًا عادلاً. <strong>التحدي:</strong> قد تشعر بعدم الارتياح في البيئات التي تتطلب ترويجًا ذاتيًا تنافسيًا أو تكتيكات عدوانية.",
-                "breakdown_H_low": "نتيجتك المنخفضة في <strong>الصدق والتواضع</strong> تشير إلى أنك استراتيجي وواثق من نفسك. <strong>القوة:</strong> أنت فعال في التعامل مع المواقف التنافسية ولا يتم استغلالك بسهولة. <strong>التحدي:</strong> قد يرى الآخرون أحيانًا أفعالك على أنها تلاعب أو أنانية مفرطة.",
-                "breakdown_E_high": "نتيجتك المرتفعة في <strong>العاطفية</strong> تشير إلى أنك متعاطف وحساس. <strong>القوة:</strong> قدرتك على التواصل مع مشاعر الآخرين وحذرك يمكن أن يساعدك على تجنب المواقف الخطرة. <strong>التحدي:</strong> قد تكون عرضة للقلق أو القلق ، والذي قد يكون أحيانًا مربكًا.",
-                "breakdown_E_low": "نتيجتك المنخفضة في <strong>العاطفية</strong> تظهر أنك شجاع ومستقر عاطفياً. <strong>القوة:</strong> أنت صخرة للآخرين أثناء الأزمات ويمكنك التعامل مع البيئات عالية الضغط. <strong>التحدي:</strong> قد تجد أحيانًا صعوبة في فهم أو التعبير عن المشاعر الأعمق والأكثر ضعفًا.",
-                "breakdown_X_high": "نتيجتك المرتفعة في <strong>الانبساط</strong> تعني أنك منفتح وواثق اجتماعيًا. <strong>القوة:</strong> أنت قائد طبيعي وصانع شبكات علاقات ، قادر على إلهام وتنشيط المجموعات. <strong>التحدي:</strong> قد تشعر بنقص التحفيز أو الملل عند قضاء الوقت بمفردك.",
-                "breakdown_X_low": "نتيجتك المنخفضة في <strong>الانبساط</strong> تشير إلى أنك مستقل ومتأمل. <strong>القوة:</strong> أنت مرتاح مع نفسك ويمكنك التركيز بعمق على المهام دون تشتيت اجتماعي. <strong>التحدي:</strong> قد يتم تجاهلك في إعدادات المجموعة الكبيرة أو تجد أنه من المستنزف المشاركة في أنشطة اجتماعية واسعة النطاق.",
-                "breakdown_A_high": "نتيجتك المرتفعة في <strong>القبول</strong> تظهر أنك لطيف ومتعاون. <strong>القوة:</strong> أنت لاعب فريق ممتاز وصديق داعم ، قادر على تسوية النزاعات. <strong>التحدي:</strong> قد يؤدي ترددك في النقد إلى أن تكون متسامحًا بشكل مفرط مع أخطاء الآخرين.",
-                "breakdown_A_low": "نتيجتك المنخفضة في <strong>القبول</strong> تشير إلى أنك مستقل الفكر وصريح. <strong>القوة:</strong> استعدادك للنقد يمكن أن يؤدي إلى نتائج أفضل ويمنع القرارات السيئة. <strong>التحدي:</strong> قد يراك الآخرون أحيانًا عنيدًا أو مجادلاً.",
-                "breakdown_C_high": "نتيجتك المرتفعة في <strong>الضمير الحي</strong> تعني أنك منظم ومجتهد. <strong>القوة:</strong> أنت موثوق به للغاية ويمكن الاعتماد عليك لإنجاز المهمة بشكل صحيح. <strong>التحدي:</strong> قد تكون عرضة للكمالية أو تجد صعوبة في التكيف عندما تتغير الخطط بشكل غير متوقع.",
-                "breakdown_C_low": "نتيجتك المنخفضة في <strong>الضمير الحي</strong> تشير إلى أنك مرن وعفوي. <strong>القوة:</strong> أنت قابل للتكيف بدرجة عالية ويمكن أن تزدهر في بيئات لا يمكن التنبؤ بها. <strong>التحدي:</strong> قد تكافح مع عدم التنظيم أو تجد صعوبة في الوفاء بالمواعيد النهائية.",
-                "breakdown_O_high": "نتيجتك المرتفعة في <strong>الانفتاح على التجربة</strong> تظهر أنك مبدع وفضولي. <strong>القوة:</strong> أنت مبتكر بالفطرة ، قادر على رؤية الاحتمالات التي يفوتها الآخرون. <strong>التحدي:</strong> قد يُنظر إليك أحيانًا على أنك غير عملي أو تجد صعوبة في التركيز على المهام الروتينية.",
-                "breakdown_O_low": "نتيجتك المنخفضة في <strong>الانفتاح على التجربة</strong> تشير إلى أنك عملي وتقليدي. <strong>القوة:</strong> أنت تقدم نهجًا واقعيًا ومنطقيًا للمشكلات. <strong>التحدي:</strong> قد تكون مقاومًا للتغيير أو تتجاهل الحلول الجديدة.",
-                // Summaries
-                "summary_H_high": "أنت تسترشد بإحساس قوي بالعدل والإخلاص. تفضل التعاون مع الآخرين على قدم المساواة ، دون رغبة في مكانة خاصة أو ثروة. هذا يجعلك شخصًا جديرًا بالثقة وحقيقيًا.",
-                "summary_H_low": "أنت فرد عملي وقابل للتكيف ، مرتاح للتسلسلات الهرمية الاجتماعية واستخدام الاستراتيجية لتحقيق أهدافك. لا تخشى الاستفادة من المواقف لصالحك وتحفزك النجاح الشخصي.",
-                "summary_E_high": "أنت متناغم للغاية مع مشاعرك والعالم من حولك. تختبر المشاعر بعمق ، مما يتيح لك تكوين روابط تعاطفية قوية مع الآخرين وتكون حساسًا للمخاطر المحتملة.",
-                "summary_E_low": "أنت مرن عاطفياً وتبقى هادئًا حتى في المواقف العصيبة. تواجه التحديات بسلوك ثابت ولا تهتز بسهولة بالتهديدات الجسدية أو الاجتماعية.",
-                "summary_X_high": "أنت نشيط ومتحمس وتزدهر في البيئات الاجتماعية. تتولى زمام المبادرة بشكل طبيعي ، وتستمتع بكونك مركز الاهتمام ، وتستمد الطاقة من التواجد حول أشخاص آخرين.",
-                "summary_X_low": "أنت مدروس ومتحفظ ، وتفضل البيئات الهادئة والتفاعلات الهادفة بين شخصين على التجمعات الاجتماعية الكبيرة. تجد طاقتك في التفكير والعزلة.",
-                "summary_A_high": "أنت صبور ومتعاون وسهل المعشر. أنت على استعداد لتقديم تنازلات والتسامح ، وتتجنب المواجهة بشكل عام ، وتفضل الحفاظ على علاقات متناغمة مع الآخرين.",
-                "summary_A_low": "أنت مفكر مباشر ومستقل لا يخشى تحدي الآخرين والتعبير عن رأي نقدي. تتمسك بمعتقداتك وأنت على استعداد للدخول في جدالات للدفاع عن وجهة نظرك.",
-                "summary_C_high": "أنت منظم ومنضبط وموجه نحو الأهداف. تتعامل مع المهام بخطة منظمة وتدفعك لتحقيق مستوى عالٍ من العمل ، مما يجعلك فردًا موثوقًا به ومجتهدًا.",
-                "summary_C_low": "أنت مرن وعفوي ، ومرتاح لعدم وجود هيكل وقادر على التكيف مع الأولويات المتغيرة. لست مهتمًا بشكل مفرط بالقواعد وتفضل العيش في الوقت الحاضر.",
-                "summary_O_high": "أنت فضولي فكريًا ومبدع ومنفتح على الأفكار غير التقليدية والتجارب الجديدة. لديك تقدير عميق للجمال والفن والتفكير المجرد.",
-                "summary_O_low": "أنت عملي وواقعي وتفضل ما هو تقليدي ومألوف. تجد قيمة في التقاليد وأنت مرتاح أكثر مع الحلول المباشرة والملموسة.",
-                // Narratives
-                "growth": "قصة حياتك هي قصة <strong>نمو</strong>. يشير هذا إلى أنك ترى الحياة كرحلة تعلم وتطور ذاتي ، وتنظر إلى التحديات ليس على أنها نكسات ، بل كفرص لتصبح نسخة أفضل من نفسك.",
-                "redemption": "قصة حياتك تتبع موضوع <strong>الفداء</strong>. هذا يشير إلى أنك واجهت محنة كبيرة لكنك وجدت معنى وقوة إيجابية منها ، وحولت ماضيًا سلبيًا إلى مستقبل إيجابي.",
-                "agency": "قصة حياتك مدفوعة بموضوع <strong>الوكالة</strong>. ترى نفسك كمؤلف لمصيرك ، وتتخذ خيارات وتتخذ إجراءات بفاعلية لخلق الحياة التي تريد أن تعيشها.",
-                "connection": "تتمحور قصة حياتك حول موضوع <strong>الاتصال</strong>. تجد أعظم إحساس بالهدف والمعنى في تكوين روابط عميقة وداعمة ودائمة مع الأصدقاء والعائلة ومجتمعك."
             }
         };
-        
-        // --- Application State & Logic ---
-        let currentLanguage = 'en';
+
+        // --- 16 Personalities Test Data ---
+        const personalityQuestions = [
+            { text: "You find it difficult to introduce yourself to other people.", dimension: 'M', score: -1 },
+            { text: "You often get so lost in thought that you ignore or forget your surroundings.", dimension: 'E', score: 1 },
+            { text: "You try to respond to your e-mails as soon as possible and cannot stand a messy inbox.", dimension: 'T', score: 1 },
+            { text: "You find it easy to stay relaxed and focused even when there is some pressure.", dimension: 'M', score: 1 },
+            { text: "You do not usually initiate conversations.", dimension: 'M', score: -1 },
+            { text: "You rarely do something just out of sheer curiosity.", dimension: 'E', score: -1 },
+            { text: "You feel superior to other people.", dimension: 'N', score: -1 },
+            { text: "Being organized is more important to you than being adaptable.", dimension: 'T', score: 1 },
+            { text: "You are usually highly motivated and energetic.", dimension: 'M', score: 1 },
+            { text: "Winning a debate matters less to you than making sure no one gets upset.", dimension: 'N', score: 1 },
+            { text: "You often feel as if you have to justify yourself to other people.", dimension: 'N', score: 1 },
+            { text: "Your home and work environments are quite tidy.", dimension: 'T', score: 1 },
+            { text: "You do not mind being at the center of attention.", dimension: 'M', score: 1 },
+            { text: "You consider yourself more practical than creative.", dimension: 'E', score: -1 },
+            { text: "People can rarely upset you.", dimension: 'N', score: -1 },
+            { text: "Your travel plans are usually well thought out.", dimension: 'T', score: 1 },
+            { text: "It is often difficult for you to relate to other people’s feelings.", dimension: 'N', score: -1 },
+            { text: "Your mood can change very quickly.", dimension: 'M', score: -1 },
+            { text: "In a discussion, truth should be more important than people’s sensitivities.", dimension: 'N', score: -1 },
+            { text: "You rarely worry about how your actions affect other people.", dimension: 'N', score: -1 },
+            { text: "Your work style is closer to random energy spikes than to a methodical and organized approach.", dimension: 'T', score: -1 },
+            { text: "You are often envious of others.", dimension: 'N', score: 1 },
+            { text: "An interesting book or a video game is often better than a social event.", dimension: 'M', score: -1 },
+            { text: "Being able to develop a plan and stick to it is the most important part of every project.", dimension: 'T', score: 1 },
+            { text: "You can be easily distracted.", dimension: 'T', score: -1 },
+            { text: "You are not a fan of hypotheticals and what-ifs.", dimension: 'E', score: -1 },
+            { text: "You usually find it difficult to relax when talking in front of many people.", dimension: 'M', score: -1 },
+            { text: "Generally speaking, you rely more on your experience than your imagination.", dimension: 'E', score: -1 },
+            { text: "You worry too much about what other people think.", dimension: 'N', score: 1 },
+            { text: "If the room is full, you stay closer to the walls, avoiding the center.", dimension: 'M', score: -1 },
+            { text: "You have a tendency to procrastinate.", dimension: 'T', score: -1 },
+            { text: "You feel very anxious in stressful situations.", dimension: 'M', score: -1 },
+            { text: "You believe that it is more rewarding to be liked by others than to be powerful.", dimension: 'N', score: 1 },
+            { text: "You have always been interested in unconventional and ambiguous things, e.g., in books, art, or movies.", dimension: 'E', score: 1 },
+            { text: "You often take initiative in social situations.", dimension: 'M', score: 1 },
+            { text: "You prefer to do your chores before allowing yourself to relax.", dimension: 'T', score: 1 },
+            { text: "You are empathetic.", dimension: 'N', score: 1 },
+            { text: "You enjoy vibrant social events with lots of people.", dimension: 'M', score: 1 },
+            { text: "You often have a hard time understanding other people's feelings.", dimension: 'N', score: -1 },
+            { text: "You like to have a to-do list for each day.", dimension: 'T', score: 1 },
+            { text: "You rarely feel insecure.", dimension: 'M', score: 1 },
+            { text: "You avoid making phone calls.", dimension: 'M', score: -1 },
+            { text: "You really enjoy debating.", dimension: 'N', score: -1 },
+            { text: "You often find yourself lost in thought when you are walking in nature.", dimension: 'E', score: 1 },
+            { text: "If someone does not respond to your e-mail quickly, you start worrying if you said something wrong.", dimension: 'N', score: 1 },
+            { text: "As a parent, you would rather see your child grow up kind than smart.", dimension: 'N', score: 1 },
+            { text: "You do not let other people influence your actions.", dimension: 'N', score: -1 },
+            { text: "Your dreams tend to focus on the real world and its events.", dimension: 'E', score: -1 },
+            { text: "It does not take you long to start getting involved in social activities at your new workplace.", dimension: 'M', score: 1 },
+            { text: "You are more of a natural improviser than a careful planner.", dimension: 'T', score: -1 }
+        ];
+
+        const personalityTypeColors = {
+            Analysts: 'from-purple-500 to-indigo-600',
+            Diplomats: 'from-green-400 to-teal-500',
+            Sentinels: 'from-blue-500 to-sky-600',
+            Explorers: 'from-yellow-400 to-orange-500',
+        };
+
+        const personalityTypes = {
+            "ISTJ": { name: "The Inspector", group: "Sentinels", description: "Practical and fact-minded individuals, whose reliability cannot be doubted. They are responsible organizers, driven to create and enforce order within systems and institutions.", strengths: ["Responsible", "Calm", "Methodical"], weaknesses: ["Stubborn", "Insensitive", "Judgmental"], careers: ["Accountant", "Librarian", "Civil Engineer"], famous: ["George Washington", "Angela Merkel", "Sting"] },
+            "ISFJ": { name: "The Protector", group: "Sentinels", description: "Very dedicated and warm protectors, always ready to defend their loved ones. They are meticulous and supportive, often found in roles where they can care for others.", strengths: ["Supportive", "Reliable", "Patient"], weaknesses: ["Overly Humble", "Repress Feelings", "Resistant to Change"], careers: ["Nurse", "Teacher", "Social Worker"], famous: ["Queen Elizabeth II", "Mother Teresa", "Beyoncé"] },
+            "INFJ": { name: "The Advocate", group: "Diplomats", description: "Quiet and mystical, yet very inspiring and tireless idealists. They have an inborn sense of idealism and morality, but what sets them apart is they are not idle dreamers.", strengths: ["Creative", "Insightful", "Principled"], weaknesses: ["Perfectionistic", "Sensitive", "Private"], careers: ["Counselor", "Writer", "Psychologist"], famous: ["Martin Luther King Jr.", "Nelson Mandela", "Lady Gaga"] },
+            "INTJ": { name: "The Architect", group: "Analysts", description: "Imaginative and strategic thinkers, with a plan for everything. They have a thirst for knowledge and are confident in their ability to use their minds to achieve their goals.", strengths: ["Strategic", "Independent", "Decisive"], weaknesses: ["Arrogant", "Overly Critical", "Clueless in Romance"], careers: ["Scientist", "Strategist", "Professor"], famous: ["Isaac Newton", "Elon Musk", "Friedrich Nietzsche"] },
+            "ISTP": { name: "The Crafter", group: "Explorers", description: "Bold and practical experimenters, masters of all kinds of tools. They love to explore with their hands and their eyes, touching and examining the world around them with cool rationalism.", strengths: ["Optimistic", "Practical", "Spontaneous"], weaknesses: ["Private", "Easily Bored", "Risk-prone"], careers: ["Mechanic", "Pilot", "Paramedic"], famous: ["Clint Eastwood", "Michael Jordan", "Tom Cruise"] },
+            "ISFP": { name: "The Artist", group: "Explorers", description: "Flexible and charming artists, always ready to explore and experience something new. They live in a colorful, sensual world, inspired by connections with people and ideas.", strengths: ["Charming", "Imaginative", "Curious"], weaknesses: ["Unpredictable", "Easily Stressed", "Overly Competitive"], careers: ["Artist", "Musician", "Fashion Designer"], famous: ["Michael Jackson", "Britney Spears", "Frida Kahlo"] },
+            "INFP": { name: "The Mediator", group: "Diplomats", description: "Poetic, kind, and altruistic people, always eager to help a good cause. They are guided by their principles, rather than by logic, excitement, or practicality.", strengths: ["Empathetic", "Generous", "Open-Minded"], weaknesses: ["Unrealistic", "Self-Isolating", "Impractical"], careers: ["Writer", "Therapist", "Graphic Designer"], famous: ["William Shakespeare", "J.R.R. Tolkien", "Johnny Depp"] },
+            "INTP": { name: "The Thinker", group: "Analysts", description: "Innovative inventors with an unquenchable thirst for knowledge. They are known for their brilliant theories and unrelenting logic, which they use to understand the world.", strengths: ["Analytical", "Objective", "Imaginative"], weaknesses: ["Absent-minded", "Insensitive", "Condescending"], careers: ["Physicist", "Programmer", "Philosopher"], famous: ["Albert Einstein", "Bill Gates", "René Descartes"] },
+            "ESTP": { name: "The Persuader", group: "Explorers", description: "Smart, energetic, and very perceptive people, who truly enjoy living on the edge. They are the life of the party, with a love for drama, passion, and pleasure.", strengths: ["Bold", "Direct", "Sociable"], weaknesses: ["Impatient", "Risk-prone", "Unstructured"], careers: ["Entrepreneur", "Sales Representative", "Detective"], famous: ["Donald Trump", "Madonna", "Jack Nicholson"] },
+            "ESFP": { name: "The Entertainer", group: "Explorers", description: "Spontaneous, energetic, and enthusiastic people – life is never boring around them. They love the spotlight and are always ready to put on a show for others.", strengths: ["Original", "Aesthetics-oriented", "Showmanlike"], weaknesses: ["Sensitive", "Conflict-averse", "Easily Bored"], careers: ["Actor", "Event Planner", "Tour Guide"], famous: ["Marilyn Monroe", "Adele", "Jamie Oliver"] },
+            "ENFP": { name: "The Champion", group: "Diplomats", description: "Enthusiastic, creative, and sociable free spirits, who can always find a reason to smile. They are charming, independent, energetic, and compassionate.", strengths: ["Curious", "Observant", "Energetic"], weaknesses: ["Overly Optimistic", "Disorganized", "Stressed Out"], careers: ["Journalist", "Politician", "Actor"], famous: ["Robert Downey Jr.", "Will Smith", "Robin Williams"] },
+            "ENTP": { name: "The Debater", group: "Analysts", description: "Smart and curious thinkers who cannot resist an intellectual challenge. They are the ultimate devil's advocate, thriving on the process of shredding arguments and beliefs.", strengths: ["Knowledgeable", "Quick Thinker", "Charismatic"], weaknesses: ["Argumentative", "Insensitive", "Intolerant"], careers: ["Lawyer", "Consultant", "Entrepreneur"], famous: ["Socrates", "Leonardo da Vinci", "Steve Wozniak"] },
+            "ESTJ": { name: "The Director", group: "Sentinels", description: "Excellent administrators, unsurpassed at managing things or people. They are representatives of tradition and order, using their understanding of what is right, wrong, and socially acceptable.", strengths: ["Dedicated", "Strong-willed", "Honest"], weaknesses: ["Inflexible", "Judgmental", "Difficulty Relaxing"], careers: ["Judge", "CEO", "Military Officer"], famous: ["Sonia Sotomayor", "James Monroe", "Michelle Obama"] },
+            "ESFJ": { name: "The Caregiver", group: "Sentinels", description: "Extraordinarily caring, social, and popular people, always eager to help. They are the cheerleaders of the world, taking care to make sure everyone feels included and valued.", strengths: ["Loyal", "Sensitive", "Good at Connecting"], weaknesses: ["Needy", "Inflexible", "Vulnerable to Criticism"], careers: ["Teacher", "Nurse", "Event Coordinator"], famous: ["Taylor Swift", "Jennifer Lopez", "Joe Biden"] },
+            "ENFJ": { name: "The Giver", group: "Diplomats", description: "Charismatic and inspiring leaders, able to mesmerize their listeners. They are full of passion and charisma, forming a natural confidence that begets influence.", strengths: ["Reliable", "Charismatic", "Altruistic"], weaknesses: ["Overly Idealistic", "Too Selfless", "Sensitive"], careers: ["Teacher", "Politician", "Life Coach"], famous: ["Barack Obama", "Oprah Winfrey", "Martin Luther King Jr."] },
+            "ENTJ": { name: "The Commander", group: "Analysts", description: "Bold, imaginative, and strong-willed leaders, always finding a way – or making one. They are decisive people who love a good challenge, big or small.", strengths: ["Efficient", "Energetic", "Self-Confident"], weaknesses: ["Stubborn", "Impatient", "Arrogant"], careers: ["CEO", "Lawyer", "Military Commander"], famous: ["Steve Jobs", "Margaret Thatcher", "Franklin D. Roosevelt"] }
+        };
+
+        // --- Global Application State & Logic ---
         let questions = [];
         let currentQuestionIndex = 0;
         let userAnswers = [];
         let scores = { H: 0, E: 0, X: 0, A: 0, C: 0, O: 0 };
         let maxScores = { H: 0, E: 0, X: 0, A: 0, C: 0, O: 0 };
         let narrativeChoice = '';
+        
+        let personalityScores = { M: 0, E: 0, N: 0, T: 0 };
+        let currentPersonalityQuestionIndex = 0;
+        let personalityUserAnswers = [];
 
+        // --- Element Selectors ---
         const homepageContainerEl = document.getElementById('homepage-container');
+        const modelContainerEl = document.getElementById('model-container');
         const testContainerEl = document.getElementById('test-container');
         const resultsContainerEl = document.getElementById('results-container');
         const loadingContainerEl = document.getElementById('loading-container');
@@ -544,21 +729,45 @@
         const downloadBtn = document.getElementById('download-btn');
         const shareBtn = document.getElementById('share-btn');
         const shareMessageEl = document.getElementById('share-message');
-        const langIconBtn = document.getElementById('lang-icon-btn');
-        const langPopup = document.getElementById('lang-popup');
-        const closePopupBtn = document.getElementById('close-popup-btn');
-        const langBtns = document.querySelectorAll('.lang-btn');
+        const learnMoreLink = document.getElementById('learn-more-link');
+        const burgerMenu = document.getElementById('burger-menu');
+        const sidebar = document.getElementById('sidebar');
+        const navLogo = document.getElementById('nav-logo');
+        const navHome = document.getElementById('nav-home');
+        const navModel = document.getElementById('nav-model');
+        const sidebarHome = document.getElementById('sidebar-home');
+        const sidebarModel = document.getElementById('sidebar-model');
+        const goTo16pTestBtn = document.getElementById('go-to-16p-test-btn');
+        
+        // 16 Personalities Elements
+        const personalityTestContainerEl = document.getElementById('personality-test-container');
+        const personalityIntroEl = document.getElementById('personality-intro');
+        const startPersonalityTestBtn = document.getElementById('start-personality-test-btn');
+        const personalityQuestionContainerEl = document.getElementById('personality-question-container');
+        const personalityProgressBarEl = document.getElementById('personality-progress-bar');
+        const personalityQuestionTextEl = document.getElementById('personality-question-text');
+        const personalityAnswerOptionsEl = document.getElementById('personality-answer-options');
+        const personalityResultsContainerEl = document.getElementById('personality-results-container');
+        const personalityTypeTitleEl = document.getElementById('personality-type-title');
+        const personalityTypeNameEl = document.getElementById('personality-type-name');
+        const personalityTypeDescriptionEl = document.getElementById('personality-type-description');
+        const retakePersonalityTestBtn = document.getElementById('retake-personality-test-btn');
+        const nav16personalities = document.getElementById('nav-16personalities');
+        const sidebar16personalities = document.getElementById('sidebar-16personalities');
+        const personalityStrengthsEl = document.getElementById('personality-strengths');
+        const personalityWeaknessesEl = document.getElementById('personality-weaknesses');
+        const personalityCareersEl = document.getElementById('personality-careers');
+        const personalityFamousEl = document.getElementById('personality-famous');
+        const personalityBackBtn = document.getElementById('personality-back-btn');
+        const downloadPersonalityBtn = document.getElementById('download-personality-btn');
+        const personalityShareMessageEl = document.getElementById('personality-share-message');
 
-        function setLanguage(lang) {
-            currentLanguage = lang;
-            const t = translations[lang] || translations.en;
+
+        function setInitialUIText() {
+            const t = translations.en;
             
-            document.documentElement.lang = lang;
-            document.documentElement.dir = lang === 'ar' ? 'rtl' : 'ltr';
-
             document.getElementById('home-tagline').textContent = t.homeTagline;
-            document.getElementById('home-description').innerHTML = t.homeDescription;
-            startTestBtn.textContent = t.startBtn;
+            startTestBtn.textContent = "Start the Test";
             document.getElementById('why-us-title').textContent = t.whyUsTitle;
             document.getElementById('why-us-1-title').textContent = t.whyUs1Title;
             document.getElementById('why-us-1-desc').textContent = t.whyUs1Desc;
@@ -575,13 +784,10 @@
             downloadBtn.textContent = t.downloadBtn;
             shareBtn.textContent = t.shareBtn;
             retakeTestBtn.textContent = t.retakeBtn;
-            document.getElementById('lang-popup-title').textContent = lang === 'ar' ? 'اختر اللغة' : 'Choose Language';
-            document.getElementById('lang-popup-soon').textContent = lang === 'ar' ? 'المزيد من اللغات قريبا...' : 'More languages coming soon...';
-            document.getElementById('close-popup-btn').textContent = lang === 'ar' ? 'إغلاق' : 'Close';
         }
 
         function getTranslation(key, replacements = {}) {
-            let text = (translations[currentLanguage] && translations[currentLanguage][key]) || translations.en[key] || `[${key}]`;
+            let text = translations.en[key] || `[${key}]`;
             for (const placeholder in replacements) {
                 text = text.replace(`{${placeholder}}`, replacements[placeholder]);
             }
@@ -609,17 +815,10 @@
             
             level1Questions.forEach(q => { maxScores[q.dimension] += 5; });
             currentQuestionIndex = 0;
-
-            homepageContainerEl.classList.add('fade-out');
-            setTimeout(() => {
-                homepageContainerEl.style.display = 'none';
-                resultsContainerEl.style.display = 'none';
-                loadingContainerEl.style.display = 'none';
-                testContainerEl.style.display = 'flex';
-                testContainerEl.classList.remove('fade-out');
-                testContainerEl.classList.add('fade-in');
-                showQuestion();
-            }, 500);
+            
+            hideAllContainers();
+            testContainerEl.style.display = 'flex';
+            showQuestion();
         }
 
         function showQuestion() {
@@ -643,7 +842,7 @@
 
                 renderAnswerOptions(question);
             } else {
-                showLoadingAndResults();
+                showLoadingAndResults(showResults);
             }
         }
 
@@ -717,25 +916,23 @@
             }
         }
 
-        function showLoadingAndResults() {
-            testContainerEl.classList.add('fade-out');
-            setTimeout(() => {
-                testContainerEl.style.display = 'none';
-                loadingContainerEl.style.display = 'flex';
-                
-                let progress = 0;
-                const interval = setInterval(() => {
-                    progress += 1;
-                    loadingBarInnerEl.style.width = `${progress}%`;
-                    if (progress >= 100) {
-                        clearInterval(interval);
-                        setTimeout(() => {
-                            loadingContainerEl.style.display = 'none';
-                            showResults();
-                        }, 500);
-                    }
-                }, 45);
-            }, 500);
+        function showLoadingAndResults(showResultsFunction) {
+            hideAllContainers();
+            loadingContainerEl.style.display = 'flex';
+            
+            let progress = 0;
+            loadingBarInnerEl.style.width = '0%';
+            const interval = setInterval(() => {
+                progress += 1;
+                loadingBarInnerEl.style.width = `${progress}%`;
+                if (progress >= 100) {
+                    clearInterval(interval);
+                    setTimeout(() => {
+                        loadingContainerEl.style.display = 'none';
+                        showResultsFunction();
+                    }, 500);
+                }
+            }, 20);
         }
 
         function showResults() {
@@ -864,6 +1061,181 @@
                 setTimeout(() => { shareMessageEl.textContent = ''; }, 3000);
             }
         }
+        
+        function hideAllContainers() {
+            homepageContainerEl.style.display = 'none';
+            modelContainerEl.style.display = 'none';
+            testContainerEl.style.display = 'none';
+            resultsContainerEl.style.display = 'none';
+            personalityTestContainerEl.style.display = 'none';
+        }
+
+        function showModelPage(e) {
+            e.preventDefault();
+            hideAllContainers();
+            modelContainerEl.style.display = 'block';
+            window.scrollTo(0, 0);
+            if(!sidebar.classList.contains('translate-x-full')) {
+                toggleSidebar();
+            }
+        }
+
+        function showHomePage(e) {
+            e.preventDefault();
+            hideAllContainers();
+            homepageContainerEl.style.display = 'flex';
+            window.scrollTo(0, 0);
+            if(!sidebar.classList.contains('translate-x-full')) {
+                toggleSidebar();
+            }
+        }
+        
+        function show16PersonalitiesPage(e) {
+            e.preventDefault();
+            hideAllContainers();
+            personalityTestContainerEl.style.display = 'flex';
+            personalityIntroEl.style.display = 'block';
+            personalityQuestionContainerEl.style.display = 'none';
+            personalityResultsContainerEl.style.display = 'none';
+            window.scrollTo(0, 0);
+            if(!sidebar.classList.contains('translate-x-full')) {
+                toggleSidebar();
+            }
+        }
+        
+        function toggleSidebar() {
+            sidebar.classList.toggle('translate-x-full');
+        }
+        
+        // --- 16 Personalities Test Logic ---
+        function startPersonalityTest() {
+            personalityScores = { M: 0, E: 0, N: 0, T: 0 };
+            currentPersonalityQuestionIndex = 0;
+            personalityUserAnswers = [];
+            personalityIntroEl.style.display = 'none';
+            personalityResultsContainerEl.style.display = 'none';
+            personalityQuestionContainerEl.style.display = 'block';
+            renderPersonalityAnswerOptions();
+            showPersonalityQuestion();
+        }
+
+        function renderPersonalityAnswerOptions() {
+            const buttonHTML = `
+                <button data-value="5" class="personality-answer-btn bg-green-500 hover:bg-green-600 text-white font-bold py-3 px-4 rounded-full transition-transform transform hover:scale-105">${getTranslation('stronglyAgree')}</button>
+                <button data-value="4" class="personality-answer-btn bg-green-300 hover:bg-green-400 text-white font-bold py-3 px-4 rounded-full transition-transform transform hover:scale-105">${getTranslation('agree')}</button>
+                <button data-value="3" class="personality-answer-btn bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-3 px-4 rounded-full transition-transform transform hover:scale-105">${getTranslation('neutral')}</button>
+                <button data-value="2" class="personality-answer-btn bg-red-300 hover:bg-red-400 text-white font-bold py-3 px-4 rounded-full transition-transform transform hover:scale-105">${getTranslation('disagree')}</button>
+                <button data-value="1" class="personality-answer-btn bg-red-500 hover:bg-red-600 text-white font-bold py-3 px-4 rounded-full transition-transform transform hover:scale-105">${getTranslation('stronglyDisagree')}</button>
+            `;
+            personalityAnswerOptionsEl.innerHTML = buttonHTML;
+            personalityAnswerOptionsEl.querySelectorAll('.personality-answer-btn').forEach(btn => {
+                btn.addEventListener('click', (e) => handlePersonalityAnswer(parseInt(e.target.dataset.value)));
+            });
+        }
+
+        function showPersonalityQuestion() {
+            personalityBackBtn.style.visibility = currentPersonalityQuestionIndex === 0 ? 'hidden' : 'visible';
+            if (currentPersonalityQuestionIndex < personalityQuestions.length) {
+                const question = personalityQuestions[currentPersonalityQuestionIndex];
+                personalityQuestionTextEl.textContent = question.text;
+                const progress = ((currentPersonalityQuestionIndex + 1) / personalityQuestions.length) * 100;
+                personalityProgressBarEl.style.width = `${progress}%`;
+            } else {
+                showLoadingAndResults(calculateAndShowPersonalityResults);
+            }
+        }
+        
+        function handlePersonalityBackClick() {
+            if (currentPersonalityQuestionIndex > 0) {
+                currentPersonalityQuestionIndex--;
+                const lastAnswer = personalityUserAnswers.pop();
+                if(lastAnswer) {
+                    personalityScores[lastAnswer.dimension] -= lastAnswer.score;
+                }
+                showPersonalityQuestion();
+            }
+        }
+
+        function handlePersonalityAnswer(value) {
+            const question = personalityQuestions[currentPersonalityQuestionIndex];
+            const scoreMap = { 5: 2, 4: 1, 3: 0, 2: -1, 1: -2 };
+            const score = scoreMap[value] * question.score;
+            
+            personalityScores[question.dimension] += score;
+            personalityUserAnswers.push({ dimension: question.dimension, score: score });
+            
+            currentPersonalityQuestionIndex++;
+            showPersonalityQuestion();
+        }
+
+        function calculateAndShowPersonalityResults() {
+            let result = "";
+            result += personalityScores.M > 0 ? "E" : "I";
+            result += personalityScores.E > 0 ? "N" : "S";
+            result += personalityScores.N > 0 ? "F" : "T";
+            result += personalityScores.T > 0 ? "J" : "P";
+            
+            const typeData = personalityTypes[result];
+            const typeColor = personalityTypeColors[typeData.group];
+
+            personalityTypeTitleEl.className = `text-5xl font-extrabold mb-2 text-center bg-gradient-to-r ${typeColor} bg-clip-text text-transparent`;
+            personalityTypeTitleEl.textContent = result;
+            personalityTypeNameEl.textContent = typeData.name;
+            personalityTypeDescriptionEl.textContent = typeData.description;
+
+            personalityStrengthsEl.innerHTML = typeData.strengths.map(s => `<li>${s}</li>`).join('');
+            personalityWeaknessesEl.innerHTML = typeData.weaknesses.map(w => `<li>${w}</li>`).join('');
+            personalityCareersEl.textContent = typeData.careers.join(', ');
+            personalityFamousEl.textContent = typeData.famous.join(', ');
+
+            personalityQuestionContainerEl.style.display = 'none';
+            personalityTestContainerEl.style.display = 'flex'; // Make sure parent is visible
+            personalityResultsContainerEl.style.display = 'block';
+        }
+
+        async function handlePersonalityDownload() {
+            const content = document.getElementById('personality-results-content');
+            personalityShareMessageEl.textContent = getTranslation('downloading');
+            try {
+                const canvas = await html2canvas(content, { 
+                    backgroundColor: '#ffffff',
+                    scale: 2 
+                });
+                const link = document.createElement('a');
+                link.href = canvas.toDataURL('image/png');
+                link.download = 'my-16-personalities-results.png';
+                link.click();
+                personalityShareMessageEl.textContent = getTranslation('downloaded');
+            } catch(err) {
+                console.error("Download failed", err);
+                personalityShareMessageEl.textContent = getTranslation('downloadError');
+            } finally {
+                setTimeout(() => { personalityShareMessageEl.textContent = ''; }, 3000);
+            }
+        }
+
+        function handlePersonalityShare(platform) {
+            const type = personalityTypeTitleEl.textContent;
+            const typeName = personalityTypeNameEl.textContent;
+            const text = encodeURIComponent(`I got ${type} (${typeName}) on the 16 Personalities test! Find out your type:`);
+            const url = encodeURIComponent(window.location.href);
+            let shareUrl = '';
+
+            switch(platform) {
+                case 'facebook':
+                    shareUrl = `https://www.facebook.com/sharer/sharer.php?u=${url}&quote=${text}`;
+                    break;
+                case 'twitter':
+                    shareUrl = `https://twitter.com/intent/tweet?url=${url}&text=${text}`;
+                    break;
+                case 'whatsapp':
+                    shareUrl = `https://api.whatsapp.com/send?text=${text}%20${url}`;
+                    break;
+            }
+            if(shareUrl) {
+                window.open(shareUrl, '_blank');
+            }
+        }
 
         // --- Event Listeners ---
         startTestBtn.addEventListener('click', startTest);
@@ -871,15 +1243,26 @@
         retakeTestBtn.addEventListener('click', startTest);
         downloadBtn.addEventListener('click', handleDownload);
         shareBtn.addEventListener('click', handleShare);
-        langIconBtn.addEventListener('click', () => langPopup.classList.remove('hidden'));
-        closePopupBtn.addEventListener('click', () => langPopup.classList.add('hidden'));
-        langBtns.forEach(btn => btn.addEventListener('click', (e) => {
-            setLanguage(e.target.dataset.lang);
-            langPopup.classList.add('hidden');
-        }));
+        learnMoreLink.addEventListener('click', showModelPage);
+        burgerMenu.addEventListener('click', toggleSidebar);
+        navLogo.addEventListener('click', showHomePage);
+        navHome.addEventListener('click', showHomePage);
+        navModel.addEventListener('click', showModelPage);
+        sidebarHome.addEventListener('click', showHomePage);
+        sidebarModel.addEventListener('click', showModelPage);
+        goTo16pTestBtn.addEventListener('click', show16PersonalitiesPage);
+        
+        // 16 Personalities Listeners
+        nav16personalities.addEventListener('click', show16PersonalitiesPage);
+        sidebar16personalities.addEventListener('click', show16PersonalitiesPage);
+        startPersonalityTestBtn.addEventListener('click', startPersonalityTest);
+        retakePersonalityTestBtn.addEventListener('click', startPersonalityTest);
+        personalityBackBtn.addEventListener('click', handlePersonalityBackClick);
+        downloadPersonalityBtn.addEventListener('click', handlePersonalityDownload);
 
-        // Set initial language
-        setLanguage('en');
+
+        // Set initial UI text on page load
+        setInitialUIText();
 
     </script>
 </body>
