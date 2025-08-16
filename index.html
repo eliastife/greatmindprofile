@@ -139,6 +139,16 @@
         .personality-answer-btn:hover {
             transform: scale(1.05);
         }
+
+        /* Nav Logo Animation */
+        #nav-logo {
+            transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out;
+        }
+        #nav-logo.hidden-on-home {
+            opacity: 0;
+            transform: translateY(-10px);
+            pointer-events: none;
+        }
     </style>
 </head>
 <body class="bg-gradient-to-br from-gray-50 to-gray-200 text-gray-800 relative">
@@ -147,11 +157,12 @@
     <nav class="fixed top-0 left-0 right-0 bg-gradient-to-r from-blue-100/80 via-purple-100/80 to-pink-100/80 backdrop-blur-sm shadow-md z-30">
         <div class="max-w-6xl mx-auto px-4">
             <div class="flex justify-between items-center h-16">
-                <a href="#" id="nav-logo" class="text-2xl font-bold text-gray-800">Great Mind Profile</a>
+                <a href="#" id="nav-logo" class="text-2xl font-bold text-gray-800 hidden-on-home">
+                    <span class="bg-gradient-to-r from-blue-500 via-red-500 to-yellow-500 bg-clip-text text-transparent">Great Mind Profile</span>
+                </a>
                 <div class="hidden md:flex items-center space-x-8">
                     <a href="#" id="nav-home" class="text-gray-600 hover:text-blue-600 font-semibold">Home</a>
-                    <a href="#" id="nav-model" class="text-gray-600 hover:text-blue-600 font-semibold">Our Scientific Model</a>
-                    <a href="#" id="nav-16personalities" class="text-gray-600 hover:text-blue-600 font-semibold">16 Personalities Test</a>
+                    <a href="#" id="nav-about" class="text-gray-600 hover:text-blue-600 font-semibold">About Us</a>
                 </div>
                 <div class="md:hidden">
                     <button id="burger-menu" class="p-2 rounded-md">
@@ -166,18 +177,20 @@
 
     <!-- Sidebar -->
     <div id="sidebar" class="fixed top-0 right-0 h-full w-64 bg-white shadow-lg z-40 transform translate-x-full">
-        <div class="p-5 pt-20">
-            <a href="#" id="sidebar-home" class="block py-2 text-lg text-gray-700 hover:text-blue-600">Home</a>
-            <a href="#" id="sidebar-model" class="block py-2 text-lg text-gray-700 hover:text-blue-600">Our Scientific Model</a>
-            <a href="#" id="sidebar-16personalities" class="block py-2 text-lg text-gray-700 hover:text-blue-600">16 Personalities Test</a>
-             <p class="text-gray-500 mt-4 pt-4 border-t">More features coming soon!</p>
+        <div class="p-5 pt-10">
+            <button id="close-sidebar-btn" class="absolute top-4 right-4 p-2 text-2xl font-bold text-gray-600 hover:text-gray-800">&times;</button>
+            <div class="mt-8">
+                <a href="#" id="sidebar-home" class="block py-2 text-lg text-gray-700 hover:text-blue-600">Home</a>
+                <a href="#" id="sidebar-about" class="block py-2 text-lg text-gray-700 hover:text-blue-600">About Us</a>
+                <p class="text-gray-500 mt-4 pt-4 border-t">More features coming soon!</p>
+            </div>
         </div>
     </div>
     
     <!-- Homepage Container (Visible by default) -->
     <div id="homepage-container" class="flex flex-col items-center justify-center min-h-screen p-4 text-center relative z-10 transition-opacity duration-500">
         <div class="mind-map-bg">
-            <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+             <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
                 <defs>
                     <linearGradient id="lineGradient" x1="0%" y1="0%" x2="100%" y2="100%">
                         <stop offset="0%" style="stop-color:#a5b4fc;stop-opacity:1" />
@@ -205,20 +218,19 @@
                     </header>
                     <main class="max-w-2xl mx-auto md:mx-0 mt-8">
                         <p id="home-description" class="text-lg md:text-xl text-gray-700 mb-8">
-                            Discover your unique strengths. Our analysis is based on the scientifically validated <strong>HEXACO model</strong> for a surprisingly accurate personality profile. 
-                            <a href="#" id="learn-more-link" class="text-blue-600 font-semibold hover:underline">Learn more about our model.</a>
+                            Discover your unique strengths. Our analysis is based on scientifically validated models like <strong>HEXACO</strong> and the classic <strong>16 Personality Types</strong> for a surprisingly accurate profile.
                         </p>
                         <button id="start-test-btn" class="inline-block bg-gray-800 text-white font-bold text-xl px-10 py-4 rounded-full shadow-lg transform transition-transform duration-300 hover:scale-105 hover:bg-black focus:outline-none focus:ring-4 focus:ring-gray-400">
-                            Start the Test
+                            Choose Your Test
                         </button>
                     </main>
                 </div>
                 <div class="hidden md:block">
-                    <svg width="100%" viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg">
+                     <svg width="100%" viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg">
                         <defs>
-                            <linearGradient id="heroGradient" x1="0%" y1="0%" x2="100%" y2="100%">
-                                <stop offset="0%" stop-color="#60a5fa" />
-                                <stop offset="100%" stop-color="#c084fc" />
+                            <linearGradient id="heroGradientGrey" x1="0%" y1="0%" x2="100%" y2="100%">
+                                <stop offset="0%" stop-color="#A8B2C5" />
+                                <stop offset="100%" stop-color="#D6DEE9" />
                             </linearGradient>
                             <filter id="glow">
                                 <feGaussianBlur stdDeviation="2.5" result="coloredBlur"/>
@@ -229,20 +241,20 @@
                             </filter>
                         </defs>
                         <g opacity="0.7" filter="url(#glow)">
-                            <path d="M 200 50 L 325 125 L 325 275 L 200 350 L 75 275 L 75 125 Z" fill="none" stroke="url(#heroGradient)" stroke-width="2"/>
-                            <circle cx="200" cy="200" r="60" fill="none" stroke="url(#heroGradient)" stroke-width="2"/>
-                            <circle cx="200" cy="50" r="10" fill="#60a5fa"/>
-                            <circle cx="325" cy="125" r="10" fill="#818cf8"/>
-                            <circle cx="325" cy="275" r="10" fill="#a78bfa"/>
-                            <circle cx="200" cy="350" r="10" fill="#c084fc"/>
-                            <circle cx="75" cy="275" r="10" fill="#a78bfa"/>
-                            <circle cx="75" cy="125" r="10" fill="#818cf8"/>
-                            <line x1="200" y1="200" x2="200" y2="50" stroke="#a5b4fc" stroke-width="1.5"/>
-                            <line x1="200" y1="200" x2="325" y2="125" stroke="#a5b4fc" stroke-width="1.5"/>
-                            <line x1="200" y1="200" x2="325" y2="275" stroke="#a5b4fc" stroke-width="1.5"/>
-                            <line x1="200" y1="200" x2="200" y2="350" stroke="#a5b4fc" stroke-width="1.5"/>
-                            <line x1="200" y1="200" x2="75" y2="275" stroke="#a5b4fc" stroke-width="1.5"/>
-                            <line x1="200" y1="200" x2="75" y2="125" stroke="#a5b4fc" stroke-width="1.5"/>
+                            <path d="M 200 50 L 325 125 L 325 275 L 200 350 L 75 275 L 75 125 Z" fill="none" stroke="url(#heroGradientGrey)" stroke-width="2"/>
+                            <circle cx="200" cy="200" r="60" fill="none" stroke="url(#heroGradientGrey)" stroke-width="2"/>
+                            <circle cx="200" cy="50" r="10" fill="#A8B2C5"/>
+                            <circle cx="325" cy="125" r="10" fill="#BCC7D9"/>
+                            <circle cx="325" cy="275" r="10" fill="#C9D3E2"/>
+                            <circle cx="200" cy="350" r="10" fill="#D6DEE9"/>
+                            <circle cx="75" cy="275" r="10" fill="#C9D3E2"/>
+                            <circle cx="75" cy="125" r="10" fill="#BCC7D9"/>
+                            <line x1="200" y1="200" x2="200" y2="50" stroke="#C9D3E2" stroke-width="1.5"/>
+                            <line x1="200" y1="200" x2="325" y2="125" stroke="#C9D3E2" stroke-width="1.5"/>
+                            <line x1="200" y1="200" x2="325" y2="275" stroke="#C9D3E2" stroke-width="1.5"/>
+                            <line x1="200" y1="200" x2="200" y2="350" stroke="#C9D3E2" stroke-width="1.5"/>
+                            <line x1="200" y1="200" x2="75" y2="275" stroke="#C9D3E2" stroke-width="1.5"/>
+                            <line x1="200" y1="200" x2="75" y2="125" stroke="#C9D3E2" stroke-width="1.5"/>
                         </g>
                     </svg>
                 </div>
@@ -251,7 +263,7 @@
         
         <!-- Social Proof Section -->
         <section class="w-full max-w-4xl mx-auto py-12">
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
+             <div class="grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
                 <div class="p-4">
                     <h3 class="text-4xl font-bold text-blue-600">10,000+</h3>
                     <p class="text-gray-600 font-semibold">Profiles Generated</p>
@@ -271,11 +283,13 @@
             <h2 id="why-us-title" class="text-3xl font-bold text-center mb-12">Why Choose Us?</h2>
             <div class="scrolling-wrapper">
                 <!-- Cards are duplicated for a seamless loop -->
-                <div class="card-container p-4"><div class="bg-blue-100 p-6 rounded-xl shadow-md h-full"><h3 id="why-us-1-title" class="text-xl font-bold mb-2 text-blue-800">Based on Science</h3><p id="why-us-1-desc" class="text-gray-600">Our test is built on the HEXACO model, a robust framework trusted by psychologists for its accuracy and cross-cultural validity.</p></div></div>
-                <div class="card-container p-4"><div class="bg-green-100 p-6 rounded-xl shadow-md h-full"><h3 id="why-us-2-title" class="text-xl font-bold mb-2 text-green-800">Three-Level Analysis</h3><p id="why-us-2-desc" class="text-gray-600">We go beyond simple traits by analyzing your situational judgments and life story themes to create a truly holistic profile.</p></div></div>
-                <div class="card-container p-4"><div class="bg-indigo-100 p-6 rounded-xl shadow-md h-full"><h3 id="why-us-3-title" class="text-xl font-bold mb-2 text-indigo-800">Actionable Insights</h3><p id="why-us-3-desc" class="text-gray-600">Understand your strengths and potential challenges with clear, non-judgmental feedback designed for personal growth.</p></div></div>
                 <div class="card-container p-4"><div class="bg-blue-100 p-6 rounded-xl shadow-md h-full"><h3 class="text-xl font-bold mb-2 text-blue-800">Based on Science</h3><p class="text-gray-600">Our test is built on the HEXACO model, a robust framework trusted by psychologists for its accuracy and cross-cultural validity.</p></div></div>
                 <div class="card-container p-4"><div class="bg-green-100 p-6 rounded-xl shadow-md h-full"><h3 class="text-xl font-bold mb-2 text-green-800">Three-Level Analysis</h3><p class="text-gray-600">We go beyond simple traits by analyzing your situational judgments and life story themes to create a truly holistic profile.</p></div></div>
+                <div class="card-container p-4"><div class="bg-yellow-100 p-6 rounded-xl shadow-md h-full"><h3 class="text-xl font-bold mb-2 text-yellow-800">Classic Frameworks</h3><p class="text-gray-600">Explore your personality through the lens of the classic 16 Personality Types, a timeless model for understanding cognitive styles.</p></div></div>
+                <div class="card-container p-4"><div class="bg-indigo-100 p-6 rounded-xl shadow-md h-full"><h3 class="text-xl font-bold mb-2 text-indigo-800">Actionable Insights</h3><p class="text-gray-600">Understand your strengths and potential challenges with clear, non-judgmental feedback designed for personal growth.</p></div></div>
+                <div class="card-container p-4"><div class="bg-blue-100 p-6 rounded-xl shadow-md h-full"><h3 class="text-xl font-bold mb-2 text-blue-800">Based on Science</h3><p class="text-gray-600">Our test is built on the HEXACO model, a robust framework trusted by psychologists for its accuracy and cross-cultural validity.</p></div></div>
+                <div class="card-container p-4"><div class="bg-green-100 p-6 rounded-xl shadow-md h-full"><h3 class="text-xl font-bold mb-2 text-green-800">Three-Level Analysis</h3><p class="text-gray-600">We go beyond simple traits by analyzing your situational judgments and life story themes to create a truly holistic profile.</p></div></div>
+                <div class="card-container p-4"><div class="bg-yellow-100 p-6 rounded-xl shadow-md h-full"><h3 class="text-xl font-bold mb-2 text-yellow-800">Classic Frameworks</h3><p class="text-gray-600">Explore your personality through the lens of the classic 16 Personality Types, a timeless model for understanding cognitive styles.</p></div></div>
                 <div class="card-container p-4"><div class="bg-indigo-100 p-6 rounded-xl shadow-md h-full"><h3 class="text-xl font-bold mb-2 text-indigo-800">Actionable Insights</h3><p class="text-gray-600">Understand your strengths and potential challenges with clear, non-judgmental feedback designed for personal growth.</p></div></div>
             </div>
         </section>
@@ -286,60 +300,115 @@
     </div>
     
     <!-- Model Explanation Container (Initially Hidden) -->
-    <div id="model-container" class="hidden min-h-screen p-4 sm:p-6 md:p-8 pt-24">
-        <div class="max-w-4xl mx-auto bg-white p-8 rounded-2xl shadow-lg">
-            <h1 class="font-headline text-4xl md:text-5xl text-center mb-4 title-shadow bg-gradient-to-r from-blue-500 via-red-500 to-yellow-500 bg-clip-text text-transparent">Our Scientific Approach</h1>
+    <div id="model-container" class="hidden min-h-screen p-4 sm:p-6 md:p-8 pt-28">
+        <div class="max-w-4xl mx-auto space-y-12">
+             <h1 class="font-headline text-4xl md:text-5xl text-center mb-4 title-shadow bg-gradient-to-r from-blue-500 via-red-500 to-yellow-500 bg-clip-text text-transparent">Our Scientific Approach</h1>
             <p class="text-center text-gray-600 text-lg mb-12">We are committed to providing personality assessments that are not just engaging, but also scientifically robust and deeply insightful. Here’s a look at the established psychological frameworks that power our tests.</p>
-
-            <div class="space-y-12">
-                <div class="p-6 bg-blue-50 rounded-xl">
-                    <h2 class="text-3xl font-bold text-blue-800 mb-4">The Great Mind Profile: A HEXACO-Based Assessment</h2>
-                    <p class="text-gray-700 text-lg mb-6">Our main test is built upon the modern and scientifically advanced <strong>HEXACO model</strong>. Developed through large-scale studies across multiple languages, it provides a nuanced picture of personality by identifying six core dimensions.</p>
-                    <div class="grid md:grid-cols-2 gap-6 text-gray-700">
-                        <div class="p-4 bg-white rounded-lg shadow-sm">
-                            <h3 class="font-bold text-xl text-blue-700">Honesty-Humility (H)</h3>
-                            <p>The tendency to be fair, sincere, and modest. This is the model's key innovation.</p>
-                        </div>
-                        <div class="p-4 bg-white rounded-lg shadow-sm">
-                            <h3 class="font-bold text-xl text-purple-700">Emotionality (E)</h3>
-                            <p>Reflects one's sensitivity to danger and need for emotional support.</p>
-                        </div>
-                        <div class="p-4 bg-white rounded-lg shadow-sm">
-                            <h3 class="font-bold text-xl text-orange-700">Extraversion (X)</h3>
-                            <p>Measures one's social engagement, energy, and confidence.</p>
-                        </div>
-                        <div class="p-4 bg-white rounded-lg shadow-sm">
-                            <h3 class="font-bold text-xl text-green-700">Agreeableness (A)</h3>
-                            <p>Focuses on interpersonal tolerance, defined by patience and forgiveness.</p>
-                        </div>
-                        <div class="p-4 bg-white rounded-lg shadow-sm">
-                            <h3 class="font-bold text-xl text-blue-700">Conscientiousness (C)</h3>
-                            <p>Relates to goal-directed and organized behavior.</p>
-                        </div>
-                        <div class="p-4 bg-white rounded-lg shadow-sm">
-                            <h3 class="font-bold text-xl text-indigo-700">Openness to Experience (O)</h3>
-                            <p>Captures intellectual and aesthetic curiosity.</p>
-                        </div>
+            
+            <!-- HEXACO Card -->
+            <div class="bg-white rounded-2xl shadow-lg overflow-hidden">
+                <div class="p-8 bg-gradient-to-br from-blue-50 to-purple-50">
+                    <h2 class="text-3xl font-bold text-blue-800 mb-2">The Great Mind Profile</h2>
+                    <p class="text-lg text-gray-700">A Multi-Level Personality Assessment</p>
+                </div>
+                <div class="p-8 space-y-6">
+                    <div>
+                        <h3 class="font-bold text-xl text-gray-800 mb-2">Our Foundation: The HEXACO Model</h3>
+                        <p class="text-gray-700">Our main test is built upon the modern and scientifically advanced <strong>HEXACO model</strong>. Developed through large-scale studies across multiple languages, it provides a nuanced picture of personality by identifying six core dimensions, offering a more detailed profile than the traditional "Big Five" model.</p>
+                    </div>
+                     <div>
+                        <h3 class="font-bold text-xl text-gray-800 mb-2">Our Methodology: A Three-Level Framework</h3>
+                        <p class="text-gray-700">We adopt psychologist Dan P. McAdams' renowned three-level framework to build a truly holistic profile: assessing your core traits, your personal goals and values, and the overarching story of your life.</p>
+                    </div>
+                    <div class="text-center pt-4 space-x-4">
+                        <button id="model-start-hexaco-btn" class="inline-block bg-gray-800 text-white font-bold text-xl px-10 py-4 rounded-full shadow-lg transform transition-transform duration-300 hover:scale-105 hover:bg-black focus:outline-none focus:ring-4 focus:ring-gray-400">Start the Test</button>
+                        <button id="learn-more-hexaco-btn" class="inline-block bg-transparent text-blue-600 font-semibold py-4 px-6 rounded-full hover:bg-blue-50 transition">Learn More</button>
                     </div>
                 </div>
+            </div>
 
-                <div class="p-6 bg-cyan-50 rounded-xl">
-                    <h2 class="text-3xl font-bold text-cyan-800 mb-4">A Classic Alternative: The 16 Personality Types</h2>
-                    <p class="text-gray-700 text-lg mb-6">We also offer a test based on the influential theory of psychological types proposed by Carl Jung, popularized by the Myers-Briggs Type Indicator (MBTI). This model maps personality onto four dichotomies:</p>
-                    <ul class="list-disc list-inside space-y-2 text-lg text-gray-700">
-                        <li><strong>Introversion (I) or Extraversion (E):</strong> How individuals focus their energy.</li>
-                        <li><strong>Sensing (S) or Intuition (N):</strong> How individuals perceive information.</li>
-                        <li><strong>Thinking (T) or Feeling (F):</strong> How individuals make decisions.</li>
-                        <li><strong>Judging (J) or Perceiving (P):</strong> How individuals prefer to live their outer life.</li>
-                    </ul>
-                    <p class="text-gray-700 text-lg mt-4">Our assessment uses a series of questions to determine your preference on each scale, resulting in a 4-letter type that provides a snapshot of your unique cognitive style.</p>
+            <!-- 16 Personalities Card -->
+            <div class="bg-white rounded-2xl shadow-lg overflow-hidden">
+                <div class="p-8 bg-gradient-to-br from-cyan-50 to-teal-50">
+                    <h2 class="text-3xl font-bold text-cyan-800 mb-2">The 16 Personality Types</h2>
+                    <p class="text-lg text-gray-700">A Classic Approach to Personality</p>
+                </div>
+                <div class="p-8 space-y-6">
+                    <div>
+                        <h3 class="font-bold text-xl text-gray-800 mb-2">Our Foundation: Jungian Psychological Types</h3>
+                        <p class="text-gray-700">We also offer a test based on the influential theory of psychological types proposed by Carl Jung and popularized by the Myers-Briggs Type Indicator (MBTI). This model maps personality onto four key dichotomies to reveal your cognitive style.</p>
+                    </div>
+                     <div>
+                        <h3 class="font-bold text-xl text-gray-800 mb-2">Our Methodology: Dichotomy-Based Assessment</h3>
+                        <p class="text-gray-700">Our assessment uses a series of questions to determine your preference on each of the four scales—Introversion vs. Extraversion, Sensing vs. Intuition, Thinking vs. Feeling, and Judging vs. Perceiving—resulting in one of 16 distinct personality types.</p>
+                    </div>
+                    <div class="text-center pt-4 space-x-4">
+                        <button id="model-start-16p-btn" class="inline-block bg-cyan-600 text-white font-bold text-xl px-10 py-4 rounded-full shadow-lg transform transition-transform duration-300 hover:scale-105 hover:bg-cyan-700 focus:outline-none focus:ring-4 focus:ring-cyan-300">Start the Test</button>
+                         <button id="learn-more-16p-btn" class="inline-block bg-transparent text-cyan-600 font-semibold py-4 px-6 rounded-full hover:bg-cyan-50 transition">Learn More</button>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
+    
+    <!-- About Us Container (Initially Hidden) -->
+    <div id="about-us-container" class="hidden min-h-screen p-4 sm:p-6 md:p-8 pt-28">
+        <div class="max-w-4xl mx-auto bg-white p-8 rounded-2xl shadow-lg">
+            <h1 class="font-headline text-4xl text-gray-800 mb-4">About Us</h1>
+            <div class="space-y-4 text-gray-700 text-lg">
+                <p>We are a team of developers, designers, and psychology enthusiasts who are passionate about helping people understand themselves better. Our goal is to make personality science accessible, fun, and insightful for everyone.</p>
+                <p>We believe that self-discovery is a lifelong journey, and our assessments are designed to be a helpful guide along the way. These quizzes are not here to label or judge you, but to provide a mirror that reflects your unique patterns of thinking, feeling, and behaving. The insights you gain can empower you to leverage your strengths, navigate your challenges, and build more meaningful relationships.</p>
+                <p>In a digital world where data is a valuable commodity, we stand firm on our commitment to your privacy. We do not collect or store any of your personal data or test results. Unlike other platforms that might hide their best features behind a paywall, our tools are completely free. We're dedicated to providing a safe, transparent, and genuinely helpful experience for anyone curious about the fascinating world of personality.</p>
+            </div>
+             <div class="text-center mt-8">
+                <button id="back-to-home-btn" class="inline-block bg-gray-200 text-gray-800 font-semibold py-3 px-6 rounded-full hover:bg-gray-300 transition">&larr; Back to Home</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- HEXACO Details Container (Initially Hidden) -->
+    <div id="hexaco-details-container" class="hidden min-h-screen p-4 sm:p-6 md:p-8 pt-28">
+        <div class="max-w-4xl mx-auto bg-white p-8 rounded-2xl shadow-lg">
+            <h1 class="font-headline text-4xl text-blue-800 mb-4">Understanding the HEXACO Model</h1>
+            <p class="text-lg text-gray-600 mb-6">The HEXACO model is a modern framework in personality psychology that organizes human personality into six major dimensions. It's valued for its strong scientific backing and its ability to capture key aspects of character that other models might miss.</p>
+            
+            <h2 class="text-2xl font-bold text-gray-800 mt-8 mb-3">The Six Dimensions</h2>
+            <div class="space-y-4">
+                <p><strong>1. Honesty-Humility (H):</strong> This is the cornerstone of the HEXACO model. It relates to sincerity, fairness, greed avoidance, and modesty. High scorers are genuine and principled, while low scorers are more strategic and self-interested.</p>
+                <p><strong>2. Emotionality (E):</strong> This dimension captures a person's tendency to experience fear, anxiety, and sentimentality. High scorers are more empathetic and sensitive, while low scorers are typically brave and emotionally stable.</p>
+                <p><strong>3. Extraversion (X):</strong> This relates to one's engagement with the social world. High scorers are outgoing, energetic, and socially confident. Low scorers are more reserved, independent, and comfortable with solitude.</p>
+                <p><strong>4. Agreeableness (A):</strong> This dimension measures forgiveness, gentleness, and patience. High scorers are cooperative and harmonious. Low scorers are more independent-minded and can be critical or stubborn.</p>
+                <p><strong>5. Conscientiousness (C):</strong> This reflects a person's tendency to be organized, diligent, and perfectionistic. High scorers are reliable and disciplined. Low scorers are more flexible and spontaneous.</p>
+                <p><strong>6. Openness to Experience (O):</strong> This dimension involves creativity, curiosity, and an appreciation for aesthetics and unconventional ideas. High scorers are innovative and inquisitive. Low scorers are more pragmatic and traditional.</p>
+            </div>
+            <div class="text-center mt-8">
+                <button class="back-to-model-btn inline-block bg-gray-200 text-gray-800 font-semibold py-3 px-6 rounded-full hover:bg-gray-300 transition">&larr; Back to Models</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- 16 Personalities Details Container (Initially Hidden) -->
+    <div id="personality-details-container" class="hidden min-h-screen p-4 sm:p-6 md:p-8 pt-28">
+        <div class="max-w-4xl mx-auto bg-white p-8 rounded-2xl shadow-lg">
+            <h1 class="font-headline text-4xl text-cyan-800 mb-4">Understanding the 16 Personality Types</h1>
+            <p class="text-lg text-gray-600 mb-6">Based on the work of Carl Jung, this model, popularized by the Myers-Briggs Type Indicator (MBTI), categorizes personality into 16 types based on four key dichotomies. It provides insights into how people perceive the world and make decisions.</p>
+            
+            <h2 class="text-2xl font-bold text-gray-800 mt-8 mb-3">The Four Dichotomies</h2>
+            <div class="space-y-4">
+                <p><strong>1. Introversion (I) vs. Extraversion (E):</strong> This describes where you focus your energy. Extraverts are energized by social interaction, while Introverts are energized by spending time alone.</p>
+                <p><strong>2. Sensing (S) vs. Intuition (N):</strong> This explains how you perceive information. Sensing types focus on concrete facts and details, while Intuitive types are more interested in patterns, possibilities, and abstract concepts.</p>
+                <p><strong>3. Thinking (T) vs. Feeling (F):</strong> This dichotomy describes how you make decisions. Thinking types prioritize logic and objective criteria. Feeling types make decisions based on personal values and how their choices will affect others.</p>
+                <p><strong>4. Judging (J) vs. Perceiving (P):</strong> This reflects your approach to the outside world. Judging types prefer structure, plans, and firm decisions. Perceiving types are more flexible, spontaneous, and like to keep their options open.</p>
+            </div>
+             <div class="text-center mt-8">
+                <button class="back-to-model-btn inline-block bg-gray-200 text-gray-800 font-semibold py-3 px-6 rounded-full hover:bg-gray-300 transition">&larr; Back to Models</button>
+            </div>
+        </div>
+    </div>
+
 
     <!-- Test Container (Initially Hidden) -->
-    <div id="test-container" class="hidden min-h-screen flex-col items-center justify-center p-4 transition-opacity duration-500 pt-24">
+    <div id="test-container" class="hidden min-h-screen flex-col items-center justify-center p-4 transition-opacity duration-500 pt-28">
         <div class="w-full max-w-2xl mb-8">
             <div class="flex justify-between mb-1">
                 <span id="progress-title" class="text-base font-medium text-gray-700"></span>
@@ -359,7 +428,7 @@
     </div>
     
     <!-- 16 Personalities Test Container (Initially Hidden) -->
-    <div id="personality-test-container" class="hidden min-h-screen flex-col items-center justify-center p-4 pt-24">
+    <div id="personality-test-container" class="hidden min-h-screen flex-col items-center justify-center p-4 pt-28">
         <div id="personality-intro" class="text-center max-w-3xl mx-auto">
              <h1 class="font-headline text-4xl md:text-5xl text-center mb-4 title-shadow bg-gradient-to-r from-teal-400 via-cyan-500 to-sky-600 bg-clip-text text-transparent">The 16 Personality Types</h1>
              <p class="text-lg text-gray-700 mb-8">This test is based on the influential theory of psychological types proposed by Carl Jung. Discover how your preferences in four key areas combine to form one of 16 distinct personality types. Answer honestly to get the most accurate result.</p>
@@ -367,6 +436,10 @@
         </div>
 
         <div id="personality-question-container" class="hidden w-full max-w-2xl">
+             <div class="flex justify-between mb-2">
+                <span class="text-base font-medium text-gray-700">16 Personalities Test</span>
+                <span id="personality-progress-text" class="text-sm font-medium text-gray-700"></span>
+            </div>
             <div class="w-full bg-gray-200 rounded-full h-2.5 mb-4">
                 <div id="personality-progress-bar" class="bg-cyan-500 h-2.5 rounded-full" style="width: 0%"></div>
             </div>
@@ -442,7 +515,7 @@
 
 
     <!-- Results Container (Initially Hidden) -->
-    <div id="results-container" class="hidden bg-gray-100 p-4 sm:p-6 md:p-8 pt-24">
+    <div id="results-container" class="hidden bg-gray-100 p-4 sm:p-6 md:p-8 pt-28">
         <div id="results-content" class="max-w-4xl mx-auto pb-16">
             <div class="bg-white p-8 rounded-2xl shadow-md w-full mb-8 fade-in">
                 <h2 id="results-main-title" class="text-3xl md:text-4xl font-extrabold text-center mb-2">Your Integrated Profile:</h2>
@@ -729,15 +802,23 @@
         const downloadBtn = document.getElementById('download-btn');
         const shareBtn = document.getElementById('share-btn');
         const shareMessageEl = document.getElementById('share-message');
-        const learnMoreLink = document.getElementById('learn-more-link');
         const burgerMenu = document.getElementById('burger-menu');
         const sidebar = document.getElementById('sidebar');
         const navLogo = document.getElementById('nav-logo');
         const navHome = document.getElementById('nav-home');
-        const navModel = document.getElementById('nav-model');
+        const navAbout = document.getElementById('nav-about');
         const sidebarHome = document.getElementById('sidebar-home');
-        const sidebarModel = document.getElementById('sidebar-model');
+        const sidebarAbout = document.getElementById('sidebar-about');
         const goTo16pTestBtn = document.getElementById('go-to-16p-test-btn');
+        const modelStartHexacoBtn = document.getElementById('model-start-hexaco-btn');
+        const modelStart16pBtn = document.getElementById('model-start-16p-btn');
+        const learnMoreHexacoBtn = document.getElementById('learn-more-hexaco-btn');
+        const learnMore16pBtn = document.getElementById('learn-more-16p-btn');
+        const hexacoDetailsContainerEl = document.getElementById('hexaco-details-container');
+        const personalityDetailsContainerEl = document.getElementById('personality-details-container');
+        const aboutUsContainerEl = document.getElementById('about-us-container');
+        const backToHomeBtn = document.getElementById('back-to-home-btn');
+        const closeSidebarBtn = document.getElementById('close-sidebar-btn');
         
         // 16 Personalities Elements
         const personalityTestContainerEl = document.getElementById('personality-test-container');
@@ -745,6 +826,7 @@
         const startPersonalityTestBtn = document.getElementById('start-personality-test-btn');
         const personalityQuestionContainerEl = document.getElementById('personality-question-container');
         const personalityProgressBarEl = document.getElementById('personality-progress-bar');
+        const personalityProgressTextEl = document.getElementById('personality-progress-text');
         const personalityQuestionTextEl = document.getElementById('personality-question-text');
         const personalityAnswerOptionsEl = document.getElementById('personality-answer-options');
         const personalityResultsContainerEl = document.getElementById('personality-results-container');
@@ -752,8 +834,6 @@
         const personalityTypeNameEl = document.getElementById('personality-type-name');
         const personalityTypeDescriptionEl = document.getElementById('personality-type-description');
         const retakePersonalityTestBtn = document.getElementById('retake-personality-test-btn');
-        const nav16personalities = document.getElementById('nav-16personalities');
-        const sidebar16personalities = document.getElementById('sidebar-16personalities');
         const personalityStrengthsEl = document.getElementById('personality-strengths');
         const personalityWeaknessesEl = document.getElementById('personality-weaknesses');
         const personalityCareersEl = document.getElementById('personality-careers');
@@ -767,14 +847,7 @@
             const t = translations.en;
             
             document.getElementById('home-tagline').textContent = t.homeTagline;
-            startTestBtn.textContent = "Start the Test";
             document.getElementById('why-us-title').textContent = t.whyUsTitle;
-            document.getElementById('why-us-1-title').textContent = t.whyUs1Title;
-            document.getElementById('why-us-1-desc').textContent = t.whyUs1Desc;
-            document.getElementById('why-us-2-title').textContent = t.whyUs2Title;
-            document.getElementById('why-us-2-desc').textContent = t.whyUs2Desc;
-            document.getElementById('why-us-3-title').textContent = t.whyUs3Title;
-            document.getElementById('why-us-3-desc').textContent = t.whyUs3Desc;
             document.getElementById('footer-text').innerHTML = t.footerText;
             backBtn.innerHTML = t.backBtn;
             document.getElementById('loading-text').textContent = t.loadingText;
@@ -1068,6 +1141,17 @@
             testContainerEl.style.display = 'none';
             resultsContainerEl.style.display = 'none';
             personalityTestContainerEl.style.display = 'none';
+            hexacoDetailsContainerEl.style.display = 'none';
+            personalityDetailsContainerEl.style.display = 'none';
+            aboutUsContainerEl.style.display = 'none';
+        }
+
+        function handleNavLogoVisibility() {
+            if (window.scrollY > 50 || homepageContainerEl.style.display === 'none') {
+                navLogo.classList.remove('hidden-on-home');
+            } else {
+                navLogo.classList.add('hidden-on-home');
+            }
         }
 
         function showModelPage(e) {
@@ -1075,6 +1159,7 @@
             hideAllContainers();
             modelContainerEl.style.display = 'block';
             window.scrollTo(0, 0);
+            handleNavLogoVisibility();
             if(!sidebar.classList.contains('translate-x-full')) {
                 toggleSidebar();
             }
@@ -1085,6 +1170,7 @@
             hideAllContainers();
             homepageContainerEl.style.display = 'flex';
             window.scrollTo(0, 0);
+            handleNavLogoVisibility();
             if(!sidebar.classList.contains('translate-x-full')) {
                 toggleSidebar();
             }
@@ -1098,6 +1184,7 @@
             personalityQuestionContainerEl.style.display = 'none';
             personalityResultsContainerEl.style.display = 'none';
             window.scrollTo(0, 0);
+            handleNavLogoVisibility();
             if(!sidebar.classList.contains('translate-x-full')) {
                 toggleSidebar();
             }
@@ -1107,8 +1194,37 @@
             sidebar.classList.toggle('translate-x-full');
         }
         
+        function showHexacoDetails(e) {
+            e.preventDefault();
+            hideAllContainers();
+            hexacoDetailsContainerEl.style.display = 'block';
+            window.scrollTo(0, 0);
+            handleNavLogoVisibility();
+        }
+
+        function showPersonalityDetails(e) {
+            e.preventDefault();
+            hideAllContainers();
+            personalityDetailsContainerEl.style.display = 'block';
+            window.scrollTo(0, 0);
+            handleNavLogoVisibility();
+        }
+
+        function showAboutUsPage(e) {
+            e.preventDefault();
+            hideAllContainers();
+            aboutUsContainerEl.style.display = 'block';
+            window.scrollTo(0, 0);
+            handleNavLogoVisibility();
+            if(!sidebar.classList.contains('translate-x-full')) {
+                toggleSidebar();
+            }
+        }
+
         // --- 16 Personalities Test Logic ---
         function startPersonalityTest() {
+            hideAllContainers();
+            personalityTestContainerEl.style.display = 'flex';
             personalityScores = { M: 0, E: 0, N: 0, T: 0 };
             currentPersonalityQuestionIndex = 0;
             personalityUserAnswers = [];
@@ -1117,6 +1233,7 @@
             personalityQuestionContainerEl.style.display = 'block';
             renderPersonalityAnswerOptions();
             showPersonalityQuestion();
+            handleNavLogoVisibility();
         }
 
         function renderPersonalityAnswerOptions() {
@@ -1140,6 +1257,7 @@
                 personalityQuestionTextEl.textContent = question.text;
                 const progress = ((currentPersonalityQuestionIndex + 1) / personalityQuestions.length) * 100;
                 personalityProgressBarEl.style.width = `${progress}%`;
+                personalityProgressTextEl.textContent = `Question ${currentPersonalityQuestionIndex + 1} of ${personalityQuestions.length}`;
             } else {
                 showLoadingAndResults(calculateAndShowPersonalityResults);
             }
@@ -1238,27 +1356,35 @@
         }
 
         // --- Event Listeners ---
-        startTestBtn.addEventListener('click', startTest);
+        startTestBtn.addEventListener('click', showModelPage);
         backBtn.addEventListener('click', handleBackClick);
         retakeTestBtn.addEventListener('click', startTest);
         downloadBtn.addEventListener('click', handleDownload);
         shareBtn.addEventListener('click', handleShare);
-        learnMoreLink.addEventListener('click', showModelPage);
         burgerMenu.addEventListener('click', toggleSidebar);
+        closeSidebarBtn.addEventListener('click', toggleSidebar);
         navLogo.addEventListener('click', showHomePage);
         navHome.addEventListener('click', showHomePage);
-        navModel.addEventListener('click', showModelPage);
+        navAbout.addEventListener('click', showAboutUsPage);
         sidebarHome.addEventListener('click', showHomePage);
-        sidebarModel.addEventListener('click', showModelPage);
+        sidebarAbout.addEventListener('click', showAboutUsPage);
+        backToHomeBtn.addEventListener('click', showHomePage);
         goTo16pTestBtn.addEventListener('click', show16PersonalitiesPage);
+        modelStartHexacoBtn.addEventListener('click', startTest);
+        modelStart16pBtn.addEventListener('click', startPersonalityTest);
+        learnMoreHexacoBtn.addEventListener('click', showHexacoDetails);
+        learnMore16pBtn.addEventListener('click', showPersonalityDetails);
+        document.querySelectorAll('.back-to-model-btn').forEach(btn => {
+            btn.addEventListener('click', showModelPage);
+        });
         
         // 16 Personalities Listeners
-        nav16personalities.addEventListener('click', show16PersonalitiesPage);
-        sidebar16personalities.addEventListener('click', show16PersonalitiesPage);
         startPersonalityTestBtn.addEventListener('click', startPersonalityTest);
         retakePersonalityTestBtn.addEventListener('click', startPersonalityTest);
         personalityBackBtn.addEventListener('click', handlePersonalityBackClick);
         downloadPersonalityBtn.addEventListener('click', handlePersonalityDownload);
+
+        window.addEventListener('scroll', handleNavLogoVisibility);
 
 
         // Set initial UI text on page load
