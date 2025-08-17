@@ -3,7 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Great Mind Profile</title>
+    <title>Great Mind Profile - In-Depth Personality Assessment</title>
+    <meta name="description" content="Discover your true personality with the Great Mind Profile. Take our free, scientifically-validated personality tests based on the HEXACO and 16 Personality Types models.">
+    <meta name="keywords" content="personality test, free personality test, HEXACO test, 16 personality types, Myers-Briggs, career test, psychological assessment, self-discovery">
+    
     <!-- Google tag (gtag.js) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-2HR8S7SQES"></script>
     <script>
@@ -50,7 +53,6 @@
         .score-bar-gradient {
             background-image: linear-gradient(to right, #3b82f6, #22c55e);
         }
-        /* Styling for multi-choice options in situational questions */
         .choice-btn {
             display: block;
             width: 100%;
@@ -64,7 +66,6 @@
         .choice-btn:hover {
             transform: translateY(-2px);
         }
-        /* Animated Mind Map Background */
         .mind-map-bg {
             position: absolute;
             top: 0;
@@ -100,7 +101,6 @@
             to { r: 6; }
         }
         
-        /* Sliding cards animation */
         .scrolling-wrapper {
             display: flex;
             flex-wrap: nowrap;
@@ -113,7 +113,7 @@
         .card-container {
             flex-shrink: 0;
             width: 100%;
-            max-width: 90%; /* Adjust card width on mobile */
+            max-width: 90%;
         }
         @media (min-width: 768px) {
             .card-container {
@@ -121,18 +121,15 @@
             }
         }
         
-        /* Thematic loading bar */
         #loading-bar-inner {
              transition: width 0.1s linear;
              background-image: linear-gradient(to right, #4f46e5, #d946ef, #f59e0b);
         }
         
-        /* Sidebar Styles */
         #sidebar {
             transition: transform 0.3s ease-in-out;
         }
         
-        /* 16 Personalities Test Styles */
         .personality-answer-btn {
             transition: all 0.2s ease-in-out;
         }
@@ -140,7 +137,6 @@
             transform: scale(1.05);
         }
 
-        /* Nav Logo Animation */
         #nav-logo {
             transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out;
         }
@@ -187,7 +183,7 @@
         </div>
     </div>
     
-    <!-- Homepage Container (Visible by default) -->
+    <!-- Homepage Container -->
     <div id="homepage-container" class="flex flex-col items-center justify-center min-h-screen p-4 text-center relative z-10 transition-opacity duration-500">
         <div class="mind-map-bg">
              <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
@@ -261,7 +257,6 @@
             </div>
         </div>
         
-        <!-- Social Proof Section -->
         <section class="w-full max-w-4xl mx-auto py-12">
              <div class="grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
                 <div class="p-4">
@@ -273,8 +268,8 @@
                     <p class="text-gray-600 font-semibold">Core Personality Dimensions</p>
                 </div>
                 <div class="p-4">
-                    <h3 class="text-4xl font-bold text-indigo-600">95%</h3>
-                    <p class="text-gray-600 font-semibold">User Satisfaction Rate</p>
+                    <h3 class="text-4xl font-bold text-indigo-600">93%</h3>
+                    <p class="text-gray-600 font-semibold">Predictive Accuracy</p>
                 </div>
             </div>
         </section>
@@ -282,7 +277,6 @@
         <section class="w-full max-w-6xl overflow-hidden py-12">
             <h2 id="why-us-title" class="text-3xl font-bold text-center mb-12">Why Choose Us?</h2>
             <div class="scrolling-wrapper">
-                <!-- Cards are duplicated for a seamless loop -->
                 <div class="card-container p-4"><div class="bg-blue-100 p-6 rounded-xl shadow-md h-full"><h3 class="text-xl font-bold mb-2 text-blue-800">Based on Science</h3><p class="text-gray-600">Our test is built on the HEXACO model, a robust framework trusted by psychologists for its accuracy and cross-cultural validity.</p></div></div>
                 <div class="card-container p-4"><div class="bg-green-100 p-6 rounded-xl shadow-md h-full"><h3 class="text-xl font-bold mb-2 text-green-800">Three-Level Analysis</h3><p class="text-gray-600">We go beyond simple traits by analyzing your situational judgments and life story themes to create a truly holistic profile.</p></div></div>
                 <div class="card-container p-4"><div class="bg-yellow-100 p-6 rounded-xl shadow-md h-full"><h3 class="text-xl font-bold mb-2 text-yellow-800">Classic Frameworks</h3><p class="text-gray-600">Explore your personality through the lens of the classic 16 Personality Types, a timeless model for understanding cognitive styles.</p></div></div>
@@ -295,16 +289,13 @@
         </section>
 
         <footer class="w-full text-center py-4">
-            <p id="footer-text" class="text-gray-500 text-sm">&copy; 2024 Personality Post. All Rights Reserved.</p>
+            <p id="footer-text" class="text-gray-500 text-sm">&copy; 2025 Great Mind Profile. All Rights Reserved.</p>
         </footer>
     </div>
     
-    <!-- Model Explanation Container (Initially Hidden) -->
+    <!-- Model Explanation Container -->
     <div id="model-container" class="hidden min-h-screen p-4 sm:p-6 md:p-8 pt-28">
         <div class="max-w-4xl mx-auto space-y-12">
-             <h1 class="font-headline text-4xl md:text-5xl text-center mb-4 title-shadow bg-gradient-to-r from-blue-500 via-red-500 to-yellow-500 bg-clip-text text-transparent">Our Scientific Approach</h1>
-            <p class="text-center text-gray-600 text-lg mb-12">We are committed to providing personality assessments that are not just engaging, but also scientifically robust and deeply insightful. Here’s a look at the established psychological frameworks that power our tests.</p>
-            
             <!-- HEXACO Card -->
             <div class="bg-white rounded-2xl shadow-lg overflow-hidden">
                 <div class="p-8 bg-gradient-to-br from-blue-50 to-purple-50">
@@ -351,7 +342,7 @@
         </div>
     </div>
     
-    <!-- About Us Container (Initially Hidden) -->
+    <!-- About Us Container -->
     <div id="about-us-container" class="hidden min-h-screen p-4 sm:p-6 md:p-8 pt-28">
         <div class="max-w-4xl mx-auto bg-white p-8 rounded-2xl shadow-lg">
             <h1 class="font-headline text-4xl text-gray-800 mb-4">About Us</h1>
@@ -366,20 +357,24 @@
         </div>
     </div>
 
-    <!-- HEXACO Details Container (Initially Hidden) -->
+    <!-- HEXACO Details Container -->
     <div id="hexaco-details-container" class="hidden min-h-screen p-4 sm:p-6 md:p-8 pt-28">
-        <div class="max-w-4xl mx-auto bg-white p-8 rounded-2xl shadow-lg">
-            <h1 class="font-headline text-4xl text-blue-800 mb-4">Understanding the HEXACO Model</h1>
-            <p class="text-lg text-gray-600 mb-6">The HEXACO model is a modern framework in personality psychology that organizes human personality into six major dimensions. It's valued for its strong scientific backing and its ability to capture key aspects of character that other models might miss.</p>
+        <div class="max-w-4xl mx-auto bg-white p-8 rounded-2xl shadow-lg text-gray-700 leading-relaxed">
+            <h1 class="font-headline text-4xl text-blue-800 mb-4">The HEXACO Model of Personality</h1>
+            <p class="text-lg text-gray-600 mb-6">The <strong>HEXACO model</strong> is a highly-regarded, six-dimensional framework of human personality structure. Its name is an acronym for the six core dimensions it identifies: <strong>H</strong>onesty-Humility, <strong>E</strong>motionality, e<strong>X</strong>traversion, <strong>A</strong>greeableness, <strong>C</strong>onscientiousness, and <strong>O</strong>penness to Experience. This model is a result of extensive lexical studies in various languages, which are based on the hypothesis that the most important personality traits will be encoded in a culture's language.</p>
             
-            <h2 class="text-2xl font-bold text-gray-800 mt-8 mb-3">The Six Dimensions</h2>
+            <h2 class="text-2xl font-bold text-gray-800 mt-8 mb-3">History and Development</h2>
+            <p class="mb-4">The development of the HEXACO model is primarily credited to Canadian psychologists <strong>Kibeom Lee and Michael C. Ashton</strong> in the early 2000s. While conducting lexical studies, they and other researchers consistently found that while five factors similar to the well-known "Big Five" model appeared, a distinct sixth factor also reliably emerged across different languages and cultures. This led to the formal proposal of a six-factor model.</p>
+            <p class="mb-4">The key innovation of the HEXACO model was the introduction of the <strong>Honesty-Humility</strong> dimension. This factor incorporates traits like sincerity, fairness, and modesty, versus greed, deceit, and pretentiousness. Researchers found that this dimension was crucial for explaining variance in personality that the Big Five model could not, particularly in areas related to ethical and pro-social versus antisocial behavior.</p>
+
+            <h2 class="text-2xl font-bold text-gray-800 mt-8 mb-3">The Six Dimensions Explained</h2>
             <div class="space-y-4">
-                <p><strong>1. Honesty-Humility (H):</strong> This is the cornerstone of the HEXACO model. It relates to sincerity, fairness, greed avoidance, and modesty. High scorers are genuine and principled, while low scorers are more strategic and self-interested.</p>
-                <p><strong>2. Emotionality (E):</strong> This dimension captures a person's tendency to experience fear, anxiety, and sentimentality. High scorers are more empathetic and sensitive, while low scorers are typically brave and emotionally stable.</p>
+                <p><strong>1. Honesty-Humility (H):</strong> This is the cornerstone of the HEXACO model. It relates to sincerity, fairness, greed avoidance, and modesty. High scorers are genuine and principled, while low scorers are more strategic and self-interested. This dimension is a strong predictor of pro-social and ethical behavior.</p>
+                <p><strong>2. Emotionality (E):</strong> This dimension captures a person's tendency to experience fear, anxiety, dependence, and sentimentality. High scorers are more empathetic and sensitive to harm, while low scorers are typically brave, self-assured, and emotionally stable.</p>
                 <p><strong>3. Extraversion (X):</strong> This relates to one's engagement with the social world. High scorers are outgoing, energetic, and socially confident. Low scorers are more reserved, independent, and comfortable with solitude.</p>
-                <p><strong>4. Agreeableness (A):</strong> This dimension measures forgiveness, gentleness, and patience. High scorers are cooperative and harmonious. Low scorers are more independent-minded and can be critical or stubborn.</p>
-                <p><strong>5. Conscientiousness (C):</strong> This reflects a person's tendency to be organized, diligent, and perfectionistic. High scorers are reliable and disciplined. Low scorers are more flexible and spontaneous.</p>
-                <p><strong>6. Openness to Experience (O):</strong> This dimension involves creativity, curiosity, and an appreciation for aesthetics and unconventional ideas. High scorers are innovative and inquisitive. Low scorers are more pragmatic and traditional.</p>
+                <p><strong>4. Agreeableness (A) vs. Anger:</strong> This dimension measures forgiveness, gentleness, and patience versus anger and irritability. High scorers are cooperative and harmonious. Low scorers are more independent-minded and can be quick to anger.</p>
+                <p><strong>5. Conscientiousness (C):</strong> This reflects a person's tendency to be organized, diligent, disciplined, and perfectionistic. High scorers are reliable and detail-oriented. Low scorers are more flexible and spontaneous, and less concerned with precise scheduling.</p>
+                <p><strong>6. Openness to Experience (O):</strong> This dimension involves creativity, curiosity, and an appreciation for aesthetics and unconventional ideas. High scorers are innovative and inquisitive. Low scorers are more pragmatic, conventional, and find comfort in tradition.</p>
             </div>
             <div class="text-center mt-8">
                 <button class="back-to-model-btn inline-block bg-gray-200 text-gray-800 font-semibold py-3 px-6 rounded-full hover:bg-gray-300 transition">&larr; Back to Models</button>
@@ -387,18 +382,22 @@
         </div>
     </div>
 
-    <!-- 16 Personalities Details Container (Initially Hidden) -->
+    <!-- 16 Personalities Details Container -->
     <div id="personality-details-container" class="hidden min-h-screen p-4 sm:p-6 md:p-8 pt-28">
-        <div class="max-w-4xl mx-auto bg-white p-8 rounded-2xl shadow-lg">
-            <h1 class="font-headline text-4xl text-cyan-800 mb-4">Understanding the 16 Personality Types</h1>
-            <p class="text-lg text-gray-600 mb-6">Based on the work of Carl Jung, this model, popularized by the Myers-Briggs Type Indicator (MBTI), categorizes personality into 16 types based on four key dichotomies. It provides insights into how people perceive the world and make decisions.</p>
+        <div class="max-w-4xl mx-auto bg-white p-8 rounded-2xl shadow-lg text-gray-700 leading-relaxed">
+            <h1 class="font-headline text-4xl text-cyan-800 mb-4">The 16 Personality Types Framework</h1>
+            <p class="text-lg text-gray-600 mb-6">The framework of <strong>16 personality types</strong> is one of the most popular and enduring models for understanding personality differences. It is based on the influential theory of psychological types proposed by Swiss psychiatrist <strong>Carl Jung</strong>. This model provides a rich vocabulary for how people perceive the world and make decisions, categorizing preferences into four key dichotomies.</p>
             
+            <h2 class="text-2xl font-bold text-gray-800 mt-8 mb-3">History and Origins</h2>
+            <p class="mb-4">The origins of this model lie in Carl Jung's 1921 book, <em>Psychological Types</em>. Jung theorized that human behavior is not random but follows predictable patterns arising from fundamental differences in how individuals prefer to use their perception and judgment. He introduced concepts like <strong>introversion and extraversion</strong> as basic attitudes towards the world.</p>
+            <p class="mb-4">During World War II, <strong>Isabel Myers and her mother, Katharine Briggs</strong>, were inspired by Jung's work. They sought to make his theories accessible and useful to the general public, believing that an understanding of personality preferences would help people find work that suited their character and lead to more harmonious relationships. They developed the Myers-Briggs Type Indicator (MBTI) instrument to assess these preferences, which ultimately popularized the 16-type system we know today. It's important to note that while our test is based on these Jungian concepts, it is not the official MBTI assessment.</p>
+
             <h2 class="text-2xl font-bold text-gray-800 mt-8 mb-3">The Four Dichotomies</h2>
             <div class="space-y-4">
-                <p><strong>1. Introversion (I) vs. Extraversion (E):</strong> This describes where you focus your energy. Extraverts are energized by social interaction, while Introverts are energized by spending time alone.</p>
-                <p><strong>2. Sensing (S) vs. Intuition (N):</strong> This explains how you perceive information. Sensing types focus on concrete facts and details, while Intuitive types are more interested in patterns, possibilities, and abstract concepts.</p>
-                <p><strong>3. Thinking (T) vs. Feeling (F):</strong> This dichotomy describes how you make decisions. Thinking types prioritize logic and objective criteria. Feeling types make decisions based on personal values and how their choices will affect others.</p>
-                <p><strong>4. Judging (J) vs. Perceiving (P):</strong> This reflects your approach to the outside world. Judging types prefer structure, plans, and firm decisions. Perceiving types are more flexible, spontaneous, and like to keep their options open.</p>
+                <p><strong>1. Introversion (I) vs. Extraversion (E):</strong> This describes where you focus your energy and get recharged. Extraverts are energized by social interaction and the external world, while Introverts are energized by spending time alone with their internal world of thoughts and ideas.</p>
+                <p><strong>2. Sensing (S) vs. Intuition (N):</strong> This explains how you perceive information. Sensing types are practical and focus on concrete facts and details they can verify with their five senses. Intuitive types are more interested in patterns, possibilities, and abstract concepts, often thinking about the future.</p>
+                <p><strong>3. Thinking (T) vs. Feeling (F):</strong> This dichotomy describes how you make decisions. Thinking types prioritize logic, objective criteria, and impartiality. Feeling types make decisions based on personal values, harmony, and how their choices will affect others.</p>
+                <p><strong>4. Judging (J) vs. Perceiving (P):</strong> This reflects your approach to the outside world and your lifestyle. Judging types prefer structure, plans, and firm decisions, enjoying a sense of closure. Perceiving types are more flexible, spontaneous, and like to keep their options open, adapting as they go.</p>
             </div>
              <div class="text-center mt-8">
                 <button class="back-to-model-btn inline-block bg-gray-200 text-gray-800 font-semibold py-3 px-6 rounded-full hover:bg-gray-300 transition">&larr; Back to Models</button>
@@ -407,7 +406,7 @@
     </div>
 
 
-    <!-- Test Container (Initially Hidden) -->
+    <!-- Test Container -->
     <div id="test-container" class="hidden min-h-screen flex-col items-center justify-center p-4 transition-opacity duration-500 pt-28">
         <div class="w-full max-w-2xl mb-8">
             <div class="flex justify-between mb-1">
@@ -427,7 +426,7 @@
         </div>
     </div>
     
-    <!-- 16 Personalities Test Container (Initially Hidden) -->
+    <!-- 16 Personalities Test Container -->
     <div id="personality-test-container" class="hidden min-h-screen flex-col items-center justify-center p-4 pt-28">
         <div id="personality-intro" class="text-center max-w-3xl mx-auto">
              <h1 class="font-headline text-4xl md:text-5xl text-center mb-4 title-shadow bg-gradient-to-r from-teal-400 via-cyan-500 to-sky-600 bg-clip-text text-transparent">The 16 Personality Types</h1>
@@ -445,22 +444,19 @@
             </div>
             <div class="bg-white p-8 rounded-2xl shadow-md">
                 <h2 id="personality-question-text" class="text-2xl md:text-3xl font-bold text-gray-800 text-center mb-8"></h2>
-                <div id="personality-answer-options" class="grid grid-cols-1 sm:grid-cols-5 gap-3 text-center">
-                    <!-- Buttons will be generated by JS -->
-                </div>
+                <div id="personality-answer-options" class="grid grid-cols-1 sm:grid-cols-5 gap-3 text-center"></div>
                 <div class="mt-8 text-center">
                     <button id="personality-back-btn" class="text-gray-500 hover:text-gray-800 font-semibold py-2 px-4">&larr; Back</button>
                 </div>
             </div>
         </div>
         
-        <div id="personality-results-container" class="hidden max-w-3xl mx-auto">
+        <div id="personality-results-container" class="hidden max-w-3xl mx-auto p-4">
             <div id="personality-results-content" class="bg-white p-8 rounded-2xl shadow-lg">
                 <p class="text-gray-600 font-semibold text-center">Your Personality Type is:</p>
                 <h2 id="personality-type-title" class="text-5xl font-extrabold mb-2 text-center"></h2>
                 <h3 id="personality-type-name" class="text-3xl font-bold text-gray-800 mb-6 text-center"></h3>
                 <p id="personality-type-description" class="text-lg text-gray-700 text-left mb-8"></p>
-                
                 <div class="grid md:grid-cols-2 gap-8 text-left">
                     <div>
                         <h4 class="text-2xl font-bold text-green-600 mb-3">Strengths</h4>
@@ -471,39 +467,48 @@
                         <ul id="personality-weaknesses" class="list-disc list-inside space-y-2 text-gray-700"></ul>
                     </div>
                 </div>
-                
                 <div class="mt-8">
                      <h4 class="text-2xl font-bold text-indigo-600 mb-3 text-center">Potential Career Paths</h4>
                      <p id="personality-careers" class="text-center text-gray-700"></p>
                 </div>
-                
                 <div class="mt-8">
                      <h4 class="text-2xl font-bold text-yellow-600 mb-3 text-center">Famous People</h4>
                      <p id="personality-famous" class="text-center text-gray-700"></p>
                 </div>
             </div>
-            <div class="mt-8 text-center space-y-4">
-                <div class="flex flex-wrap justify-center items-center gap-4">
-                    <button id="download-personality-btn" class="w-full sm:w-auto inline-block bg-gray-800 text-white font-bold text-lg px-8 py-3 rounded-full shadow-lg transform transition-transform duration-300 hover:scale-105 hover:bg-black focus:outline-none focus:ring-4 focus:ring-gray-400">Download Results</button>
-                    <button id="retake-personality-test-btn" class="w-full sm:w-auto inline-block bg-gray-500 text-white font-bold text-lg px-8 py-3 rounded-full shadow-lg transform transition-transform duration-300 hover:scale-105 hover:bg-gray-600 focus:outline-none focus:ring-4 focus:ring-gray-400">Retake Test</button>
+            
+            <div class="bg-white p-8 rounded-2xl shadow-md w-full mt-8 fade-in">
+                <h3 class="text-2xl font-bold text-center mb-6">Next Steps</h3>
+                <div class="flex flex-col sm:flex-row justify-center items-center gap-4">
+                     <button id="go-to-hexaco-test-btn" class="w-full sm:w-auto inline-block bg-gray-800 text-white font-bold text-lg px-8 py-3 rounded-full shadow-lg transform transition-transform duration-300 hover:scale-105 hover:bg-black focus:outline-none focus:ring-4 focus:ring-gray-400">Try the Great Mind Profile Test</button>
                 </div>
-                <div class="flex justify-center items-center gap-4 pt-4">
-                    <button onclick="handlePersonalityShare('facebook')" class="text-blue-600 hover:text-blue-800 transition">
-                        <svg class="w-8 h-8" viewBox="0 0 24 24" fill="currentColor"><path d="M22 12c0-5.52-4.48-10-10-10S2 6.48 2 12c0 4.84 3.44 8.87 8 9.8V15H8v-3h2V9.5C10 7.57 11.57 6 13.5 6H16v3h-1.5c-1 0-1 .5-1 1v2h3l-.5 3h-2.5v6.95c5.05-.95 9-5.46 9-10.95z"/></svg>
+            </div>
+
+            <div class="bg-white p-8 rounded-2xl shadow-md w-full mt-8 fade-in">
+                <h3 class="text-2xl font-bold text-center mb-6">Download & Share</h3>
+                <div class="text-center mb-6">
+                    <button id="download-personality-btn" class="w-full sm:w-auto inline-block bg-blue-600 text-white font-bold text-lg px-8 py-3 rounded-full shadow-lg transform transition-transform duration-300 hover:scale-105 hover:bg-blue-700 focus:outline-none focus:ring-4 focus:ring-blue-300">Download Results Image</button>
+                </div>
+                <div class="flex justify-center items-center gap-6 pt-4">
+                    <button onclick="handleGenericShare('facebook', 'personality')" class="text-blue-600 hover:text-blue-800 transition transform hover:scale-110">
+                        <svg class="w-10 h-10" viewBox="0 0 24 24" fill="currentColor"><path d="M22 12c0-5.52-4.48-10-10-10S2 6.48 2 12c0 4.84 3.44 8.87 8 9.8V15H8v-3h2V9.5C10 7.57 11.57 6 13.5 6H16v3h-1.5c-1 0-1 .5-1 1v2h3l-.5 3h-2.5v6.95c5.05-.95 9-5.46 9-10.95z"/></svg>
                     </button>
-                    <button onclick="handlePersonalityShare('twitter')" class="text-black hover:text-gray-700 transition">
-                        <svg class="w-8 h-8" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+                    <button onclick="handleGenericShare('twitter', 'personality')" class="text-black hover:text-gray-700 transition transform hover:scale-110">
+                        <svg class="w-10 h-10" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
                     </button>
-                    <button onclick="handlePersonalityShare('whatsapp')" class="text-green-500 hover:text-green-700 transition">
-                       <svg class="w-8 h-8" viewBox="0 0 24 24" fill="currentColor"><path d="M12.04 2c-5.46 0-9.91 4.45-9.91 9.91 0 1.75.46 3.38 1.25 4.82l-1.34 4.89 5.01-1.32c1.39.71 2.97 1.12 4.59 1.12h.01c5.46 0 9.91-4.45 9.91-9.91s-4.45-9.91-9.91-9.91zm0 18.16c-1.47 0-2.89-.38-4.16-1.09l-.3-.18-3.09.81.83-3.02-.2-.32c-.8-1.31-1.28-2.84-1.28-4.45 0-4.54 3.68-8.22 8.22-8.22 4.54 0 8.22 3.68 8.22 8.22s-3.68 8.22-8.22 8.22zm4.45-6.21c-.24-.12-1.42-.7-1.64-.78-.22-.08-.38-.12-.54.12-.16.24-.62.78-.76.94-.14.16-.28.18-.52.06-.24-.12-1.02-.38-1.94-1.2s-1.4-1.83-1.56-2.13c-.16-.3-.02-.46.1-.6.11-.13.24-.34.37-.51.12-.16.16-.28.24-.47.08-.19.04-.35-.02-.47-.06-.12-.54-1.29-0.74-1.77-.2-.48-.4-.41-.54-.42-.14 0-.3 0-.47 0s-.42.06-.64.3c-.22.24-.86.84-.86 2.05s.88 2.38 1 2.54c.12.16 1.74 2.65 4.22 3.72.59.26 1.05.41 1.41.52.6.19 1.14.16 1.56.1.48-.06 1.42-.58 1.62-1.14.2-.56.2-1.04.14-1.14-.06-.11-.22-.18-.46-.3z"/></svg>
+                    <button onclick="handleGenericShare('whatsapp', 'personality')" class="text-green-500 hover:text-green-700 transition transform hover:scale-110">
+                       <svg class="w-10 h-10" viewBox="0 0 24 24" fill="currentColor"><path d="M12.04 2c-5.46 0-9.91 4.45-9.91 9.91 0 1.75.46 3.38 1.25 4.82l-1.34 4.89 5.01-1.32c1.39.71 2.97 1.12 4.59 1.12h.01c5.46 0 9.91-4.45 9.91-9.91s-4.45-9.91-9.91-9.91zm0 18.16c-1.47 0-2.89-.38-4.16-1.09l-.3-.18-3.09.81.83-3.02-.2-.32c-.8-1.31-1.28-2.84-1.28-4.45 0-4.54 3.68-8.22 8.22-8.22 4.54 0 8.22 3.68 8.22 8.22s-3.68 8.22-8.22 8.22zm4.45-6.21c-.24-.12-1.42-.7-1.64-.78-.22-.08-.38-.12-.54.12-.16.24-.62.78-.76.94-.14.16-.28.18-.52.06-.24-.12-1.02-.38-1.94-1.2s-1.4-1.83-1.56-2.13c-.16-.3-.02-.46.1-.6.11-.13.24-.34.37-.51.12-.16.16-.28.24-.47.08-.19.04-.35-.02-.47-.06-.12-.54-1.29-0.74-1.77-.2-.48-.4-.41-.54-.42-.14 0-.3 0-.47 0s-.42.06-.64.3c-.22.24-.86.84-.86 2.05s.88 2.38 1 2.54c.12.16 1.74 2.65 4.22 3.72.59.26 1.05.41 1.41.52.6.19 1.14.16 1.56.1.48-.06 1.42-.58 1.62-1.14.2-.56.2-1.04.14-1.14-.06-.11-.22-.18-.46-.3z"/></svg>
+                    </button>
+                    <button onclick="handleGenericShare('instagram', 'personality')" class="text-pink-600 hover:text-pink-800 transition transform hover:scale-110">
+                        <svg class="w-10 h-10" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.689-.073-4.948-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.162 6.162 6.162 6.162-2.759 6.162-6.162-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4s1.791-4 4-4 4 1.79 4 4-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44 1.441-.645 1.441-1.44-.645-1.44-1.441-1.44z"/></svg>
                     </button>
                 </div>
-                <p id="personality-share-message" class="text-center text-gray-600 mt-2"></p>
+                <p id="personality-share-message" class="text-center text-gray-600 mt-4"></p>
             </div>
         </div>
     </div>
     
-    <!-- Loading Container (Initially Hidden) -->
+    <!-- Loading Container -->
     <div id="loading-container" class="hidden min-h-screen flex-col items-center justify-center p-4">
         <div class="w-full max-w-md text-center">
             <h2 id="loading-text" class="text-3xl font-bold text-gray-700 mb-4">Analyzing Your Profile...</h2>
@@ -514,7 +519,7 @@
     </div>
 
 
-    <!-- Results Container (Initially Hidden) -->
+    <!-- HEXACO Results Container -->
     <div id="results-container" class="hidden bg-gray-100 p-4 sm:p-6 md:p-8 pt-28">
         <div id="results-content" class="max-w-4xl mx-auto pb-16">
             <div class="bg-white p-8 rounded-2xl shadow-md w-full mb-8 fade-in">
@@ -531,13 +536,31 @@
                 <div id="trait-details" class="grid grid-cols-1 md:grid-cols-2 gap-8"></div>
             </div>
 
-            <div class="bg-white p-8 rounded-2xl shadow-md w-full fade-in" style="animation-delay: 0.4s;">
+            <div class="bg-white p-8 rounded-2xl shadow-md w-full mb-8 fade-in" style="animation-delay: 0.4s;">
                 <h3 id="results-next-steps-title" class="text-2xl font-bold text-center mb-6">Next Steps</h3>
                 <div class="flex flex-col sm:flex-row justify-center items-center gap-4">
-                     <button id="download-btn" class="w-full sm:w-auto inline-block bg-gray-800 text-white font-bold text-lg px-8 py-3 rounded-full shadow-lg transform transition-transform duration-300 hover:scale-105 hover:bg-black focus:outline-none focus:ring-4 focus:ring-gray-400">Download Results</button>
-                     <button id="share-btn" class="w-full sm:w-auto inline-block bg-blue-600 text-white font-bold text-lg px-8 py-3 rounded-full shadow-lg transform transition-transform duration-300 hover:scale-105 hover:bg-blue-700 focus:outline-none focus:ring-4 focus:ring-blue-300">Share with Friends</button>
-                     <button id="retake-test-btn" class="w-full sm:w-auto inline-block bg-gray-500 text-white font-bold text-lg px-8 py-3 rounded-full shadow-lg transform transition-transform duration-300 hover:scale-105 hover:bg-gray-600 focus:outline-none focus:ring-4 focus:ring-gray-400">Retake Test</button>
                      <button id="go-to-16p-test-btn" class="w-full sm:w-auto inline-block bg-cyan-600 text-white font-bold text-lg px-8 py-3 rounded-full shadow-lg transform transition-transform duration-300 hover:scale-105 hover:bg-cyan-700 focus:outline-none focus:ring-4 focus:ring-cyan-300">Try the 16 Personalities Test</button>
+                </div>
+            </div>
+            
+            <div class="bg-white p-8 rounded-2xl shadow-md w-full fade-in" style="animation-delay: 0.6s;">
+                <h3 class="text-2xl font-bold text-center mb-6">Download & Share</h3>
+                <div class="text-center mb-6">
+                     <button id="download-btn" class="w-full sm:w-auto inline-block bg-blue-600 text-white font-bold text-lg px-8 py-3 rounded-full shadow-lg transform transition-transform duration-300 hover:scale-105 hover:bg-blue-700 focus:outline-none focus:ring-4 focus:ring-blue-300">Download Results Image</button>
+                </div>
+                <div class="flex justify-center items-center gap-6 pt-4">
+                     <button onclick="handleGenericShare('facebook', 'hexaco')" class="text-blue-600 hover:text-blue-800 transition transform hover:scale-110">
+                        <svg class="w-10 h-10" viewBox="0 0 24 24" fill="currentColor"><path d="M22 12c0-5.52-4.48-10-10-10S2 6.48 2 12c0 4.84 3.44 8.87 8 9.8V15H8v-3h2V9.5C10 7.57 11.57 6 13.5 6H16v3h-1.5c-1 0-1 .5-1 1v2h3l-.5 3h-2.5v6.95c5.05-.95 9-5.46 9-10.95z"/></svg>
+                    </button>
+                    <button onclick="handleGenericShare('twitter', 'hexaco')" class="text-black hover:text-gray-700 transition transform hover:scale-110">
+                        <svg class="w-10 h-10" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+                    </button>
+                    <button onclick="handleGenericShare('whatsapp', 'hexaco')" class="text-green-500 hover:text-green-700 transition transform hover:scale-110">
+                       <svg class="w-10 h-10" viewBox="0 0 24 24" fill="currentColor"><path d="M12.04 2c-5.46 0-9.91 4.45-9.91 9.91 0 1.75.46 3.38 1.25 4.82l-1.34 4.89 5.01-1.32c1.39.71 2.97 1.12 4.59 1.12h.01c5.46 0 9.91-4.45 9.91-9.91s-4.45-9.91-9.91-9.91zm0 18.16c-1.47 0-2.89-.38-4.16-1.09l-.3-.18-3.09.81.83-3.02-.2-.32c-.8-1.31-1.28-2.84-1.28-4.45 0-4.54 3.68-8.22 8.22-8.22 4.54 0 8.22 3.68 8.22 8.22s-3.68 8.22-8.22 8.22zm4.45-6.21c-.24-.12-1.42-.7-1.64-.78-.22-.08-.38-.12-.54.12-.16.24-.62.78-.76.94-.14.16-.28.18-.52.06-.24-.12-1.02-.38-1.94-1.2s-1.4-1.83-1.56-2.13c-.16-.3-.02-.46.1-.6.11-.13.24-.34.37-.51.12-.16.16-.28.24-.47.08-.19.04-.35-.02-.47-.06-.12-.54-1.29-0.74-1.77-.2-.48-.4-.41-.54-.42-.14 0-.3 0-.47 0s-.42.06-.64.3c-.22.24-.86.84-.86 2.05s.88 2.38 1 2.54c.12.16 1.74 2.65 4.22 3.72.59.26 1.05.41 1.41.52.6.19 1.14.16 1.56.1.48-.06 1.42-.58 1.62-1.14.2-.56.2-1.04.14-1.14-.06-.11-.22-.18-.46-.3z"/></svg>
+                    </button>
+                    <button onclick="handleGenericShare('instagram', 'hexaco')" class="text-pink-600 hover:text-pink-800 transition transform hover:scale-110">
+                        <svg class="w-10 h-10" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.689-.073-4.948-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.162 6.162 6.162 6.162-2.759 6.162-6.162-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4s1.791-4 4-4 4 1.79 4 4-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44 1.441-.645 1.441-1.44-.645-1.44-1.441-1.44z"/></svg>
+                    </button>
                 </div>
                  <p id="share-message" class="text-center text-gray-600 mt-4"></p>
             </div>
@@ -594,7 +617,7 @@
                 whyUs3Title: "Actionable Insights", whyUs3Desc: "Understand your strengths and potential challenges with clear, non-judgmental feedback designed for personal growth.",
                 homeDescription: "Discover your unique strengths. Our analysis is based on the scientifically validated <strong>HEXACO model</strong> for a surprisingly accurate personality profile.",
                 startBtn: "Start the Test!",
-                footerText: "&copy; 2024 Personality Post. All Rights Reserved.",
+                footerText: "&copy; 2025 Great Mind Profile. All Rights Reserved.",
                 progressPart1: "Part 1: Core Traits",
                 progressPart2: "Part 2: Situational Judgement",
                 progressPart3: "Part 3: Life Story",
@@ -688,56 +711,7 @@
 
         // --- 16 Personalities Test Data ---
         const personalityQuestions = [
-            { text: "You find it difficult to introduce yourself to other people.", dimension: 'M', score: -1 },
-            { text: "You often get so lost in thought that you ignore or forget your surroundings.", dimension: 'E', score: 1 },
-            { text: "You try to respond to your e-mails as soon as possible and cannot stand a messy inbox.", dimension: 'T', score: 1 },
-            { text: "You find it easy to stay relaxed and focused even when there is some pressure.", dimension: 'M', score: 1 },
-            { text: "You do not usually initiate conversations.", dimension: 'M', score: -1 },
-            { text: "You rarely do something just out of sheer curiosity.", dimension: 'E', score: -1 },
-            { text: "You feel superior to other people.", dimension: 'N', score: -1 },
-            { text: "Being organized is more important to you than being adaptable.", dimension: 'T', score: 1 },
-            { text: "You are usually highly motivated and energetic.", dimension: 'M', score: 1 },
-            { text: "Winning a debate matters less to you than making sure no one gets upset.", dimension: 'N', score: 1 },
-            { text: "You often feel as if you have to justify yourself to other people.", dimension: 'N', score: 1 },
-            { text: "Your home and work environments are quite tidy.", dimension: 'T', score: 1 },
-            { text: "You do not mind being at the center of attention.", dimension: 'M', score: 1 },
-            { text: "You consider yourself more practical than creative.", dimension: 'E', score: -1 },
-            { text: "People can rarely upset you.", dimension: 'N', score: -1 },
-            { text: "Your travel plans are usually well thought out.", dimension: 'T', score: 1 },
-            { text: "It is often difficult for you to relate to other people’s feelings.", dimension: 'N', score: -1 },
-            { text: "Your mood can change very quickly.", dimension: 'M', score: -1 },
-            { text: "In a discussion, truth should be more important than people’s sensitivities.", dimension: 'N', score: -1 },
-            { text: "You rarely worry about how your actions affect other people.", dimension: 'N', score: -1 },
-            { text: "Your work style is closer to random energy spikes than to a methodical and organized approach.", dimension: 'T', score: -1 },
-            { text: "You are often envious of others.", dimension: 'N', score: 1 },
-            { text: "An interesting book or a video game is often better than a social event.", dimension: 'M', score: -1 },
-            { text: "Being able to develop a plan and stick to it is the most important part of every project.", dimension: 'T', score: 1 },
-            { text: "You can be easily distracted.", dimension: 'T', score: -1 },
-            { text: "You are not a fan of hypotheticals and what-ifs.", dimension: 'E', score: -1 },
-            { text: "You usually find it difficult to relax when talking in front of many people.", dimension: 'M', score: -1 },
-            { text: "Generally speaking, you rely more on your experience than your imagination.", dimension: 'E', score: -1 },
-            { text: "You worry too much about what other people think.", dimension: 'N', score: 1 },
-            { text: "If the room is full, you stay closer to the walls, avoiding the center.", dimension: 'M', score: -1 },
-            { text: "You have a tendency to procrastinate.", dimension: 'T', score: -1 },
-            { text: "You feel very anxious in stressful situations.", dimension: 'M', score: -1 },
-            { text: "You believe that it is more rewarding to be liked by others than to be powerful.", dimension: 'N', score: 1 },
-            { text: "You have always been interested in unconventional and ambiguous things, e.g., in books, art, or movies.", dimension: 'E', score: 1 },
-            { text: "You often take initiative in social situations.", dimension: 'M', score: 1 },
-            { text: "You prefer to do your chores before allowing yourself to relax.", dimension: 'T', score: 1 },
-            { text: "You are empathetic.", dimension: 'N', score: 1 },
-            { text: "You enjoy vibrant social events with lots of people.", dimension: 'M', score: 1 },
-            { text: "You often have a hard time understanding other people's feelings.", dimension: 'N', score: -1 },
-            { text: "You like to have a to-do list for each day.", dimension: 'T', score: 1 },
-            { text: "You rarely feel insecure.", dimension: 'M', score: 1 },
-            { text: "You avoid making phone calls.", dimension: 'M', score: -1 },
-            { text: "You really enjoy debating.", dimension: 'N', score: -1 },
-            { text: "You often find yourself lost in thought when you are walking in nature.", dimension: 'E', score: 1 },
-            { text: "If someone does not respond to your e-mail quickly, you start worrying if you said something wrong.", dimension: 'N', score: 1 },
-            { text: "As a parent, you would rather see your child grow up kind than smart.", dimension: 'N', score: 1 },
-            { text: "You do not let other people influence your actions.", dimension: 'N', score: -1 },
-            { text: "Your dreams tend to focus on the real world and its events.", dimension: 'E', score: -1 },
-            { text: "It does not take you long to start getting involved in social activities at your new workplace.", dimension: 'M', score: 1 },
-            { text: "You are more of a natural improviser than a careful planner.", dimension: 'T', score: -1 }
+            { text: "You find it difficult to introduce yourself to other people.", dimension: 'M', score: -1 }, { text: "You often get so lost in thought that you ignore or forget your surroundings.", dimension: 'E', score: 1 }, { text: "You try to respond to your e-mails as soon as possible and cannot stand a messy inbox.", dimension: 'T', score: 1 }, { text: "You find it easy to stay relaxed and focused even when there is some pressure.", dimension: 'M', score: 1 }, { text: "You do not usually initiate conversations.", dimension: 'M', score: -1 }, { text: "You rarely do something just out of sheer curiosity.", dimension: 'E', score: -1 }, { text: "You feel superior to other people.", dimension: 'N', score: -1 }, { text: "Being organized is more important to you than being adaptable.", dimension: 'T', score: 1 }, { text: "You are usually highly motivated and energetic.", dimension: 'M', score: 1 }, { text: "Winning a debate matters less to you than making sure no one gets upset.", dimension: 'N', score: 1 }, { text: "You often feel as if you have to justify yourself to other people.", dimension: 'N', score: 1 }, { text: "Your home and work environments are quite tidy.", dimension: 'T', score: 1 }, { text: "You do not mind being at the center of attention.", dimension: 'M', score: 1 }, { text: "You consider yourself more practical than creative.", dimension: 'E', score: -1 }, { text: "People can rarely upset you.", dimension: 'N', score: -1 }, { text: "Your travel plans are usually well thought out.", dimension: 'T', score: 1 }, { text: "It is often difficult for you to relate to other people’s feelings.", dimension: 'N', score: -1 }, { text: "Your mood can change very quickly.", dimension: 'M', score: -1 }, { text: "In a discussion, truth should be more important than people’s sensitivities.", dimension: 'N', score: -1 }, { text: "You rarely worry about how your actions affect other people.", dimension: 'N', score: -1 }, { text: "Your work style is closer to random energy spikes than to a methodical and organized approach.", dimension: 'T', score: -1 }, { text: "You are often envious of others.", dimension: 'N', score: 1 }, { text: "An interesting book or a video game is often better than a social event.", dimension: 'M', score: -1 }, { text: "Being able to develop a plan and stick to it is the most important part of every project.", dimension: 'T', score: 1 }, { text: "You can be easily distracted.", dimension: 'T', score: -1 }, { text: "You are not a fan of hypotheticals and what-ifs.", dimension: 'E', score: -1 }, { text: "You usually find it difficult to relax when talking in front of many people.", dimension: 'M', score: -1 }, { text: "Generally speaking, you rely more on your experience than your imagination.", dimension: 'E', score: -1 }, { text: "You worry too much about what other people think.", dimension: 'N', score: 1 }, { text: "If the room is full, you stay closer to the walls, avoiding the center.", dimension: 'M', score: -1 }, { text: "You have a tendency to procrastinate.", dimension: 'T', score: -1 }, { text: "You feel very anxious in stressful situations.", dimension: 'M', score: -1 }, { text: "You believe that it is more rewarding to be liked by others than to be powerful.", dimension: 'N', score: 1 }, { text: "You have always been interested in unconventional and ambiguous things, e.g., in books, art, or movies.", dimension: 'E', score: 1 }, { text: "You often take initiative in social situations.", dimension: 'M', score: 1 }, { text: "You prefer to do your chores before allowing yourself to relax.", dimension: 'T', score: 1 }, { text: "You are empathetic.", dimension: 'N', score: 1 }, { text: "You enjoy vibrant social events with lots of people.", dimension: 'M', score: 1 }, { text: "You often have a hard time understanding other people's feelings.", dimension: 'N', score: -1 }, { text: "You like to have a to-do list for each day.", dimension: 'T', score: 1 }, { text: "You rarely feel insecure.", dimension: 'M', score: 1 }, { text: "You avoid making phone calls.", dimension: 'M', score: -1 }, { text: "You really enjoy debating.", dimension: 'N', score: -1 }, { text: "You often find yourself lost in thought when you are walking in nature.", dimension: 'E', score: 1 }, { text: "If someone does not respond to your e-mail quickly, you start worrying if you said something wrong.", dimension: 'N', score: 1 }, { text: "As a parent, you would rather see your child grow up kind than smart.", dimension: 'N', score: 1 }, { text: "You do not let other people influence your actions.", dimension: 'N', score: -1 }, { text: "Your dreams tend to focus on the real world and its events.", dimension: 'E', score: -1 }, { text: "It does not take you long to start getting involved in social activities at your new workplace.", dimension: 'M', score: 1 }, { text: "You are more of a natural improviser than a careful planner.", dimension: 'T', score: -1 }
         ];
 
         const personalityTypeColors = {
@@ -787,7 +761,6 @@
         const loadingBarInnerEl = document.getElementById('loading-bar-inner');
         const startTestBtn = document.getElementById('start-test-btn');
         const backBtn = document.getElementById('back-btn');
-        const retakeTestBtn = document.getElementById('retake-test-btn');
         const questionTextEl = document.getElementById('question-text');
         const answerOptionsEl = document.getElementById('answer-options');
         const progressBarEl = document.getElementById('progress-bar');
@@ -800,7 +773,6 @@
         const level3SummaryEl = document.getElementById('level3-summary');
         const traitDetailsEl = document.getElementById('trait-details');
         const downloadBtn = document.getElementById('download-btn');
-        const shareBtn = document.getElementById('share-btn');
         const shareMessageEl = document.getElementById('share-message');
         const burgerMenu = document.getElementById('burger-menu');
         const sidebar = document.getElementById('sidebar');
@@ -810,6 +782,7 @@
         const sidebarHome = document.getElementById('sidebar-home');
         const sidebarAbout = document.getElementById('sidebar-about');
         const goTo16pTestBtn = document.getElementById('go-to-16p-test-btn');
+        const goToHexacoTestBtn = document.getElementById('go-to-hexaco-test-btn');
         const modelStartHexacoBtn = document.getElementById('model-start-hexaco-btn');
         const modelStart16pBtn = document.getElementById('model-start-16p-btn');
         const learnMoreHexacoBtn = document.getElementById('learn-more-hexaco-btn');
@@ -833,7 +806,6 @@
         const personalityTypeTitleEl = document.getElementById('personality-type-title');
         const personalityTypeNameEl = document.getElementById('personality-type-name');
         const personalityTypeDescriptionEl = document.getElementById('personality-type-description');
-        const retakePersonalityTestBtn = document.getElementById('retake-personality-test-btn');
         const personalityStrengthsEl = document.getElementById('personality-strengths');
         const personalityWeaknessesEl = document.getElementById('personality-weaknesses');
         const personalityCareersEl = document.getElementById('personality-careers');
@@ -845,18 +817,11 @@
 
         function setInitialUIText() {
             const t = translations.en;
-            
             document.getElementById('home-tagline').textContent = t.homeTagline;
             document.getElementById('why-us-title').textContent = t.whyUsTitle;
             document.getElementById('footer-text').innerHTML = t.footerText;
             backBtn.innerHTML = t.backBtn;
             document.getElementById('loading-text').textContent = t.loadingText;
-            document.getElementById('results-main-title').textContent = t.resultsMainTitle;
-            document.getElementById('results-breakdown-title').textContent = t.resultsBreakdownTitle;
-            document.getElementById('results-next-steps-title').textContent = t.resultsNextStepsTitle;
-            downloadBtn.textContent = t.downloadBtn;
-            shareBtn.textContent = t.shareBtn;
-            retakeTestBtn.textContent = t.retakeBtn;
         }
 
         function getTranslation(key, replacements = {}) {
@@ -1082,9 +1047,11 @@
             }
         }
 
-        async function handleDownload() {
-            const content = document.getElementById('results-content');
-            shareMessageEl.textContent = getTranslation('downloading');
+        async function handleDownload(testType) {
+            const content = testType === 'hexaco' ? document.getElementById('results-content') : document.getElementById('personality-results-content');
+            const messageEl = testType === 'hexaco' ? shareMessageEl : personalityShareMessageEl;
+            
+            messageEl.textContent = getTranslation('downloading');
             try {
                 const canvas = await html2canvas(content, { 
                     backgroundColor: '#f3f4f6',
@@ -1092,58 +1059,20 @@
                 });
                 const link = document.createElement('a');
                 link.href = canvas.toDataURL('image/png');
-                link.download = 'my-personality-results.png';
+                link.download = `my-${testType}-results.png`;
                 link.click();
-                shareMessageEl.textContent = getTranslation('downloaded');
+                messageEl.textContent = getTranslation('downloaded');
             } catch(err) {
                 console.error("Download failed", err);
-                shareMessageEl.textContent = getTranslation('downloadError');
+                messageEl.textContent = getTranslation('downloadError');
             } finally {
-                setTimeout(() => { shareMessageEl.textContent = ''; }, 3000);
-            }
-        }
-
-        async function handleShare() {
-            const shareText = getTranslation('shareMessage', { profile: profileTitleEl.textContent });
-            const shareData = {
-                title: 'My Personality Results',
-                text: shareText,
-                url: window.location.href
-            };
-            try {
-                if (navigator.share) {
-                    await navigator.share(shareData);
-                } else {
-                    const textArea = document.createElement("textarea");
-                    textArea.value = shareText;
-                    document.body.appendChild(textArea);
-                    textArea.focus();
-                    textArea.select();
-                    try {
-                        document.execCommand('copy');
-                        shareMessageEl.textContent = getTranslation('copiedToClipboard');
-                    } catch (err) {
-                        shareMessageEl.textContent = getTranslation('copyError');
-                    }
-                    document.body.removeChild(textArea);
-                }
-            } catch (err) {
-                console.error("Share failed", err);
-                shareMessageEl.textContent = getTranslation('shareError');
-            } finally {
-                setTimeout(() => { shareMessageEl.textContent = ''; }, 3000);
+                setTimeout(() => { messageEl.textContent = ''; }, 3000);
             }
         }
         
         function hideAllContainers() {
-            homepageContainerEl.style.display = 'none';
-            modelContainerEl.style.display = 'none';
-            testContainerEl.style.display = 'none';
-            resultsContainerEl.style.display = 'none';
-            personalityTestContainerEl.style.display = 'none';
-            hexacoDetailsContainerEl.style.display = 'none';
-            personalityDetailsContainerEl.style.display = 'none';
-            aboutUsContainerEl.style.display = 'none';
+            const containers = [homepageContainerEl, modelContainerEl, testContainerEl, resultsContainerEl, personalityTestContainerEl, hexacoDetailsContainerEl, personalityDetailsContainerEl, aboutUsContainerEl];
+            containers.forEach(c => c.style.display = 'none');
         }
 
         function handleNavLogoVisibility() {
@@ -1155,7 +1084,7 @@
         }
 
         function showModelPage(e) {
-            e.preventDefault();
+            if(e) e.preventDefault();
             hideAllContainers();
             modelContainerEl.style.display = 'block';
             window.scrollTo(0, 0);
@@ -1166,7 +1095,7 @@
         }
 
         function showHomePage(e) {
-            e.preventDefault();
+            if(e) e.preventDefault();
             hideAllContainers();
             homepageContainerEl.style.display = 'flex';
             window.scrollTo(0, 0);
@@ -1177,7 +1106,7 @@
         }
         
         function show16PersonalitiesPage(e) {
-            e.preventDefault();
+            if(e) e.preventDefault();
             hideAllContainers();
             personalityTestContainerEl.style.display = 'flex';
             personalityIntroEl.style.display = 'block';
@@ -1238,11 +1167,11 @@
 
         function renderPersonalityAnswerOptions() {
             const buttonHTML = `
-                <button data-value="5" class="personality-answer-btn bg-green-500 hover:bg-green-600 text-white font-bold py-3 px-4 rounded-full transition-transform transform hover:scale-105">${getTranslation('stronglyAgree')}</button>
-                <button data-value="4" class="personality-answer-btn bg-green-300 hover:bg-green-400 text-white font-bold py-3 px-4 rounded-full transition-transform transform hover:scale-105">${getTranslation('agree')}</button>
-                <button data-value="3" class="personality-answer-btn bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-3 px-4 rounded-full transition-transform transform hover:scale-105">${getTranslation('neutral')}</button>
-                <button data-value="2" class="personality-answer-btn bg-red-300 hover:bg-red-400 text-white font-bold py-3 px-4 rounded-full transition-transform transform hover:scale-105">${getTranslation('disagree')}</button>
-                <button data-value="1" class="personality-answer-btn bg-red-500 hover:bg-red-600 text-white font-bold py-3 px-4 rounded-full transition-transform transform hover:scale-105">${getTranslation('stronglyDisagree')}</button>
+                <button data-value="5" class="personality-answer-btn bg-green-500 hover:bg-green-600 text-white font-bold py-3 px-4 rounded-full">${getTranslation('stronglyAgree')}</button>
+                <button data-value="4" class="personality-answer-btn bg-green-300 hover:bg-green-400 text-white font-bold py-3 px-4 rounded-full">${getTranslation('agree')}</button>
+                <button data-value="3" class="personality-answer-btn bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-3 px-4 rounded-full">${getTranslation('neutral')}</button>
+                <button data-value="2" class="personality-answer-btn bg-red-300 hover:bg-red-400 text-white font-bold py-3 px-4 rounded-full">${getTranslation('disagree')}</button>
+                <button data-value="1" class="personality-answer-btn bg-red-500 hover:bg-red-600 text-white font-bold py-3 px-4 rounded-full">${getTranslation('stronglyDisagree')}</button>
             `;
             personalityAnswerOptionsEl.innerHTML = buttonHTML;
             personalityAnswerOptionsEl.querySelectorAll('.personality-answer-btn').forEach(btn => {
@@ -1307,37 +1236,30 @@
             personalityFamousEl.textContent = typeData.famous.join(', ');
 
             personalityQuestionContainerEl.style.display = 'none';
-            personalityTestContainerEl.style.display = 'flex'; // Make sure parent is visible
+            personalityTestContainerEl.style.display = 'flex';
             personalityResultsContainerEl.style.display = 'block';
         }
 
-        async function handlePersonalityDownload() {
-            const content = document.getElementById('personality-results-content');
-            personalityShareMessageEl.textContent = getTranslation('downloading');
-            try {
-                const canvas = await html2canvas(content, { 
-                    backgroundColor: '#ffffff',
-                    scale: 2 
-                });
-                const link = document.createElement('a');
-                link.href = canvas.toDataURL('image/png');
-                link.download = 'my-16-personalities-results.png';
-                link.click();
-                personalityShareMessageEl.textContent = getTranslation('downloaded');
-            } catch(err) {
-                console.error("Download failed", err);
-                personalityShareMessageEl.textContent = getTranslation('downloadError');
-            } finally {
-                setTimeout(() => { personalityShareMessageEl.textContent = ''; }, 3000);
-            }
-        }
-
-        function handlePersonalityShare(platform) {
-            const type = personalityTypeTitleEl.textContent;
-            const typeName = personalityTypeNameEl.textContent;
-            const text = encodeURIComponent(`I got ${type} (${typeName}) on the 16 Personalities test! Find out your type:`);
+        function handleGenericShare(platform, testType) {
+            const messageEl = testType === 'hexaco' ? shareMessageEl : personalityShareMessageEl;
+            let title, name, text;
             const url = encodeURIComponent(window.location.href);
+
+            if (testType === 'hexaco') {
+                title = profileTitleEl.textContent;
+                text = encodeURIComponent(`I took the Great Mind Profile test and my result is "${title}"! Find out your personality profile:`);
+            } else {
+                title = personalityTypeTitleEl.textContent;
+                name = personalityTypeNameEl.textContent;
+                text = encodeURIComponent(`I got ${title} (${name}) on the 16 Personalities test! Find out your type:`);
+            }
+
             let shareUrl = '';
+            if (platform === 'instagram') {
+                messageEl.textContent = 'Download the image to share on Instagram!';
+                setTimeout(() => { messageEl.textContent = ''; }, 3000);
+                return;
+            }
 
             switch(platform) {
                 case 'facebook':
@@ -1355,12 +1277,11 @@
             }
         }
 
+
         // --- Event Listeners ---
         startTestBtn.addEventListener('click', showModelPage);
         backBtn.addEventListener('click', handleBackClick);
-        retakeTestBtn.addEventListener('click', startTest);
-        downloadBtn.addEventListener('click', handleDownload);
-        shareBtn.addEventListener('click', handleShare);
+        downloadBtn.addEventListener('click', () => handleDownload('hexaco'));
         burgerMenu.addEventListener('click', toggleSidebar);
         closeSidebarBtn.addEventListener('click', toggleSidebar);
         navLogo.addEventListener('click', showHomePage);
@@ -1370,6 +1291,7 @@
         sidebarAbout.addEventListener('click', showAboutUsPage);
         backToHomeBtn.addEventListener('click', showHomePage);
         goTo16pTestBtn.addEventListener('click', show16PersonalitiesPage);
+        goToHexacoTestBtn.addEventListener('click', startTest);
         modelStartHexacoBtn.addEventListener('click', startTest);
         modelStart16pBtn.addEventListener('click', startPersonalityTest);
         learnMoreHexacoBtn.addEventListener('click', showHexacoDetails);
@@ -1380,12 +1302,10 @@
         
         // 16 Personalities Listeners
         startPersonalityTestBtn.addEventListener('click', startPersonalityTest);
-        retakePersonalityTestBtn.addEventListener('click', startPersonalityTest);
         personalityBackBtn.addEventListener('click', handlePersonalityBackClick);
-        downloadPersonalityBtn.addEventListener('click', handlePersonalityDownload);
+        downloadPersonalityBtn.addEventListener('click', () => handleDownload('personality'));
 
         window.addEventListener('scroll', handleNavLogoVisibility);
-
 
         // Set initial UI text on page load
         setInitialUIText();
