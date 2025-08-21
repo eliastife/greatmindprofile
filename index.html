@@ -34,6 +34,7 @@
         body {
             font-family: 'Poppins', sans-serif;
             overflow-x: hidden;
+            -webkit-tap-highlight-color: transparent; /* Removes blue tap highlight on mobile */
         }
         .font-headline {
             font-family: 'Poppins', sans-serif;
@@ -42,6 +43,8 @@
         .title-shadow {
             text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.1);
         }
+        
+        /* --- Animation & Transition Styles --- */
         @keyframes fadeIn {
             from { opacity: 0; transform: translateY(20px); }
             to { opacity: 1; transform: translateY(0); }
@@ -49,13 +52,31 @@
         .fade-in {
             animation: fadeIn 0.8s ease-out forwards;
         }
-        .fade-out {
-            animation: fadeOut 0.5s ease-out forwards;
+        .fade-in-stagger {
+            opacity: 0;
+            animation: fadeIn 0.6s ease-out forwards;
         }
-        @keyframes fadeOut {
-            from { opacity: 1; }
-            to { opacity: 0; }
+        
+        /* Material You Ripple Effect */
+        .ripple-effect {
+            position: relative;
+            overflow: hidden;
         }
+        .ripple {
+            position: absolute;
+            border-radius: 50%;
+            background-color: rgba(255, 255, 255, 0.6);
+            transform: scale(0);
+            animation: ripple-animation 0.6s linear;
+            pointer-events: none;
+        }
+        @keyframes ripple-animation {
+            to {
+                transform: scale(4);
+                opacity: 0;
+            }
+        }
+
         .score-bar-gradient {
             background-image: linear-gradient(to right, #3b82f6, #22c55e);
         }
@@ -136,8 +157,8 @@
             will-change: transform, box-shadow; /* Optimization for animations */
         }
         .test-card:hover {
-            transform: translateY(-12px);
-            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px -10px rgba(0, 0, 0, 0.2);
         }
     </style>
 </head>
@@ -196,7 +217,7 @@
         
         <main class="w-full max-w-6xl mx-auto pt-24 pb-12">
             <header class="text-center mb-16">
-                <h1 class="font-headline text-5xl sm:text-6xl md:text-7xl leading-tight tracking-tighter title-shadow text-gray-800">
+                <h1 class="font-headline text-4xl sm:text-6xl md:text-7xl leading-tight tracking-tighter title-shadow text-gray-800">
                     Finally Understand What Makes You, <span class="bg-gradient-to-r from-blue-500 via-red-500 to-yellow-500 bg-clip-text text-transparent">You.</span>
                 </h1>
                 <p class="mt-4 text-lg md:text-xl text-gray-600 max-w-3xl mx-auto">
@@ -206,22 +227,22 @@
 
             <div class="grid md:grid-cols-2 gap-8 lg:gap-12">
                 <!-- Test Card 1: HEXACO -->
-                <div class="test-card bg-white/60 backdrop-blur-lg p-8 rounded-3xl shadow-lg border border-white/20 flex flex-col text-center">
+                <div class="test-card bg-white/60 backdrop-blur-lg p-8 rounded-3xl shadow-lg border border-white/20 flex flex-col text-center ripple-effect">
                     <div class="w-full h-2 bg-gradient-to-r from-blue-500 to-red-500 rounded-full mb-6"></div>
                     <h3 class="text-2xl font-bold text-gray-800">The Deep Dive</h3>
                     <p class="text-gray-600 mt-2 mb-4 flex-grow">For a nuanced, multi-level understanding of your character based on the modern HEXACO model.</p>
                     <a href="#" id="learn-more-hexaco-btn" class="text-blue-600 font-semibold hover:underline mb-6">Click here to learn more</a>
-                    <button id="home-start-hexaco-btn" class="w-full bg-gray-800 text-white font-bold text-lg px-8 py-3 rounded-full shadow-lg transform transition-transform duration-300 hover:scale-105 hover:bg-black focus:outline-none focus:ring-4 focus:ring-gray-400">
+                    <button id="home-start-hexaco-btn" class="w-full bg-gray-800 text-white font-bold text-lg px-8 py-3 rounded-full shadow-lg transform transition-transform duration-300 hover:scale-105 hover:bg-black focus:outline-none focus:ring-4 focus:ring-gray-400 ripple-effect">
                         Start the HEXACO Test
                     </button>
                 </div>
                 <!-- Test Card 2: 16 Types -->
-                <div class="test-card bg-white/60 backdrop-blur-lg p-8 rounded-3xl shadow-lg border border-white/20 flex flex-col text-center">
+                <div class="test-card bg-white/60 backdrop-blur-lg p-8 rounded-3xl shadow-lg border border-white/20 flex flex-col text-center ripple-effect">
                     <div class="w-full h-2 bg-gradient-to-r from-red-500 to-yellow-500 rounded-full mb-6"></div>
                     <h3 class="text-2xl font-bold text-gray-800">The Classic Framework</h3>
                     <p class="text-gray-600 mt-2 mb-4 flex-grow">For discovering your cognitive style and how you interact with the world, based on the 16 Personality Types.</p>
                     <a href="#" id="learn-more-16p-btn" class="text-cyan-600 font-semibold hover:underline mb-6">Click here to learn more</a>
-                    <button id="home-start-16p-btn" class="w-full bg-cyan-600 text-white font-bold text-lg px-8 py-3 rounded-full shadow-lg transform transition-transform duration-300 hover:scale-105 hover:bg-cyan-700 focus:outline-none focus:ring-4 focus:ring-cyan-300">
+                    <button id="home-start-16p-btn" class="w-full bg-cyan-600 text-white font-bold text-lg px-8 py-3 rounded-full shadow-lg transform transition-transform duration-300 hover:scale-105 hover:bg-cyan-700 focus:outline-none focus:ring-4 focus:ring-cyan-300 ripple-effect">
                         Start the 16 Types Test
                     </button>
                 </div>
@@ -269,7 +290,7 @@
                 <p>In a digital world where data is a valuable commodity, we stand firm on our commitment to your privacy. We do not collect or store any of your personal data or test results. Unlike other platforms that might hide their best features behind a paywall, our tools are completely free. We're dedicated to providing a safe, transparent, and genuinely helpful experience for anyone curious about the fascinating world of personality.</p>
             </div>
              <div class="text-center mt-8">
-                <button id="back-to-home-btn" class="inline-block bg-gray-200 text-gray-800 font-semibold py-3 px-6 rounded-full hover:bg-gray-300 transition">&larr; Back to Home</button>
+                <button id="back-to-home-btn" class="inline-block bg-gray-200 text-gray-800 font-semibold py-3 px-6 rounded-full hover:bg-gray-300 transition ripple-effect">&larr; Back to Home</button>
             </div>
         </div>
     </div>
@@ -294,7 +315,7 @@
                 <p><strong>6. Openness to Experience (O):</strong> This dimension involves creativity, curiosity, and an appreciation for aesthetics and unconventional ideas. High scorers are innovative and inquisitive. Low scorers are more pragmatic, conventional, and find comfort in tradition.</p>
             </div>
             <div class="text-center mt-8">
-                <button class="back-to-home-btn-secondary inline-block bg-gray-200 text-gray-800 font-semibold py-3 px-6 rounded-full hover:bg-gray-300 transition">&larr; Back to Home</button>
+                <button class="back-to-home-btn-secondary inline-block bg-gray-200 text-gray-800 font-semibold py-3 px-6 rounded-full hover:bg-gray-300 transition ripple-effect">&larr; Back to Home</button>
             </div>
         </div>
     </div>
@@ -317,7 +338,7 @@
                 <p><strong>4. Judging (J) vs. Perceiving (P):</strong> This reflects your approach to the outside world and your lifestyle. Judging types prefer structure, plans, and firm decisions, enjoying a sense of closure. Perceiving types are more flexible, spontaneous, and like to keep their options open, adapting as they go.</p>
             </div>
              <div class="text-center mt-8">
-                <button class="back-to-home-btn-secondary inline-block bg-gray-200 text-gray-800 font-semibold py-3 px-6 rounded-full hover:bg-gray-300 transition">&larr; Back to Home</button>
+                <button class="back-to-home-btn-secondary inline-block bg-gray-200 text-gray-800 font-semibold py-3 px-6 rounded-full hover:bg-gray-300 transition ripple-effect">&larr; Back to Home</button>
             </div>
         </div>
     </div>
@@ -348,7 +369,7 @@
         <div id="personality-intro" class="text-center max-w-3xl mx-auto">
              <h1 class="font-headline text-4xl md:text-5xl text-center mb-4 title-shadow bg-gradient-to-r from-teal-400 via-cyan-500 to-sky-600 bg-clip-text text-transparent">The 16 Personality Types</h1>
              <p class="text-lg text-gray-700 mb-8">This test is based on the influential theory of psychological types proposed by Carl Jung. Discover how your preferences in four key areas combine to form one of 16 distinct personality types. Answer honestly to get the most accurate result.</p>
-             <button id="start-personality-test-btn" class="inline-block bg-cyan-600 text-white font-bold text-xl px-10 py-4 rounded-full shadow-lg transform transition-transform duration-300 hover:scale-105 hover:bg-cyan-700 focus:outline-none focus:ring-4 focus:ring-cyan-300">Start the Test</button>
+             <button id="start-personality-test-btn" class="inline-block bg-cyan-600 text-white font-bold text-xl px-10 py-4 rounded-full shadow-lg transform transition-transform duration-300 hover:scale-105 hover:bg-cyan-700 focus:outline-none focus:ring-4 focus:ring-cyan-300 ripple-effect">Start the Test</button>
         </div>
 
         <div id="personality-question-container" class="hidden w-full max-w-2xl">
@@ -360,8 +381,8 @@
                 <div id="personality-progress-bar" class="bg-cyan-500 h-2.5 rounded-full" style="width: 0%"></div>
             </div>
             <div class="bg-white p-8 rounded-2xl shadow-md">
-                <h2 id="personality-question-text" class="text-2xl md:text-3xl font-bold text-gray-800 text-center mb-8"></h2>
-                <div id="personality-answer-options" class="grid grid-cols-1 sm:grid-cols-5 gap-3 text-center"></div>
+                <h2 id="personality-question-text" class="text-xl md:text-3xl font-bold text-gray-800 text-center mb-8"></h2>
+                <div id="personality-answer-options" class="flex flex-col sm:flex-row justify-center items-center gap-3 text-center"></div>
                 <div class="mt-8 text-center">
                     <button id="personality-back-btn" class="text-gray-500 hover:text-gray-800 font-semibold py-2 px-4">&larr; Back</button>
                 </div>
@@ -369,7 +390,7 @@
         </div>
         
         <div id="personality-results-container" class="hidden max-w-3xl mx-auto p-4">
-            <div id="personality-results-content" class="bg-white p-8 rounded-2xl shadow-lg">
+            <div id="personality-results-content" class="bg-white p-8 rounded-2xl shadow-lg fade-in-stagger">
                 <p class="text-gray-600 font-semibold text-center">Your Personality Type is:</p>
                 <h2 id="personality-type-title" class="text-5xl font-extrabold mb-2 text-center"></h2>
                 <h3 id="personality-type-name" class="text-3xl font-bold text-gray-800 mb-6 text-center"></h3>
@@ -395,7 +416,7 @@
             </div>
 
             <!-- Ad Banner -->
-            <div class="my-8 w-full flex justify-center">
+            <div class="my-8 w-full flex justify-center fade-in-stagger" style="animation-delay: 0.2s;">
                 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8816195894061749"
                      crossorigin="anonymous"></script>
                 <!-- results -->
@@ -410,17 +431,17 @@
                 </script>
             </div>
             
-            <div class="bg-white p-8 rounded-2xl shadow-md w-full mt-8 fade-in">
+            <div class="bg-white p-8 rounded-2xl shadow-md w-full mt-8 fade-in-stagger" style="animation-delay: 0.4s;">
                 <h3 class="text-2xl font-bold text-center mb-6">Next Steps</h3>
                 <div class="flex flex-col sm:flex-row justify-center items-center gap-4">
-                     <button id="go-to-hexaco-test-btn" class="w-full sm:w-auto inline-block bg-gray-800 text-white font-bold text-lg px-8 py-3 rounded-full shadow-lg transform transition-transform duration-300 hover:scale-105 hover:bg-black focus:outline-none focus:ring-4 focus:ring-gray-400">Try the Great Mind Profile Test</button>
+                     <button id="go-to-hexaco-test-btn" class="w-full sm:w-auto inline-block bg-gray-800 text-white font-bold text-lg px-8 py-3 rounded-full shadow-lg transform transition-transform duration-300 hover:scale-105 hover:bg-black focus:outline-none focus:ring-4 focus:ring-gray-400 ripple-effect">Try the Great Mind Profile Test</button>
                 </div>
             </div>
 
-            <div class="bg-white p-8 rounded-2xl shadow-md w-full mt-8 fade-in">
+            <div class="bg-white p-8 rounded-2xl shadow-md w-full mt-8 fade-in-stagger" style="animation-delay: 0.6s;">
                 <h3 class="text-2xl font-bold text-center mb-6">Download & Share</h3>
                 <div class="text-center mb-6">
-                    <button id="download-personality-btn" class="w-full sm:w-auto inline-block bg-blue-600 text-white font-bold text-lg px-8 py-3 rounded-full shadow-lg transform transition-transform duration-300 hover:scale-105 hover:bg-blue-700 focus:outline-none focus:ring-4 focus:ring-blue-300">Download Results Image</button>
+                    <button id="download-personality-btn" class="w-full sm:w-auto inline-block bg-blue-600 text-white font-bold text-lg px-8 py-3 rounded-full shadow-lg transform transition-transform duration-300 hover:scale-105 hover:bg-blue-700 focus:outline-none focus:ring-4 focus:ring-blue-300 ripple-effect">Download Results Image</button>
                 </div>
                 <div class="flex justify-center items-center gap-6 pt-4">
                     <button onclick="handleGenericShare('facebook', 'personality')" class="text-blue-600 hover:text-blue-800 transition transform hover:scale-110">
@@ -470,7 +491,7 @@
     <!-- HEXACO Results Container -->
     <div id="results-container" class="hidden bg-gray-100 p-4 sm:p-6 md:p-8 pt-28">
         <div id="results-content" class="max-w-4xl mx-auto pb-16">
-            <div class="bg-white p-8 rounded-2xl shadow-md w-full mb-8 fade-in">
+            <div class="bg-white p-8 rounded-2xl shadow-md w-full mb-8 fade-in-stagger">
                 <h2 id="results-main-title" class="text-3xl md:text-4xl font-extrabold text-center mb-2">Your Integrated Profile:</h2>
                 <p id="profile-title" class="text-2xl md:text-3xl font-bold text-center mb-2"></p>
                 <p id="profile-subtypes" class="text-center text-gray-600 font-semibold mb-6"></p>
@@ -479,13 +500,13 @@
                 <div id="level3-summary" class="mt-4 p-4 bg-indigo-50 rounded-lg"></div>
             </div>
 
-            <div class="bg-white p-8 rounded-2xl shadow-md w-full mb-8 fade-in" style="animation-delay: 0.2s;">
+            <div class="bg-white p-8 rounded-2xl shadow-md w-full mb-8 fade-in-stagger" style="animation-delay: 0.2s;">
                 <h3 id="results-breakdown-title" class="text-2xl font-bold text-center mb-6">Your Trait Breakdown</h3>
                 <div id="trait-details" class="grid grid-cols-1 md:grid-cols-2 gap-8"></div>
             </div>
 
             <!-- Ad Banner -->
-            <div class="my-8 w-full flex justify-center">
+            <div class="my-8 w-full flex justify-center fade-in-stagger" style="animation-delay: 0.4s;">
                 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8816195894061749"
                      crossorigin="anonymous"></script>
                 <!-- results -->
@@ -500,17 +521,17 @@
                 </script>
             </div>
 
-            <div class="bg-white p-8 rounded-2xl shadow-md w-full mb-8 fade-in" style="animation-delay: 0.4s;">
+            <div class="bg-white p-8 rounded-2xl shadow-md w-full mb-8 fade-in-stagger" style="animation-delay: 0.6s;">
                 <h3 id="results-next-steps-title" class="text-2xl font-bold text-center mb-6">Next Steps</h3>
                 <div class="flex flex-col sm:flex-row justify-center items-center gap-4">
-                     <button id="go-to-16p-test-btn" class="w-full sm:w-auto inline-block bg-cyan-600 text-white font-bold text-lg px-8 py-3 rounded-full shadow-lg transform transition-transform duration-300 hover:scale-105 hover:bg-cyan-700 focus:outline-none focus:ring-4 focus:ring-cyan-300">Try the 16 Personalities Test</button>
+                     <button id="go-to-16p-test-btn" class="w-full sm:w-auto inline-block bg-cyan-600 text-white font-bold text-lg px-8 py-3 rounded-full shadow-lg transform transition-transform duration-300 hover:scale-105 hover:bg-cyan-700 focus:outline-none focus:ring-4 focus:ring-cyan-300 ripple-effect">Try the 16 Personalities Test</button>
                 </div>
             </div>
             
-            <div class="bg-white p-8 rounded-2xl shadow-md w-full fade-in" style="animation-delay: 0.6s;">
+            <div class="bg-white p-8 rounded-2xl shadow-md w-full fade-in-stagger" style="animation-delay: 0.8s;">
                 <h3 class="text-2xl font-bold text-center mb-6">Download & Share</h3>
                 <div class="text-center mb-6">
-                     <button id="download-btn" class="w-full sm:w-auto inline-block bg-blue-600 text-white font-bold text-lg px-8 py-3 rounded-full shadow-lg transform transition-transform duration-300 hover:scale-105 hover:bg-blue-700 focus:outline-none focus:ring-4 focus:ring-blue-300">Download Results Image</button>
+                     <button id="download-btn" class="w-full sm:w-auto inline-block bg-blue-600 text-white font-bold text-lg px-8 py-3 rounded-full shadow-lg transform transition-transform duration-300 hover:scale-105 hover:bg-blue-700 focus:outline-none focus:ring-4 focus:ring-blue-300 ripple-effect">Download Results Image</button>
                 </div>
                 <div class="flex justify-center items-center gap-6 pt-4">
                      <button onclick="handleGenericShare('facebook', 'hexaco')" class="text-blue-600 hover:text-blue-800 transition transform hover:scale-110">
@@ -574,13 +595,6 @@
         const translations = {
             en: {
                 // UI Text
-                homeTagline: "A Multi-Level Personality Assessment",
-                whyUsTitle: "Why Choose Us?",
-                whyUs1Title: "Based on Science", whyUs1Desc: "Our test is built on the HEXACO model, a robust framework trusted by psychologists for its accuracy and cross-cultural validity.",
-                whyUs2Title: "Three-Level Analysis", whyUs2Desc: "We go beyond simple traits by analyzing your situational judgments and life story themes to create a truly holistic profile.",
-                whyUs3Title: "Actionable Insights", whyUs3Desc: "Understand your strengths and potential challenges with clear, non-judgmental feedback designed for personal growth.",
-                homeDescription: "Discover your unique strengths. Our analysis is based on the scientifically validated <strong>HEXACO model</strong> for a surprisingly accurate personality profile.",
-                startBtn: "Start the Test!",
                 footerText: "&copy; 2025 Great Mind Profile. All Rights Reserved.",
                 progressPart1: "Part 1: Core Traits",
                 progressPart2: "Part 2: Situational Judgement",
@@ -591,8 +605,6 @@
                 resultsBreakdownTitle: "Your Trait Breakdown",
                 resultsNextStepsTitle: "Next Steps",
                 downloadBtn: "Download Results",
-                shareBtn: "Share with Friends",
-                retakeBtn: "Retake Test",
                 high: "High",
                 low: "Low",
                 subtypesPrefix: "Key Sub-Types:",
@@ -600,15 +612,10 @@
                 level2Summary: "Your responses to situational questions suggest that when faced with challenges, you tend to prioritize actions related to <strong>{profile}</strong>, reinforcing your core traits in your daily decisions.",
                 level3Title: "Your Life Story:",
                 level3Default: "You have a unique perspective on your life's journey.",
-                shareMessage: "I took the Great Mind Profile test and my profile is \"{profile}\"! Check your personality test on www.test.com for free!",
+                shareMessage: "I took the Great Mind Profile test and my profile is \"{profile}\"! Find out your personality type!",
                 downloading: "Generating image...",
                 downloaded: "Results image downloaded!",
                 downloadError: "Could not download results.",
-                sharing: "Shared successfully!",
-                shareError: "Could not share results.",
-                shareNotSupported: "Share feature not supported on this browser.",
-                copiedToClipboard: "Link copied to clipboard!",
-                copyError: "Could not copy link.",
                 loadingText: "Analyzing Your Profile...",
                 stronglyAgree: "Strongly Agree", agree: "Agree", neutral: "Neutral", disagree: "Disagree", stronglyDisagree: "Strongly Disagree",
                 // Level 1 Questions
@@ -853,18 +860,18 @@
                 question.options.forEach((option, index) => {
                     const button = document.createElement('button');
                     button.innerHTML = getTranslation(option.id);
-                    button.className = `choice-btn ${choiceColors[index % choiceColors.length]}`;
+                    button.className = `choice-btn ripple-effect ${choiceColors[index % choiceColors.length]}`;
                     button.onclick = () => handleChoiceClick(option);
                     answerOptionsEl.appendChild(button);
                 });
             } else {
                 const buttonHTML = `
-                    <div class="grid grid-cols-1 sm:grid-cols-5 gap-3 text-center">
-                        <button data-value="5" class="answer-btn bg-green-500 hover:bg-green-600 text-white font-bold py-3 px-4 rounded-full transition-transform transform hover:scale-105">${getTranslation('stronglyAgree')}</button>
-                        <button data-value="4" class="answer-btn bg-green-300 hover:bg-green-400 text-white font-bold py-3 px-4 rounded-full transition-transform transform hover:scale-105">${getTranslation('agree')}</button>
-                        <button data-value="3" class="answer-btn bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-3 px-4 rounded-full transition-transform transform hover:scale-105">${getTranslation('neutral')}</button>
-                        <button data-value="2" class="answer-btn bg-red-300 hover:bg-red-400 text-white font-bold py-3 px-4 rounded-full transition-transform transform hover:scale-105">${getTranslation('disagree')}</button>
-                        <button data-value="1" class="answer-btn bg-red-500 hover:bg-red-600 text-white font-bold py-3 px-4 rounded-full transition-transform transform hover:scale-105">${getTranslation('stronglyDisagree')}</button>
+                    <div class="flex flex-col sm:flex-row justify-center items-center gap-2 text-center">
+                        <button data-value="5" class="answer-btn w-full sm:w-auto bg-green-500 hover:bg-green-600 text-white font-bold py-3 px-4 rounded-full transition-transform transform hover:scale-105 ripple-effect">${getTranslation('stronglyAgree')}</button>
+                        <button data-value="4" class="answer-btn w-full sm:w-auto bg-green-300 hover:bg-green-400 text-white font-bold py-3 px-4 rounded-full transition-transform transform hover:scale-105 ripple-effect">${getTranslation('agree')}</button>
+                        <button data-value="3" class="answer-btn w-full sm:w-auto bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-3 px-4 rounded-full transition-transform transform hover:scale-105 ripple-effect">${getTranslation('neutral')}</button>
+                        <button data-value="2" class="answer-btn w-full sm:w-auto bg-red-300 hover:bg-red-400 text-white font-bold py-3 px-4 rounded-full transition-transform transform hover:scale-105 ripple-effect">${getTranslation('disagree')}</button>
+                        <button data-value="1" class="answer-btn w-full sm:w-auto bg-red-500 hover:bg-red-600 text-white font-bold py-3 px-4 rounded-full transition-transform transform hover:scale-105 ripple-effect">${getTranslation('stronglyDisagree')}</button>
                     </div>
                 `;
                 answerOptionsEl.innerHTML = buttonHTML;
@@ -937,7 +944,12 @@
         function showResults() {
             gtag('event', 'complete_test', { 'test_type': 'HEXACO' });
             resultsContainerEl.style.display = 'block';
-            resultsContainerEl.classList.add('fade-in');
+            
+            // Staggered animation for results
+            const resultsElements = resultsContainerEl.querySelectorAll('.fade-in-stagger');
+            resultsElements.forEach((el, index) => {
+                el.style.animationDelay = `${index * 0.2}s`;
+            });
 
             let primaryProfile = 'H';
             let highestScore = -1;
@@ -1105,11 +1117,11 @@
 
         function renderPersonalityAnswerOptions() {
             const buttonHTML = `
-                <button data-value="5" class="personality-answer-btn bg-green-500 hover:bg-green-600 text-white font-bold py-3 px-4 rounded-full">${getTranslation('stronglyAgree')}</button>
-                <button data-value="4" class="personality-answer-btn bg-green-300 hover:bg-green-400 text-white font-bold py-3 px-4 rounded-full">${getTranslation('agree')}</button>
-                <button data-value="3" class="personality-answer-btn bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-3 px-4 rounded-full">${getTranslation('neutral')}</button>
-                <button data-value="2" class="personality-answer-btn bg-red-300 hover:bg-red-400 text-white font-bold py-3 px-4 rounded-full">${getTranslation('disagree')}</button>
-                <button data-value="1" class="personality-answer-btn bg-red-500 hover:bg-red-600 text-white font-bold py-3 px-4 rounded-full">${getTranslation('stronglyDisagree')}</button>
+                <button data-value="5" class="personality-answer-btn w-full mb-2 sm:mb-0 sm:w-auto bg-green-500 hover:bg-green-600 text-white font-bold py-3 px-4 rounded-full ripple-effect">${getTranslation('stronglyAgree')}</button>
+                <button data-value="4" class="personality-answer-btn w-full mb-2 sm:mb-0 sm:w-auto bg-green-300 hover:bg-green-400 text-white font-bold py-3 px-4 rounded-full ripple-effect">${getTranslation('agree')}</button>
+                <button data-value="3" class="personality-answer-btn w-full mb-2 sm:mb-0 sm:w-auto bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-3 px-4 rounded-full ripple-effect">${getTranslation('neutral')}</button>
+                <button data-value="2" class="personality-answer-btn w-full mb-2 sm:mb-0 sm:w-auto bg-red-300 hover:bg-red-400 text-white font-bold py-3 px-4 rounded-full ripple-effect">${getTranslation('disagree')}</button>
+                <button data-value="1" class="personality-answer-btn w-full sm:w-auto bg-red-500 hover:bg-red-600 text-white font-bold py-3 px-4 rounded-full ripple-effect">${getTranslation('stronglyDisagree')}</button>
             `;
             personalityAnswerOptionsEl.innerHTML = buttonHTML;
             personalityAnswerOptionsEl.querySelectorAll('.personality-answer-btn').forEach(btn => {
@@ -1177,6 +1189,12 @@
             personalityQuestionContainerEl.style.display = 'none';
             personalityTestContainerEl.style.display = 'flex';
             personalityResultsContainerEl.style.display = 'block';
+            
+            // Staggered animation for results
+            const resultsElements = personalityResultsContainerEl.querySelectorAll('.fade-in-stagger');
+            resultsElements.forEach((el, index) => {
+                el.style.animationDelay = `${index * 0.2}s`;
+            });
         }
 
         function handleGenericShare(platform, testType) {
@@ -1216,6 +1234,32 @@
             }
         }
 
+        // --- Initialize Ripple Effect ---
+        function createRipple(event) {
+            const button = event.currentTarget;
+            const circle = document.createElement("span");
+            const diameter = Math.max(button.clientWidth, button.clientHeight);
+            const radius = diameter / 2;
+
+            circle.style.width = circle.style.height = `${diameter}px`;
+            circle.style.left = `${event.clientX - (button.offsetLeft + radius)}px`;
+            circle.style.top = `${event.clientY - (button.offsetTop + radius)}px`;
+            circle.classList.add("ripple");
+
+            const ripple = button.getElementsByClassName("ripple")[0];
+            if (ripple) {
+                ripple.remove();
+            }
+            button.appendChild(circle);
+        }
+
+        function initializeRipples() {
+            const buttons = document.querySelectorAll(".ripple-effect");
+            buttons.forEach(button => {
+                button.addEventListener("click", createRipple);
+            });
+        }
+
 
         // --- Event Listeners ---
         homeStartHexacoBtn.addEventListener('click', startTest);
@@ -1243,8 +1287,11 @@
         personalityBackBtn.addEventListener('click', handlePersonalityBackClick);
         downloadPersonalityBtn.addEventListener('click', () => handleDownload('personality'));
 
-        // Set initial UI text on page load
-        setInitialUIText();
+        // Set initial UI text and effects on page load
+        document.addEventListener('DOMContentLoaded', () => {
+            setInitialUIText();
+            initializeRipples();
+        });
 
     </script>
 </body>
