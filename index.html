@@ -133,6 +133,7 @@
         }
         .test-card {
             transition: transform 0.3s ease, box-shadow 0.3s ease;
+            will-change: transform, box-shadow; /* Optimization for animations */
         }
         .test-card:hover {
             transform: translateY(-12px);
@@ -392,6 +393,22 @@
                      <p id="personality-famous" class="text-center text-gray-700"></p>
                 </div>
             </div>
+
+            <!-- Ad Banner -->
+            <div class="my-8 w-full flex justify-center">
+                <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8816195894061749"
+                     crossorigin="anonymous"></script>
+                <!-- results -->
+                <ins class="adsbygoogle"
+                     style="display:block"
+                     data-ad-client="ca-pub-8816195894061749"
+                     data-ad-slot="2441026505"
+                     data-ad-format="auto"
+                     data-full-width-responsive="true"></ins>
+                <script>
+                     (adsbygoogle = window.adsbygoogle || []).push({});
+                </script>
+            </div>
             
             <div class="bg-white p-8 rounded-2xl shadow-md w-full mt-8 fade-in">
                 <h3 class="text-2xl font-bold text-center mb-6">Next Steps</h3>
@@ -465,6 +482,22 @@
             <div class="bg-white p-8 rounded-2xl shadow-md w-full mb-8 fade-in" style="animation-delay: 0.2s;">
                 <h3 id="results-breakdown-title" class="text-2xl font-bold text-center mb-6">Your Trait Breakdown</h3>
                 <div id="trait-details" class="grid grid-cols-1 md:grid-cols-2 gap-8"></div>
+            </div>
+
+            <!-- Ad Banner -->
+            <div class="my-8 w-full flex justify-center">
+                <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8816195894061749"
+                     crossorigin="anonymous"></script>
+                <!-- results -->
+                <ins class="adsbygoogle"
+                     style="display:block"
+                     data-ad-client="ca-pub-8816195894061749"
+                     data-ad-slot="2441026505"
+                     data-ad-format="auto"
+                     data-full-width-responsive="true"></ins>
+                <script>
+                     (adsbygoogle = window.adsbygoogle || []).push({});
+                </script>
             </div>
 
             <div class="bg-white p-8 rounded-2xl shadow-md w-full mb-8 fade-in" style="animation-delay: 0.4s;">
@@ -768,6 +801,7 @@
         }
         
         function startTest() {
+            gtag('event', 'start_test', { 'test_type': 'HEXACO' });
             questions = [
                 ...shuffleArray([...level1Questions]),
                 ...shuffleArray([...level2Questions]),
@@ -901,6 +935,7 @@
         }
 
         function showResults() {
+            gtag('event', 'complete_test', { 'test_type': 'HEXACO' });
             resultsContainerEl.style.display = 'block';
             resultsContainerEl.classList.add('fade-in');
 
@@ -1055,6 +1090,7 @@
 
         // --- 16 Personalities Test Logic ---
         function startPersonalityTest() {
+            gtag('event', 'start_test', { 'test_type': '16_Personalities' });
             hideAllContainers();
             personalityTestContainerEl.style.display = 'flex';
             personalityScores = { M: 0, E: 0, N: 0, T: 0 };
@@ -1118,6 +1154,7 @@
         }
 
         function calculateAndShowPersonalityResults() {
+            gtag('event', 'complete_test', { 'test_type': '16_Personalities' });
             let result = "";
             result += personalityScores.M > 0 ? "E" : "I";
             result += personalityScores.E > 0 ? "N" : "S";
