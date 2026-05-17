@@ -98,7 +98,7 @@ export function QuizClient() {
     saveResult(result);
     window.localStorage.removeItem(progressKey);
     track("complete_test", { mode, confidence: result.confidence });
-    router.push(`/personality-test/results/${result.resultId}`);
+    router.push(`/personality-test/results?resultId=${encodeURIComponent(result.resultId)}`);
   }
 
   function chooseAnswer(value: Likert) {

@@ -24,7 +24,7 @@ const labels: Record<string, string> = {
   emotionality: "Emotionality"
 };
 
-export function ResultClient({ resultId }: { resultId: string }) {
+export function ResultClient({ resultId = "" }: { resultId?: string }) {
   const [result, setResult] = useState<ResultProfile | "missing" | null>(null);
   const cardRef = useRef<HTMLDivElement>(null);
 
@@ -44,12 +44,16 @@ export function ResultClient({ resultId }: { resultId: string }) {
     }
 
     try {
+      const requestedResultId = new URLSearchParams(window.location.search).get("resultId") ?? resultId;
       const parsed = readJson<Record<string, ResultProfile>>(window.localStorage, resultKey) ?? {};
       const latestResultId = window.localStorage.getItem(latestResultIdKey);
       const directCurrent =
         readJson<ResultProfile>(window.sessionStorage, currentResultKey) ??
         readJson<ResultProfile>(window.localStorage, currentResultKey);
-      const recoveredResult = parsed[resultId] ?? (latestResultId ? parsed[latestResultId] : undefined) ?? directCurrent;
+      const recoveredResult =
+        (requestedResultId ? parsed[requestedResultId] : undefined) ??
+        (latestResultId ? parsed[latestResultId] : undefined) ??
+        directCurrent;
 
       if (!isFresh(recoveredResult)) {
         // Browser-local result lookup has to hydrate after mount.
@@ -59,8 +63,12 @@ export function ResultClient({ resultId }: { resultId: string }) {
       }
 
       // Result data lives in browser local storage, so this restore happens after hydration.
-      if (recoveredResult.resultId !== resultId) {
-        window.history.replaceState(null, "", `/personality-test/results/${recoveredResult.resultId}`);
+      if (recoveredResult.resultId !== requestedResultId) {
+        window.history.replaceState(
+          null,
+          "",
+          `/personality-test/results?resultId=${encodeURIComponent(recoveredResult.resultId)}`
+        );
       }
       setResult(recoveredResult);
     } catch {

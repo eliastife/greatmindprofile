@@ -8,6 +8,6 @@ export const metadata: Metadata = createMetadata({
   path: "/personality-test/results"
 });
 
-export default function ResultPage({ params }: { params: { resultId: string } }) {
-  return <ResultClient resultId={params.resultId} />;
+export default function ResultsPage() {
+  return <ResultClient />;
 }
