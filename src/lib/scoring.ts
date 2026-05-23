@@ -63,7 +63,7 @@ const enneagramNames: Record<string, string> = {
   nine: "Type 9 - The Peacemaker"
 };
 
-const typeAlternates: Record<string, string[]> = {
+export const typeAlternates: Record<string, string[]> = {
   INTJ: ["INFJ", "ENTJ"],
   INTP: ["INTJ", "ENTP"],
   ENTJ: ["INTJ", "ENFJ"],
@@ -101,7 +101,7 @@ const matchMap: Record<string, { best: string; challenge: string }> = {
   ESFP: { best: "ISTJ", challenge: "INTJ" }
 };
 
-const typeProfiles: Record<string, ResultProfile["typeProfile"]> = {
+export const typeProfiles: Record<string, ResultProfile["typeProfile"]> = {
   INTJ: {
     name: "The Strategic Architect",
     overview: "A private, future-focused problem solver who likes elegant systems and long-range plans.",

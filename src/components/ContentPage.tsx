@@ -6,6 +6,10 @@ import { AdSlot } from "./AdSlot";
 
 const adEligibleSlugs = new Set(["big-five", "hexaco", "enneagram", "personality-types", "methodology"]);
 
+function canShowContentAd(slug: string) {
+  return adEligibleSlugs.has(slug) || slug.startsWith("articles/") || slug.startsWith("personality-types/");
+}
+
 export function ContentPage({ page }: { page: ContentPageData }) {
   return (
     <>
@@ -54,7 +58,7 @@ export function ContentPage({ page }: { page: ContentPageData }) {
             </section>
           ) : null}
         </div>
-        {adEligibleSlugs.has(page.slug) ? (
+        {canShowContentAd(page.slug) ? (
           <div className="content-ad">
             <AdSlot />
           </div>

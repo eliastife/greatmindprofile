@@ -13,5 +13,6 @@ export const navLinks = [
   { href: "/big-five", label: "Big Five" },
   { href: "/hexaco", label: "HEXACO" },
   { href: "/enneagram", label: "Enneagram" },
+  { href: "/articles", label: "Articles" },
   { href: "/methodology", label: "Methodology" }
 ];

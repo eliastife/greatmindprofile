@@ -1,6 +1,7 @@
 import Link from "next/link";
 import type { Metadata } from "next";
 import { createMetadata } from "@/lib/seo";
+import { articlePages, personalityTypeCodes } from "@/lib/seoContent";
 
 export const metadata: Metadata = createMetadata({
   title: "Great Mind Profile",
@@ -11,6 +12,7 @@ export const metadata: Metadata = createMetadata({
 });
 
 const models = ["Big Five traits", "HEXACO-inspired scores", "16-type estimate", "Enneagram-style motivation"] as const;
+const featuredArticles = ["infj-careers", "infp-vs-infj", "what-is-openness-to-experience", "hexaco-honesty-humility"] as const;
 
 export default function HomePage() {
   return (
@@ -28,8 +30,8 @@ export default function HomePage() {
             <span className="title-gradient">Great Mind Profile</span>
           </h1>
           <p>
-            Finally understand what makes you, you. One free quiz estimates your trait pattern, preference style, and
-            motivation themes for self-reflection and educational insight.
+            One free personality test with Big Five trait scores, HEXACO-inspired signals, 16-type estimates, and
+            Enneagram-style motivation notes in one clear report.
           </p>
           <div className="hero-actions">
             <Link className="button" href="/personality-test/start">
@@ -51,12 +53,69 @@ export default function HomePage() {
             model explanation, choose your depth, and answer one smooth question flow.
           </p>
           <div className="footer-links">
-            {models.map((model) => (
-              <span className="secondary-button" key={model}>
+            {models.map((model, index) => (
+              <Link
+                className="secondary-button"
+                href={["/big-five", "/hexaco", "/16-personality-test", "/enneagram"][index]}
+                key={model}
+              >
                 {model}
-              </span>
+              </Link>
             ))}
           </div>
+        </div>
+      </section>
+
+      <section className="shell section">
+        <div className="result-grid">
+          <div>
+            <p className="eyebrow">Shareable guides</p>
+            <h2>Type pages people can actually find.</h2>
+            <p>
+              Browse indexable personality type guides, sample result pages, and practical articles about careers,
+              traits, and motivation patterns.
+            </p>
+          </div>
+          <div className="card">
+            <h3>Popular type guides</h3>
+            <div className="footer-links">
+              {personalityTypeCodes.slice(0, 8).map((type) => (
+                <Link href={`/personality-types/${type.toLowerCase()}`} key={type}>
+                  {type}
+                </Link>
+              ))}
+            </div>
+            <div className="footer-links">
+              <Link className="secondary-button" href="/personality-types">
+                Browse all types
+              </Link>
+              <Link className="secondary-button" href="/results/infj">
+                Sample result
+              </Link>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section className="shell section">
+        <p className="eyebrow">Personality library</p>
+        <h2>Guides built for search and real questions.</h2>
+        <div className="card-grid" style={{ marginTop: 18 }}>
+          {featuredArticles.map((slug) => {
+            const article = articlePages[slug];
+            return (
+              <Link className="card" href={`/${article.slug}`} key={slug}>
+                <p className="eyebrow">{article.eyebrow}</p>
+                <h3>{article.title}</h3>
+                <p>{article.description}</p>
+              </Link>
+            );
+          })}
+        </div>
+        <div className="button-row">
+          <Link className="button" href="/articles">
+            Read articles
+          </Link>
         </div>
       </section>
 

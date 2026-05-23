@@ -130,12 +130,13 @@ export function ResultClient({ resultId = "" }: { resultId?: string }) {
   async function shareNative() {
     if (!result || result === "missing") return;
     const text = `I got ${result.archetype} on Great Mind Profile.`;
+    const shareUrl = `${window.location.origin}/results/${result.sixteenType.toLowerCase()}`;
     if (navigator.share) {
-      await navigator.share({ title: "My Great Mind Profile", text, url: window.location.href });
+      await navigator.share({ title: "My Great Mind Profile", text, url: shareUrl });
       return;
     }
-    await navigator.clipboard.writeText(window.location.href);
-    setShareMessage("Result link copied.");
+    await navigator.clipboard.writeText(shareUrl);
+    setShareMessage("Shareable type result link copied.");
   }
 
   async function downloadCard() {
@@ -160,7 +161,7 @@ export function ResultClient({ resultId = "" }: { resultId?: string }) {
 
   async function shareTo(platform: "x" | "facebook" | "whatsapp" | "instagram") {
     if (!result || result === "missing") return;
-    const url = window.location.href;
+    const url = `${window.location.origin}/results/${result.sixteenType.toLowerCase()}`;
     const text = `I got ${result.archetype} (${result.sixteenType}) on Great Mind Profile.`;
     const encodedUrl = encodeURIComponent(url);
     const encodedText = encodeURIComponent(text);
@@ -448,6 +449,9 @@ export function ResultClient({ resultId = "" }: { resultId?: string }) {
           </button>
           <Link className="secondary-button" href="/personality-test/start">
             Retake test
+          </Link>
+          <Link className="secondary-button" href={`/results/${result.sixteenType.toLowerCase()}`}>
+            View shareable type page
           </Link>
         </div>
         <div className="share-grid" aria-label="Social share options">

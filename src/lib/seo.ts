@@ -13,7 +13,7 @@ export function createMetadata({ title, description, path = "/", keywords = [] }
   const fullTitle = title === site.name ? title : `${title} | ${site.name}`;
 
   return {
-    title: fullTitle,
+    title,
     description,
     keywords,
     alternates: { canonical: url },
