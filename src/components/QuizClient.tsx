@@ -4,7 +4,6 @@ import { useEffect, useMemo, useState } from "react";
 import { useRouter } from "next/navigation";
 import { likertLabels, modes, questionsForMode, type Likert, type Mode } from "@/lib/quiz";
 import { SCORING_VERSION, scoreQuiz, type AnswerMap, type ResultProfile } from "@/lib/scoring";
-import { AdSlot } from "./AdSlot";
 
 const progressKey = "gmp.quiz.progress";
 const resultKey = "gmp.quiz.results";
@@ -142,7 +141,6 @@ export function QuizClient() {
           <div className="loading-bar" aria-label="Preparing result">
             <span />
           </div>
-          <AdSlot label="Advertisement" />
         </section>
       </div>
     );

@@ -2,7 +2,9 @@ import Link from "next/link";
 import type { ContentPage as ContentPageData } from "@/lib/content";
 import { JsonLd } from "./JsonLd";
 import { articleJsonLd, breadcrumbJsonLd, faqJsonLd } from "@/lib/seo";
-import { AdGrid } from "./AdSlot";
+import { AdSlot } from "./AdSlot";
+
+const adEligibleSlugs = new Set(["big-five", "hexaco", "enneagram", "personality-types", "methodology"]);
 
 export function ContentPage({ page }: { page: ContentPageData }) {
   return (
@@ -52,7 +54,11 @@ export function ContentPage({ page }: { page: ContentPageData }) {
             </section>
           ) : null}
         </div>
-        <AdGrid count={8} />
+        {adEligibleSlugs.has(page.slug) ? (
+          <div className="content-ad">
+            <AdSlot />
+          </div>
+        ) : null}
       </main>
     </>
   );
