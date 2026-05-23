@@ -4,6 +4,7 @@ import { useEffect, useMemo, useState } from "react";
 import { useRouter } from "next/navigation";
 import { likertLabels, modes, questionsForMode, type Likert, type Mode } from "@/lib/quiz";
 import { SCORING_VERSION, scoreQuiz, type AnswerMap, type ResultProfile } from "@/lib/scoring";
+import { AdSlot } from "./AdSlot";
 
 const progressKey = "gmp.quiz.progress";
 const resultKey = "gmp.quiz.results";
@@ -50,12 +51,17 @@ function saveResult(result: ResultProfile) {
   window.sessionStorage.setItem(currentResultKey, JSON.stringify(result));
 }
 
+function scrollToQuizTop() {
+  window.scrollTo({ top: 0, behavior: "smooth" });
+}
+
 export function QuizClient() {
   const router = useRouter();
   const [mode, setMode] = useState<Mode>("standard");
   const [current, setCurrent] = useState(0);
   const [answers, setAnswers] = useState<AnswerMap>({});
   const [started, setStarted] = useState(false);
+  const [isPreparingResult, setIsPreparingResult] = useState(false);
   const activeQuestions = useMemo(() => questionsForMode(mode), [mode]);
   const question = activeQuestions[current];
   const answeredCount = Object.keys(answers).length;
@@ -98,7 +104,11 @@ export function QuizClient() {
     saveResult(result);
     window.localStorage.removeItem(progressKey);
     track("complete_test", { mode, confidence: result.confidence });
-    router.push(`/personality-test/results?resultId=${encodeURIComponent(result.resultId)}`);
+    setIsPreparingResult(true);
+    scrollToQuizTop();
+    window.setTimeout(() => {
+      router.push(`/personality-test/results?resultId=${encodeURIComponent(result.resultId)}`);
+    }, 3000);
   }
 
   function chooseAnswer(value: Likert) {
@@ -109,6 +119,7 @@ export function QuizClient() {
     window.setTimeout(() => {
       if (current < activeQuestions.length - 1) {
         setCurrent((questionIndex) => Math.min(questionIndex + 1, activeQuestions.length - 1));
+        scrollToQuizTop();
         return;
       }
 
@@ -118,6 +129,23 @@ export function QuizClient() {
 
   function back() {
     setCurrent((value) => Math.max(0, value - 1));
+    scrollToQuizTop();
+  }
+
+  if (isPreparingResult) {
+    return (
+      <div className="quiz-shell">
+        <section className="card loading-card">
+          <p className="eyebrow">Preparing your report</p>
+          <h1>Your profile is coming together</h1>
+          <p>We are turning your answers into clear trait scores, type notes, and practical ideas.</p>
+          <div className="loading-bar" aria-label="Preparing result">
+            <span />
+          </div>
+          <AdSlot label="Advertisement" />
+        </section>
+      </div>
+    );
   }
 
   return (
@@ -161,6 +189,7 @@ export function QuizClient() {
                 setCurrent(0);
                 setAnswers({});
                 setStarted(true);
+                scrollToQuizTop();
                 track("start_test", { mode });
               }}
               type="button"

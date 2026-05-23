@@ -5,7 +5,7 @@ export const site = {
     "A modern personality assessment platform built from established personality frameworks for self-reflection and educational insight.",
   adsenseAccount: "ca-pub-8816195894061749",
   analyticsId: "G-2HR8S7SQES",
-  contactEmail: "hello@greatmindprofile.com"
+  contactEmail: "greatmindprofile@protonmail.com"
 };
 
 export const navLinks = [

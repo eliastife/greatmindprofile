@@ -304,7 +304,7 @@ export const policyPages: Record<string, ContentPage> = {
       {
         heading: "Reach us",
         body: [
-          "For editorial, privacy, or advertising questions, email hello@greatmindprofile.com.",
+          "For editorial, privacy, or advertising questions, email greatmindprofile@protonmail.com.",
           "Please do not send sensitive medical or diagnostic information. The assessment is designed for education and self-reflection."
         ]
       }

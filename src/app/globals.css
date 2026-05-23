@@ -38,7 +38,6 @@ body {
 }
 
 body::before {
-  animation: driftGrid 28s linear infinite;
   background-image:
     linear-gradient(rgba(59, 130, 246, 0.08) 1px, transparent 1px),
     linear-gradient(90deg, rgba(239, 68, 68, 0.06) 1px, transparent 1px);
@@ -49,16 +48,6 @@ body::before {
   position: fixed;
   transform: translate3d(0, 0, 0);
   z-index: -1;
-}
-
-@keyframes driftGrid {
-  from {
-    background-position: 0 0, 0 0;
-  }
-
-  to {
-    background-position: 72px 72px, -72px 72px;
-  }
 }
 
 a {
@@ -535,6 +524,17 @@ a:focus-visible {
   padding: 16px;
 }
 
+.ad-grid {
+  display: grid;
+  gap: 14px;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  margin: 4px 0 72px;
+}
+
+.ad-grid .ad-slot {
+  min-height: 112px;
+}
+
 .footer {
   border-top: 1px solid var(--line);
   color: var(--muted);
@@ -645,7 +645,6 @@ a:focus-visible {
 }
 
 .mascot-card {
-  animation: mascotFloat 4s ease-in-out infinite;
   background:
     radial-gradient(circle at 30% 18%, rgba(255, 255, 255, 0.9), transparent 34%),
     linear-gradient(135deg, var(--type-soft), rgba(255, 255, 255, 0.78));
@@ -660,17 +659,6 @@ a:focus-visible {
 .mascot-card svg {
   display: block;
   width: 100%;
-}
-
-@keyframes mascotFloat {
-  0%,
-  100% {
-    transform: translateY(0) rotate(-1deg);
-  }
-
-  50% {
-    transform: translateY(-10px) rotate(1deg);
-  }
 }
 
 .learn-more {
@@ -702,6 +690,55 @@ a:focus-visible {
   padding: 8px 12px;
 }
 
+.match-grid {
+  display: grid;
+  gap: 18px;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.share-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 16px;
+}
+
+.share-grid button {
+  min-width: 120px;
+}
+
+.share-note {
+  color: var(--muted);
+  margin-top: 12px;
+}
+
+.loading-card {
+  text-align: center;
+}
+
+.loading-bar {
+  background: color-mix(in srgb, var(--line), transparent 20%);
+  border-radius: 999px;
+  height: 16px;
+  margin: 24px auto;
+  max-width: 520px;
+  overflow: hidden;
+}
+
+.loading-bar span {
+  animation: loadResult 3s ease forwards;
+  background: linear-gradient(90deg, #3b82f6, #22c55e, #facc15, #fb7185, #a855f7);
+  display: block;
+  height: 100%;
+  width: 0;
+}
+
+@keyframes loadResult {
+  to {
+    width: 100%;
+  }
+}
+
 @media (max-width: 840px) {
   .nav {
     display: none;
@@ -720,7 +757,8 @@ a:focus-visible {
   }
 
   .likert {
-    grid-template-columns: 1fr;
+    display: flex;
+    flex-direction: column-reverse;
   }
 
   .likert button {
@@ -740,6 +778,11 @@ a:focus-visible {
   }
 
   .type-story-body {
+    grid-template-columns: 1fr;
+  }
+
+  .match-grid,
+  .ad-grid {
     grid-template-columns: 1fr;
   }
 }

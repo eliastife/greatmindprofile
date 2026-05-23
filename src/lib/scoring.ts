@@ -3,7 +3,7 @@ import { questionsForMode } from "./quiz";
 
 export type AnswerMap = Record<string, Likert>;
 
-export const SCORING_VERSION = 3;
+export const SCORING_VERSION = 4;
 
 export type ResultProfile = {
   scoringVersion: number;
@@ -24,6 +24,10 @@ export type ResultProfile = {
   relationshipStyle: string;
   stressStyle: string;
   growthPlan: string[];
+  typeMatch: TypeMatch;
+  typeChallenge: TypeMatch;
+  evidenceNotes: string[];
+  deepDive: string[];
   typeProfile: {
     name: string;
     overview: string;
@@ -32,10 +36,17 @@ export type ResultProfile = {
     bestStudyPaths: string[];
     bestJobFamilies: string[];
     colorPalette: string[];
-    famousPeopleNote: string;
     funFacts: string[];
   };
   modelExplanations: string[];
+};
+
+export type TypeMatch = {
+  type: string;
+  name: string;
+  whyItFits: string;
+  whyItCanBeHard: string;
+  makeItWork: string;
 };
 
 const bigFiveKeys = ["openness", "conscientiousness", "extraversion", "agreeableness", "stability"] as const;
@@ -71,6 +82,25 @@ const typeAlternates: Record<string, string[]> = {
   ESFP: ["ISFP", "ENFP"]
 };
 
+const matchMap: Record<string, { best: string; challenge: string }> = {
+  INTJ: { best: "ENFP", challenge: "ESFP" },
+  INTP: { best: "ENFJ", challenge: "ESFJ" },
+  ENTJ: { best: "INFP", challenge: "ISFP" },
+  ENTP: { best: "INFJ", challenge: "ISFJ" },
+  INFJ: { best: "ENTP", challenge: "ESTP" },
+  INFP: { best: "ENTJ", challenge: "ESTJ" },
+  ENFJ: { best: "INTP", challenge: "ISTP" },
+  ENFP: { best: "INTJ", challenge: "ISTJ" },
+  ISTJ: { best: "ESFP", challenge: "ENFP" },
+  ISFJ: { best: "ESTP", challenge: "ENTP" },
+  ESTJ: { best: "ISFP", challenge: "INFP" },
+  ESFJ: { best: "ISTP", challenge: "INTP" },
+  ISTP: { best: "ESFJ", challenge: "ENFJ" },
+  ISFP: { best: "ESTJ", challenge: "ENTJ" },
+  ESTP: { best: "ISFJ", challenge: "INFJ" },
+  ESFP: { best: "ISTJ", challenge: "INTJ" }
+};
+
 const typeProfiles: Record<string, ResultProfile["typeProfile"]> = {
   INTJ: {
     name: "The Strategic Architect",
@@ -80,7 +110,6 @@ const typeProfiles: Record<string, ResultProfile["typeProfile"]> = {
     bestStudyPaths: ["Computer science", "Engineering", "Economics", "Research methods", "Architecture"],
     bestJobFamilies: ["Strategy", "Product", "Data", "Systems design", "Technical leadership"],
     colorPalette: ["deep blue", "cool gray", "silver"],
-    famousPeopleNote: "Famous-person personality typings are usually speculative unless self-reported, so this result avoids presenting celebrity names as fact.",
     funFacts: ["Often enjoys mastery more than applause.", "Usually prefers competence signals over status signals."]
   },
   INTP: {
@@ -91,7 +120,6 @@ const typeProfiles: Record<string, ResultProfile["typeProfile"]> = {
     bestStudyPaths: ["Mathematics", "Philosophy", "Computer science", "Physics", "Linguistics"],
     bestJobFamilies: ["Research", "Software", "Data science", "Technical writing", "R&D"],
     colorPalette: ["indigo", "white", "charcoal"],
-    famousPeopleNote: "Public-figure type lists are not treated as factual here without direct self-report.",
     funFacts: ["Often learns fastest through independent exploration.", "May collect frameworks the way other people collect souvenirs."]
   },
   ENTJ: {
@@ -102,7 +130,6 @@ const typeProfiles: Record<string, ResultProfile["typeProfile"]> = {
     bestStudyPaths: ["Business", "Law", "Engineering management", "Economics", "Public policy"],
     bestJobFamilies: ["Leadership", "Operations", "Entrepreneurship", "Consulting", "Growth"],
     colorPalette: ["navy", "gold", "black"],
-    famousPeopleNote: "Celebrity type claims are often entertainment, not evidence; this site does not state them as facts.",
     funFacts: ["Often relaxes by optimizing something.", "Usually respects directness when it comes with competence."]
   },
   ENTP: {
@@ -113,7 +140,6 @@ const typeProfiles: Record<string, ResultProfile["typeProfile"]> = {
     bestStudyPaths: ["Entrepreneurship", "Media", "Computer science", "Debate", "Design strategy"],
     bestJobFamilies: ["Startups", "Marketing strategy", "Product discovery", "Innovation", "Sales engineering"],
     colorPalette: ["electric blue", "orange", "white"],
-    famousPeopleNote: "Famous-person matches are not listed as factual because most are not verified by the person.",
     funFacts: ["Often turns constraints into games.", "May use humor as a thinking tool."]
   },
   INFJ: {
@@ -124,7 +150,6 @@ const typeProfiles: Record<string, ResultProfile["typeProfile"]> = {
     bestStudyPaths: ["Psychology", "Education", "Writing", "Public health", "Human-centered design"],
     bestJobFamilies: ["Counseling", "UX research", "Editorial", "Nonprofit strategy", "People development"],
     colorPalette: ["teal", "violet", "soft white"],
-    famousPeopleNote: "Typing famous people is rarely factual, so Great Mind Profile treats those lists cautiously.",
     funFacts: ["Often remembers the emotional logic of a room.", "Usually wants depth, not just harmony."]
   },
   INFP: {
@@ -135,7 +160,6 @@ const typeProfiles: Record<string, ResultProfile["typeProfile"]> = {
     bestStudyPaths: ["Creative writing", "Psychology", "Arts", "Social work", "Literature"],
     bestJobFamilies: ["Writing", "Design", "Counseling support", "Community work", "Brand storytelling"],
     colorPalette: ["sage", "lavender", "cream"],
-    famousPeopleNote: "The site avoids factual celebrity typing unless a person has clearly self-identified.",
     funFacts: ["Often has strong taste before having a full explanation.", "May treat personal values like a compass."]
   },
   ENFJ: {
@@ -146,7 +170,6 @@ const typeProfiles: Record<string, ResultProfile["typeProfile"]> = {
     bestStudyPaths: ["Education", "Communications", "Psychology", "Leadership", "Public relations"],
     bestJobFamilies: ["Teaching", "Coaching", "People ops", "Community leadership", "Partnerships"],
     colorPalette: ["coral", "teal", "warm white"],
-    famousPeopleNote: "Famous examples are not presented as fact because outside typing is not reliable evidence.",
     funFacts: ["Often remembers what motivates different people.", "Can make structure feel emotionally inviting."]
   },
   ENFP: {
@@ -157,7 +180,6 @@ const typeProfiles: Record<string, ResultProfile["typeProfile"]> = {
     bestStudyPaths: ["Marketing", "Design", "Communications", "Psychology", "Entrepreneurship"],
     bestJobFamilies: ["Creative strategy", "Community", "Product discovery", "Media", "Teaching"],
     colorPalette: ["yellow", "turquoise", "rose"],
-    famousPeopleNote: "Most celebrity type lists are not factual sources, so this result keeps that distinction clear.",
     funFacts: ["Often finds the fun angle before anyone else.", "May brainstorm better while talking."]
   },
   ISTJ: {
@@ -168,7 +190,6 @@ const typeProfiles: Record<string, ResultProfile["typeProfile"]> = {
     bestStudyPaths: ["Accounting", "Law", "Operations", "Information systems", "Healthcare administration"],
     bestJobFamilies: ["Compliance", "Project coordination", "Finance", "Logistics", "Quality assurance"],
     colorPalette: ["forest green", "navy", "stone"],
-    famousPeopleNote: "No famous-person type should be treated as factual without direct confirmation.",
     funFacts: ["Often builds trust through consistency.", "Usually notices details others assumed were handled."]
   },
   ISFJ: {
@@ -179,7 +200,6 @@ const typeProfiles: Record<string, ResultProfile["typeProfile"]> = {
     bestStudyPaths: ["Nursing", "Education", "Human services", "Administration", "Nutrition"],
     bestJobFamilies: ["Healthcare", "Support operations", "Teaching", "Client care", "Office management"],
     colorPalette: ["soft blue", "sage", "ivory"],
-    famousPeopleNote: "Famous-person personality labels are usually guesses, so the result does not claim them as fact.",
     funFacts: ["Often remembers preferences others forget.", "Can make reliability feel warm rather than rigid."]
   },
   ESTJ: {
@@ -190,7 +210,6 @@ const typeProfiles: Record<string, ResultProfile["typeProfile"]> = {
     bestStudyPaths: ["Business administration", "Law", "Public administration", "Supply chain", "Finance"],
     bestJobFamilies: ["Operations", "Management", "Civic leadership", "Finance", "Logistics"],
     colorPalette: ["royal blue", "white", "red"],
-    famousPeopleNote: "The site treats celebrity type claims as speculative unless self-reported.",
     funFacts: ["Often improves a meeting by clarifying the decision.", "Usually trusts action more than vague intention."]
   },
   ESFJ: {
@@ -201,7 +220,6 @@ const typeProfiles: Record<string, ResultProfile["typeProfile"]> = {
     bestStudyPaths: ["Education", "Healthcare", "Communications", "Hospitality", "Human resources"],
     bestJobFamilies: ["Teaching", "Care coordination", "Events", "HR", "Customer success"],
     colorPalette: ["peach", "sky blue", "warm gray"],
-    famousPeopleNote: "Famous examples are not stated as factual because most public typings are unverifiable.",
     funFacts: ["Often turns logistics into hospitality.", "May spot relationship tension before it becomes visible."]
   },
   ISTP: {
@@ -212,7 +230,6 @@ const typeProfiles: Record<string, ResultProfile["typeProfile"]> = {
     bestStudyPaths: ["Engineering technology", "Mechanics", "Computer security", "Sports science", "Industrial design"],
     bestJobFamilies: ["Technical troubleshooting", "Security", "Skilled trades", "Field engineering", "Emergency response"],
     colorPalette: ["graphite", "steel", "green"],
-    famousPeopleNote: "Famous-person typing is not treated as factual here without direct evidence.",
     funFacts: ["Often learns faster by doing than by hearing theory.", "Can stay calm when the practical next move is clear."]
   },
   ISFP: {
@@ -223,7 +240,6 @@ const typeProfiles: Record<string, ResultProfile["typeProfile"]> = {
     bestStudyPaths: ["Visual arts", "Design", "Music", "Occupational therapy", "Environmental studies"],
     bestJobFamilies: ["Design", "Wellness", "Craft", "Care work", "Content creation"],
     colorPalette: ["moss", "blush", "cream"],
-    famousPeopleNote: "The result avoids factual celebrity lists because most type assignments are not verified.",
     funFacts: ["Often has a strong sensory signature.", "May communicate values through style more than speeches."]
   },
   ESTP: {
@@ -234,7 +250,6 @@ const typeProfiles: Record<string, ResultProfile["typeProfile"]> = {
     bestStudyPaths: ["Business", "Sports science", "Sales", "Emergency management", "Media production"],
     bestJobFamilies: ["Sales", "Entrepreneurship", "Field work", "Operations", "Performance-based roles"],
     colorPalette: ["red", "black", "silver"],
-    famousPeopleNote: "Outside typing of public figures is not reliable enough to present as fact.",
     funFacts: ["Often notices opportunities in real time.", "May negotiate best when the stakes are alive."]
   },
   ESFP: {
@@ -245,7 +260,6 @@ const typeProfiles: Record<string, ResultProfile["typeProfile"]> = {
     bestStudyPaths: ["Performing arts", "Hospitality", "Marketing", "Education", "Wellness"],
     bestJobFamilies: ["Events", "Entertainment", "Customer experience", "Teaching", "Brand activation"],
     colorPalette: ["coral", "gold", "aqua"],
-    famousPeopleNote: "Famous-person typing is often speculative, so this result does not list names as facts.",
     funFacts: ["Often changes the energy of a room quickly.", "May understand people through expression before explanation."]
   }
 };
@@ -310,6 +324,77 @@ function archetypeFor(bigFive: Record<string, number>, sixteenType: string) {
   return "The Practical Synthesizer";
 }
 
+function energyWord(type: string) {
+  return type[0] === "E" ? "out loud with people" : "quietly before sharing";
+}
+
+function informationWord(type: string) {
+  return type[1] === "N" ? "patterns, meanings, and future possibilities" : "facts, details, and what already works";
+}
+
+function decisionWord(type: string) {
+  return type[2] === "F" ? "people impact and personal values" : "logic, fairness, and cause-and-effect";
+}
+
+function structureWord(type: string) {
+  return type[3] === "J" ? "clear plans and visible progress" : "freedom to adapt as new information appears";
+}
+
+function deepDiveFor(type: string, profile: ResultProfile["typeProfile"], bigFive: Record<string, number>) {
+  const openSignal =
+    bigFive.openness >= 60
+      ? "Your high openness score adds imagination and curiosity."
+      : "Your lower openness score adds a practical, reality-first filter.";
+  const orderSignal =
+    bigFive.conscientiousness >= 60
+      ? "Your high conscientiousness score means plans, standards, and follow-through matter."
+      : "Your lower conscientiousness score points to flexibility and a need for lighter systems.";
+  const socialSignal =
+    bigFive.extraversion >= 60
+      ? "You may think better when ideas can move through conversation."
+      : "You may think better when you get quiet time before the room asks for your answer.";
+
+  return [
+    `${type} means your answers looked closest to a person who recharges ${energyWord(type)}, trusts ${informationWord(
+      type
+    )}, decides through ${decisionWord(type)}, and prefers ${structureWord(type)}. This is a simple map, not a rule about who you must be.`,
+    `${profile.name} often works best when the environment fits the pattern: enough space to use their natural attention style, enough feedback to stay honest, and enough structure to keep good intentions from becoming stress.`,
+    `${openSignal} ${orderSignal} ${socialSignal} Read the type story together with the trait bars; the bars are usually the more scientific part, while the 16-type name is a friendly shortcut.`,
+    `In daily life, this profile grows when it names needs early. If you need quiet, ask for quiet. If you need movement, ask for movement. If you need more facts or more empathy, say that directly instead of hoping others guess.`
+  ];
+}
+
+function matchProfileFor(type: string, target: string, kind: "best" | "challenge"): TypeMatch {
+  const targetProfile = typeProfiles[target];
+  const shared = [
+    type[1] === target[1] ? "you often look for the same kind of information" : "you may balance big-picture and practical attention",
+    type[2] === target[2] ? "your decision style may feel familiar" : "one of you may bring logic while the other brings people impact",
+    type[3] === target[3] ? "your pace around planning may match" : "one may prefer plans while the other keeps options open"
+  ];
+
+  if (kind === "best") {
+    return {
+      type: target,
+      name: targetProfile.name,
+      whyItFits: `This is a likely easy match because ${shared.join(", ")}. It can create a mix of comfort and useful difference.`,
+      whyItCanBeHard:
+        "No type pair is automatic. The hard part is usually not the label; it is stress, unclear needs, and assuming the other person thinks the same way.",
+      makeItWork:
+        "Keep the easy parts, but make hidden needs visible. Use simple check-ins: what do we know, what do we feel, and what is the next small step?"
+    };
+  }
+
+  return {
+    type: target,
+    name: targetProfile.name,
+    whyItFits:
+      "This match can still work when both people are mature, kind, and clear. Difference can bring range, humor, and skills one person would not bring alone.",
+    whyItCanBeHard: `This is a higher-friction match because ${shared.join(", ")}. Under stress, those differences can feel like criticism instead of balance.`,
+    makeItWork:
+      "Do not try to convert each other. Agree on shared rules for conflict, split tasks by strengths, and explain the reason behind your preference before asking for change."
+  };
+}
+
 export function scoreQuiz(mode: Mode, answers: AnswerMap, forcedId?: string): ResultProfile {
   const selectedQuestions = questionsForMode(mode);
   const bigFive = emptyScores(bigFiveKeys);
@@ -352,6 +437,9 @@ export function scoreQuiz(mode: Mode, answers: AnswerMap, forcedId?: string): Re
   const confidence = Math.round(Math.min(96, 20 + completion * 25 + axisDistance * 35 + responseSpread * 16));
   const archetype = archetypeFor(bigFiveScores, sixteenType);
   const typeProfile = typeProfiles[sixteenType];
+  const matchTargets = matchMap[sixteenType] ?? { best: typeAlternates[sixteenType]?.[0] ?? "INFP", challenge: "ESTJ" };
+  const typeMatch = matchProfileFor(sixteenType, matchTargets.best, "best");
+  const typeChallenge = matchProfileFor(sixteenType, matchTargets.challenge, "challenge");
 
   return {
     scoringVersion: SCORING_VERSION,
@@ -393,6 +481,15 @@ export function scoreQuiz(mode: Mode, answers: AnswerMap, forcedId?: string): Re
       "Choose one blind spot and create a simple friction-reducing habit.",
       "Revisit your result after a major life change or stressful season."
     ],
+    typeMatch,
+    typeChallenge,
+    evidenceNotes: [
+      "The Big Five and HEXACO parts are trait-based. These models are widely used in personality research.",
+      "The 16-type result is a plain-language estimate built from your trait pattern. It is useful for reflection, but it is not a clinical label.",
+      "The match section uses research-friendly ideas like trait similarity, emotional stability, agreeableness, and communication habits. It is not a dating guarantee.",
+      "Job and study ideas are based on trait-environment fit, especially conscientiousness, openness, extraversion, and people-versus-systems preferences."
+    ],
+    deepDive: deepDiveFor(sixteenType, typeProfile, bigFiveScores),
     typeProfile,
     modelExplanations: [
       `Big Five: your strongest broad trait signal is ${topKey(bigFiveScores)}.`,

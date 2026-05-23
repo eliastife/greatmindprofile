@@ -24,9 +24,60 @@ const labels: Record<string, string> = {
   emotionality: "Emotionality"
 };
 
+const colorValues: Record<string, string> = {
+  aqua: "#67e8f9",
+  black: "#111827",
+  blush: "#fda4af",
+  charcoal: "#374151",
+  coral: "#fb7185",
+  cream: "#fef3c7",
+  "cool gray": "#94a3b8",
+  "deep blue": "#1e3a8a",
+  "electric blue": "#38bdf8",
+  gold: "#fbbf24",
+  graphite: "#374151",
+  green: "#22c55e",
+  indigo: "#6366f1",
+  ivory: "#fff7ed",
+  lavender: "#c4b5fd",
+  moss: "#4d7c0f",
+  navy: "#172554",
+  orange: "#f97316",
+  peach: "#fb923c",
+  red: "#ef4444",
+  rose: "#fb7185",
+  "royal blue": "#2563eb",
+  sage: "#86efac",
+  silver: "#cbd5e1",
+  "sky blue": "#7dd3fc",
+  "soft blue": "#93c5fd",
+  "soft white": "#f8fafc",
+  steel: "#94a3b8",
+  stone: "#a8a29e",
+  teal: "#14b8a6",
+  turquoise: "#22d3ee",
+  violet: "#a855f7",
+  warm: "#fef3c7",
+  "warm gray": "#d6d3d1",
+  "warm white": "#fff7ed",
+  white: "#ffffff",
+  yellow: "#facc15"
+};
+
+function colorStyle(color: string): CSSProperties {
+  const background = colorValues[color] ?? "#f8fafc";
+  const darkText = ["yellow", "cream", "ivory", "soft white", "white", "warm white", "gold", "sage", "sky blue", "aqua"].includes(color);
+  return {
+    background,
+    borderColor: background,
+    color: darkText ? "#1f2937" : "#ffffff"
+  };
+}
+
 export function ResultClient({ resultId = "" }: { resultId?: string }) {
   const [result, setResult] = useState<ResultProfile | "missing" | null>(null);
-  const cardRef = useRef<HTMLDivElement>(null);
+  const [shareMessage, setShareMessage] = useState("");
+  const reportRef = useRef<HTMLElement>(null);
 
   useEffect(() => {
     function isFresh(candidate: ResultProfile | undefined | null): candidate is ResultProfile {
@@ -76,7 +127,7 @@ export function ResultClient({ resultId = "" }: { resultId?: string }) {
     }
   }, [resultId]);
 
-  async function share() {
+  async function shareNative() {
     if (!result || result === "missing") return;
     const text = `I got ${result.archetype} on Great Mind Profile.`;
     if (navigator.share) {
@@ -84,18 +135,50 @@ export function ResultClient({ resultId = "" }: { resultId?: string }) {
       return;
     }
     await navigator.clipboard.writeText(window.location.href);
+    setShareMessage("Result link copied.");
   }
 
-  function downloadCard() {
+  async function downloadCard() {
     if (!result || result === "missing") return;
-    const content = cardRef.current?.innerText ?? "Great Mind Profile result";
-    const blob = new Blob([content], { type: "text/plain" });
-    const url = URL.createObjectURL(blob);
+    const target = reportRef.current;
+    if (!target) return;
+
+    const { default: html2canvas } = await import("html2canvas");
+    const canvas = await html2canvas(target, {
+      backgroundColor: "#f8fafc",
+      scale: Math.min(window.devicePixelRatio || 1, 2),
+      useCORS: true,
+      windowWidth: target.scrollWidth,
+      windowHeight: target.scrollHeight
+    });
     const link = document.createElement("a");
-    link.href = url;
-    link.download = `${result.resultId}.txt`;
+    link.href = canvas.toDataURL("image/png");
+    link.download = `${result.resultId}-great-mind-profile.png`;
     link.click();
-    URL.revokeObjectURL(url);
+    setShareMessage("Image downloaded.");
+  }
+
+  async function shareTo(platform: "x" | "facebook" | "whatsapp" | "instagram") {
+    if (!result || result === "missing") return;
+    const url = window.location.href;
+    const text = `I got ${result.archetype} (${result.sixteenType}) on Great Mind Profile.`;
+    const encodedUrl = encodeURIComponent(url);
+    const encodedText = encodeURIComponent(text);
+
+    if (platform === "instagram") {
+      await downloadCard();
+      await navigator.clipboard.writeText(`${text} ${url}`);
+      setShareMessage("Instagram does not accept direct web shares. I downloaded the image and copied your caption.");
+      return;
+    }
+
+    const links = {
+      x: `https://twitter.com/intent/tweet?text=${encodedText}&url=${encodedUrl}`,
+      facebook: `https://www.facebook.com/sharer/sharer.php?u=${encodedUrl}`,
+      whatsapp: `https://api.whatsapp.com/send?text=${encodeURIComponent(`${text} ${url}`)}`
+    };
+
+    window.open(links[platform], "_blank", "noopener,noreferrer");
   }
 
   if (!result) {
@@ -134,8 +217,8 @@ export function ResultClient({ resultId = "" }: { resultId?: string }) {
   } as CSSProperties;
 
   return (
-    <main className="shell quiz-shell">
-      <section className="card result-hero-card" ref={cardRef} style={typeStyle}>
+    <main className="shell quiz-shell" ref={reportRef}>
+      <section className="card result-hero-card" style={typeStyle}>
         <div>
           <p className="eyebrow">Your result</p>
           <h1>{result.archetype}</h1>
@@ -157,11 +240,8 @@ export function ResultClient({ resultId = "" }: { resultId?: string }) {
         <p>{result.typeProfile.overview}</p>
         <div className="type-story-body">
           <div>
-            <h3>Core pattern</h3>
-            <p>
-              This type estimate suggests a recurring style in how you direct attention, make decisions, and recover
-              your energy. It is not a box; it is a shorthand for the pattern your answers most resembled.
-            </p>
+            <h3>Your simple pattern</h3>
+            <p>{result.deepDive[0]}</p>
           </div>
           <div>
             <h3>How you tend to think</h3>
@@ -169,10 +249,7 @@ export function ResultClient({ resultId = "" }: { resultId?: string }) {
           </div>
           <div>
             <h3>What people may notice</h3>
-            <p>
-              At your best, the profile points toward {result.strengths.join(", ").toLowerCase()}. These strengths can
-              show up differently depending on your environment, confidence, and current stress level.
-            </p>
+            <p>{result.deepDive[1]}</p>
           </div>
           <div>
             <h3>Under pressure</h3>
@@ -180,11 +257,7 @@ export function ResultClient({ resultId = "" }: { resultId?: string }) {
           </div>
           <div>
             <h3>How to use this result</h3>
-            <p>
-              Compare this type story with your trait bars. If the type name feels partly right but not perfect, look at
-              the secondary possible types and the strongest Big Five or HEXACO signals; those usually explain the
-              nuance.
-            </p>
+            <p>{result.deepDive.slice(2).join(" ")}</p>
           </div>
         </div>
       </section>
@@ -225,6 +298,33 @@ export function ResultClient({ resultId = "" }: { resultId?: string }) {
         </div>
       </section>
 
+      <section className="card" style={{ marginTop: 18 }}>
+        <p className="eyebrow">Match notes</p>
+        <h2>Easy match and harder match</h2>
+        <p>
+          These are not destiny. Research points more to traits, habits, and repair skills than fixed soulmates. Use
+          this as a clear way to understand possible comfort and friction.
+        </p>
+        <div className="match-grid" style={{ marginTop: 18 }}>
+          <div>
+            <h3>
+              Easy match: {result.typeMatch.type} - {result.typeMatch.name}
+            </h3>
+            <p>{result.typeMatch.whyItFits}</p>
+            <p>{result.typeMatch.whyItCanBeHard}</p>
+            <p>{result.typeMatch.makeItWork}</p>
+          </div>
+          <div>
+            <h3>
+              Harder match: {result.typeChallenge.type} - {result.typeChallenge.name}
+            </h3>
+            <p>{result.typeChallenge.whyItFits}</p>
+            <p>{result.typeChallenge.whyItCanBeHard}</p>
+            <p>{result.typeChallenge.makeItWork}</p>
+          </div>
+        </div>
+      </section>
+
       <section className="grid" style={{ marginTop: 18 }}>
         <div className="card">
           <h2>Strengths</h2>
@@ -250,10 +350,7 @@ export function ResultClient({ resultId = "" }: { resultId?: string }) {
         <div className="card">
           <p className="eyebrow">Fun science corner</p>
           <h2>Jobs and studies that may fit</h2>
-          <p>
-            These are not destiny; they are environments that often match the attention style and motivation pattern in
-            your result.
-          </p>
+          <p>These are not destiny. They are places where your natural attention style may be easier to use.</p>
           <h3>Study paths</h3>
           <p>{result.typeProfile.bestStudyPaths.join(", ")}</p>
           <h3>Job families</h3>
@@ -269,11 +366,56 @@ export function ResultClient({ resultId = "" }: { resultId?: string }) {
           <p>Not a scientific preference claim; just a visual palette that fits the tone of this result.</p>
           <div className="swatches">
             {result.typeProfile.colorPalette.map((color) => (
-              <span key={color}>{color}</span>
+              <span key={color} style={colorStyle(color)}>
+                {color}
+              </span>
             ))}
           </div>
-          <p>{result.typeProfile.famousPeopleNote}</p>
         </div>
+      </section>
+
+      <section className="card" style={{ marginTop: 18 }}>
+        <p className="eyebrow">What is scientific here?</p>
+        <h2>Plain evidence notes</h2>
+        {result.evidenceNotes.map((note) => (
+          <p key={note}>{note}</p>
+        ))}
+        <details className="learn-more">
+          <summary>Research used to shape this wording</summary>
+          <p>
+            Big Five and relationship notes:{" "}
+            <a href="https://pubmed.ncbi.nlm.nih.gov/30776092/" rel="noreferrer" target="_blank">
+              O&apos;Meara & South, 2019
+            </a>{" "}
+            and{" "}
+            <a
+              href="https://rune.une.edu.au/entities/publication/a8cd374c-6c21-45cb-a61d-6f23b787c743"
+              rel="noreferrer"
+              target="_blank"
+            >
+              Malouff et al., 2010
+            </a>
+            .
+          </p>
+          <p>
+            HEXACO trait wording:{" "}
+            <a href="https://hexaco.org/scaledescriptions%26lang%3Den" rel="noreferrer" target="_blank">
+              Lee & Ashton HEXACO-PI-R scale descriptions
+            </a>
+            .
+          </p>
+          <p>
+            Job and study fit wording:{" "}
+            <a
+              href="https://iro.uiowa.edu/esploro/outputs/journalArticle/THE-BIG-FIVE-PERSONALITY-DIMENSIONS-AND/9984963115202771"
+              rel="noreferrer"
+              target="_blank"
+            >
+              Barrick & Mount, 1991
+            </a>
+            .
+          </p>
+        </details>
       </section>
 
       <section className="grid" style={{ marginTop: 18 }}>
@@ -298,16 +440,31 @@ export function ResultClient({ resultId = "" }: { resultId?: string }) {
       <section className="card" style={{ marginTop: 18 }}>
         <h2>Share or Save</h2>
         <div className="button-row">
-          <button className="button" onClick={share} type="button">
-            Share result
+          <button className="button" onClick={shareNative} type="button">
+            Share
           </button>
           <button className="secondary-button" onClick={downloadCard} type="button">
-            Download result card
+            Download full report image
           </button>
           <Link className="secondary-button" href="/personality-test/start">
             Retake test
           </Link>
         </div>
+        <div className="share-grid" aria-label="Social share options">
+          <button className="secondary-button" onClick={() => shareTo("x")} type="button">
+            Share on X
+          </button>
+          <button className="secondary-button" onClick={() => shareTo("facebook")} type="button">
+            Facebook
+          </button>
+          <button className="secondary-button" onClick={() => shareTo("whatsapp")} type="button">
+            WhatsApp
+          </button>
+          <button className="secondary-button" onClick={() => shareTo("instagram")} type="button">
+            Instagram image
+          </button>
+        </div>
+        {shareMessage ? <p className="share-note">{shareMessage}</p> : null}
       </section>
 
       <section className="card" style={{ marginTop: 18 }}>
