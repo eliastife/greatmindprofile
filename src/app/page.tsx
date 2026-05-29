@@ -1,7 +1,7 @@
 import Link from "next/link";
 import type { Metadata } from "next";
 import { createMetadata } from "@/lib/seo";
-import { articlePages, personalityTypeCodes } from "@/lib/seoContent";
+import { articlePages, careerArticlePages, personalityTypeCodes } from "@/lib/seoContent";
 
 export const metadata: Metadata = createMetadata({
   title: "Great Mind Profile",
@@ -116,6 +116,40 @@ export default function HomePage() {
           <Link className="button" href="/articles">
             Read articles
           </Link>
+        </div>
+      </section>
+
+      <section className="shell section">
+        <div className="result-grid">
+          <div>
+            <p className="eyebrow">Career guides</p>
+            <h2>Find work that fits your personality pattern.</h2>
+            <p>
+              Start with your type, then read practical guidance on roles, work environments, stress risks, interview
+              tips, and growth moves.
+            </p>
+            <div className="button-row">
+              <Link className="button" href="/articles">
+                Browse all articles
+              </Link>
+              <Link className="secondary-button" href="/personality-test/start">
+                Take the quiz first
+              </Link>
+            </div>
+          </div>
+          <div className="card">
+            <h3>Career articles by type</h3>
+            <div className="footer-links">
+              {personalityTypeCodes.map((type) => {
+                const slug = `${type.toLowerCase()}-careers`;
+                return (
+                  <Link href={`/${careerArticlePages[slug].slug}`} key={type}>
+                    {type} careers
+                  </Link>
+                );
+              })}
+            </div>
+          </div>
         </div>
       </section>
 
