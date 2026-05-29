@@ -6,7 +6,8 @@ const links = [
   ["/contact", "Contact"],
   ["/editorial-policy", "Editorial Policy"],
   ["/advertising-policy", "Advertising Policy"],
-  ["/cookie-policy", "Cookie Policy"]
+  ["/cookie-policy", "Cookie Policy"],
+  ["/fr", "Français"]
 ] as const;
 
 export function Footer() {

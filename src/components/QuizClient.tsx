@@ -2,8 +2,9 @@
 
 import { useEffect, useMemo, useState } from "react";
 import { useRouter } from "next/navigation";
-import { likertLabels, modes, questionsForMode, type Likert, type Mode } from "@/lib/quiz";
+import { modes, questionsForMode, type Likert, type Mode } from "@/lib/quiz";
 import { SCORING_VERSION, scoreQuiz, type AnswerMap, type ResultProfile } from "@/lib/scoring";
+import { localePaths, localizedModeLabel, questionText, quizCopy, type Locale } from "@/lib/i18n";
 
 const progressKey = "gmp.quiz.progress";
 const resultKey = "gmp.quiz.results";
@@ -17,13 +18,6 @@ type StoredProgress = {
   answers: AnswerMap;
   started: boolean;
 };
-
-const modelIntro = [
-  ["Big Five", "Broad traits: openness, conscientiousness, extraversion, agreeableness, and emotional stability."],
-  ["HEXACO", "A six-factor lens that adds honesty-humility and emotionality for extra nuance."],
-  ["16-Type", "A preference estimate for energy, information, decision style, and structure."],
-  ["Enneagram", "A motivation-style estimate for stress patterns, values, and growth themes."]
-] as const;
 
 function track(event: string, params: Record<string, string | number> = {}) {
   if (typeof window === "undefined") return;
@@ -54,8 +48,9 @@ function scrollToQuizTop() {
   window.scrollTo({ top: 0, behavior: "smooth" });
 }
 
-export function QuizClient() {
+export function QuizClient({ locale = "en" }: { locale?: Locale }) {
   const router = useRouter();
+  const copy = quizCopy[locale];
   const [mode, setMode] = useState<Mode>("standard");
   const [current, setCurrent] = useState(0);
   const [answers, setAnswers] = useState<AnswerMap>({});
@@ -106,7 +101,7 @@ export function QuizClient() {
     setIsPreparingResult(true);
     scrollToQuizTop();
     window.setTimeout(() => {
-      router.push(`/personality-test/results?resultId=${encodeURIComponent(result.resultId)}`);
+      router.push(`${localePaths[locale]}/personality-test/results?resultId=${encodeURIComponent(result.resultId)}`);
     }, 3000);
   }
 
@@ -135,9 +130,9 @@ export function QuizClient() {
     return (
       <div className="quiz-shell">
         <section className="card loading-card">
-          <p className="eyebrow">Preparing your report</p>
-          <h1>Your profile is coming together</h1>
-          <p>We are turning your answers into clear trait scores, type notes, and practical ideas.</p>
+          <p className="eyebrow">{copy.loadingEyebrow}</p>
+          <h1>{copy.loadingTitle}</h1>
+          <p>{copy.loadingBody}</p>
           <div className="loading-bar" aria-label="Preparing result">
             <span />
           </div>
@@ -150,21 +145,18 @@ export function QuizClient() {
     <div className="quiz-shell">
       {!started ? (
         <div className="card quiz-intro">
-          <p className="eyebrow">One integrated test</p>
-          <h1>Before you start</h1>
-          <p>
-            Great Mind Profile uses one quiz to estimate several personality lenses. You will not take four separate
-            tests; these models combine into one result page.
-          </p>
+          <p className="eyebrow">{copy.introEyebrow}</p>
+          <h1>{copy.introTitle}</h1>
+          <p>{copy.introBody}</p>
           <div className="model-list">
-            {modelIntro.map(([title, description]) => (
+            {copy.modelIntro.map(([title, description]) => (
               <div className="model-row" key={title}>
                 <strong>{title}</strong>
                 <span>{description}</span>
               </div>
             ))}
           </div>
-          <h2>Choose your depth</h2>
+          <h2>{copy.depthTitle}</h2>
           <div className="card-grid" style={{ marginTop: 18 }}>
             {(Object.keys(modes) as Mode[]).map((modeKey) => (
               <button
@@ -173,12 +165,12 @@ export function QuizClient() {
                 onClick={() => chooseMode(modeKey)}
                 type="button"
               >
-                {modes[modeKey].label} - {modes[modeKey].minutes}
+                {localizedModeLabel(modeKey, locale).label} - {localizedModeLabel(modeKey, locale).minutes}
               </button>
             ))}
           </div>
           <p style={{ marginTop: 16 }}>
-            {modes[mode].description} Progress saves locally in your browser. No login required.
+            {localizedModeLabel(mode, locale).description} {copy.progressNote}
           </p>
           <div className="button-row start-action">
             <button
@@ -192,7 +184,7 @@ export function QuizClient() {
               }}
               type="button"
             >
-              Start quiz
+              {copy.start}
             </button>
           </div>
         </div>
@@ -200,16 +192,16 @@ export function QuizClient() {
         <div className="card quiz-question">
           <div className="trait-label">
             <span>
-              Question {current + 1} of {activeQuestions.length}
+              {copy.question} {current + 1} {copy.of} {activeQuestions.length}
             </span>
             <span>{progress}%</span>
           </div>
           <div className="progress" aria-label="Quiz progress">
             <span style={{ width: `${progress}%` }} />
           </div>
-          <h1>{question.text}</h1>
+          <h1>{questionText(question.id, question.text, locale)}</h1>
           <div className="likert" role="group" aria-label="Answer scale">
-            {likertLabels.map((label, index) => {
+            {copy.likert.map((label, index) => {
               const value = (index + 1) as Likert;
               return (
                 <button
@@ -225,7 +217,7 @@ export function QuizClient() {
           </div>
           <div className="button-row">
             <button className="secondary-button" disabled={current === 0} onClick={back} type="button">
-              Previous
+              {copy.previous}
             </button>
           </div>
         </div>

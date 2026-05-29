@@ -9,6 +9,7 @@ import { AdSlot } from "./AdSlot";
 import { PersonalityMascot } from "./PersonalityMascot";
 import { typeVisuals, type PersonalityType } from "@/lib/typeVisuals";
 import type { CSSProperties } from "react";
+import type { Locale } from "@/lib/i18n";
 
 const resultKey = "gmp.quiz.results";
 const currentResultKey = "gmp.quiz.currentResult";
@@ -23,6 +24,48 @@ const labels: Record<string, string> = {
   honestyHumility: "Honesty-Humility",
   emotionality: "Emotionality"
 };
+
+const resultCopy = {
+  en: {
+    loading: "Loading result...",
+    missingEyebrow: "Result not found",
+    missingTitle: "Start a fresh quiz",
+    missingBody:
+      "This result link does not match a saved result in this browser, or it was created with an older scoring version. Take the quiz again to generate a real result.",
+    startQuiz: "Start quiz",
+    yourResult: "Your result",
+    confidence: "Confidence",
+    typeEstimate: "16-type estimate",
+    share: "Share",
+    download: "Download full report image",
+    retake: "Retake test",
+    shareable: "View shareable type page",
+    shareSaved: "Shareable type result link copied.",
+    imageSaved: "Image downloaded.",
+    instagram: "Instagram does not accept direct web shares. I downloaded the image and copied your caption.",
+    note: ""
+  },
+  fr: {
+    loading: "Chargement du résultat...",
+    missingEyebrow: "Résultat introuvable",
+    missingTitle: "Commencer un nouveau quiz",
+    missingBody:
+      "Ce lien ne correspond pas à un résultat enregistré dans ce navigateur, ou il vient d'une ancienne version du score. Reprenez le quiz pour générer un résultat réel.",
+    startQuiz: "Commencer le quiz",
+    yourResult: "Votre résultat",
+    confidence: "Confiance",
+    typeEstimate: "Estimation 16 types",
+    share: "Partager",
+    download: "Télécharger l'image du rapport",
+    retake: "Refaire le test",
+    shareable: "Voir la page partageable",
+    shareSaved: "Lien partageable du type copié.",
+    imageSaved: "Image téléchargée.",
+    instagram: "Instagram n'accepte pas le partage web direct. L'image a été téléchargée et la légende copiée.",
+    note:
+      "Le mode français traduit le quiz et les commandes principales. Une partie de l'analyse détaillée reste en anglais pendant la construction complète de la bibliothèque française."
+  }
+} as const;
 
 const colorValues: Record<string, string> = {
   aqua: "#67e8f9",
@@ -74,10 +117,11 @@ function colorStyle(color: string): CSSProperties {
   };
 }
 
-export function ResultClient({ resultId = "" }: { resultId?: string }) {
+export function ResultClient({ resultId = "", locale = "en" }: { resultId?: string; locale?: Locale }) {
   const [result, setResult] = useState<ResultProfile | "missing" | null>(null);
   const [shareMessage, setShareMessage] = useState("");
   const reportRef = useRef<HTMLElement>(null);
+  const copy = resultCopy[locale];
 
   useEffect(() => {
     function isFresh(candidate: ResultProfile | undefined | null): candidate is ResultProfile {
@@ -115,17 +159,18 @@ export function ResultClient({ resultId = "" }: { resultId?: string }) {
 
       // Result data lives in browser local storage, so this restore happens after hydration.
       if (recoveredResult.resultId !== requestedResultId) {
+        const resultPath = locale === "fr" ? "/fr/personality-test/results" : "/personality-test/results";
         window.history.replaceState(
           null,
           "",
-          `/personality-test/results?resultId=${encodeURIComponent(recoveredResult.resultId)}`
+          `${resultPath}?resultId=${encodeURIComponent(recoveredResult.resultId)}`
         );
       }
       setResult(recoveredResult);
     } catch {
       setResult("missing");
     }
-  }, [resultId]);
+  }, [locale, resultId]);
 
   async function shareNative() {
     if (!result || result === "missing") return;
@@ -136,7 +181,7 @@ export function ResultClient({ resultId = "" }: { resultId?: string }) {
       return;
     }
     await navigator.clipboard.writeText(shareUrl);
-    setShareMessage("Shareable type result link copied.");
+    setShareMessage(copy.shareSaved);
   }
 
   async function downloadCard() {
@@ -156,7 +201,7 @@ export function ResultClient({ resultId = "" }: { resultId?: string }) {
     link.href = canvas.toDataURL("image/png");
     link.download = `${result.resultId}-great-mind-profile.png`;
     link.click();
-    setShareMessage("Image downloaded.");
+    setShareMessage(copy.imageSaved);
   }
 
   async function shareTo(platform: "x" | "facebook" | "whatsapp" | "instagram") {
@@ -169,7 +214,7 @@ export function ResultClient({ resultId = "" }: { resultId?: string }) {
     if (platform === "instagram") {
       await downloadCard();
       await navigator.clipboard.writeText(`${text} ${url}`);
-      setShareMessage("Instagram does not accept direct web shares. I downloaded the image and copied your caption.");
+      setShareMessage(copy.instagram);
       return;
     }
 
@@ -185,7 +230,7 @@ export function ResultClient({ resultId = "" }: { resultId?: string }) {
   if (!result) {
     return (
       <main className="shell quiz-shell">
-        <div className="card">Loading result...</div>
+        <div className="card">{copy.loading}</div>
       </main>
     );
   }
@@ -194,15 +239,12 @@ export function ResultClient({ resultId = "" }: { resultId?: string }) {
     return (
       <main className="shell quiz-shell">
         <section className="card quiz-intro">
-          <p className="eyebrow">Result not found</p>
-          <h1>Start a fresh quiz</h1>
-          <p>
-            This result link does not match a saved result in this browser, or it was created with an older scoring
-            version. Take the quiz again to generate a real result.
-          </p>
+          <p className="eyebrow">{copy.missingEyebrow}</p>
+          <h1>{copy.missingTitle}</h1>
+          <p>{copy.missingBody}</p>
           <div className="button-row start-action">
-            <Link className="button" href="/personality-test/start">
-              Start quiz
+            <Link className="button" href={locale === "fr" ? "/fr/personality-test/start" : "/personality-test/start"}>
+              {copy.startQuiz}
             </Link>
           </div>
         </section>
@@ -221,14 +263,19 @@ export function ResultClient({ resultId = "" }: { resultId?: string }) {
     <main className="shell quiz-shell" ref={reportRef}>
       <section className="card result-hero-card" style={typeStyle}>
         <div>
-          <p className="eyebrow">Your result</p>
+          <p className="eyebrow">{copy.yourResult}</p>
           <h1>{result.archetype}</h1>
           <p>{result.summary}</p>
           <div className="button-row">
-            <span className="secondary-button">Confidence {result.confidence}%</span>
-            <span className="secondary-button">16-type estimate {result.sixteenType}</span>
+            <span className="secondary-button">
+              {copy.confidence} {result.confidence}%
+            </span>
+            <span className="secondary-button">
+              {copy.typeEstimate} {result.sixteenType}
+            </span>
             <span className="secondary-button">{result.enneagram}</span>
           </div>
+          {copy.note ? <p style={{ marginTop: 14 }}>{copy.note}</p> : null}
         </div>
         <PersonalityMascot type={result.sixteenType} />
       </section>
@@ -442,16 +489,16 @@ export function ResultClient({ resultId = "" }: { resultId?: string }) {
         <h2>Share or Save</h2>
         <div className="button-row">
           <button className="button" onClick={shareNative} type="button">
-            Share
+            {copy.share}
           </button>
           <button className="secondary-button" onClick={downloadCard} type="button">
-            Download full report image
+            {copy.download}
           </button>
-          <Link className="secondary-button" href="/personality-test/start">
-            Retake test
+          <Link className="secondary-button" href={locale === "fr" ? "/fr/personality-test/start" : "/personality-test/start"}>
+            {copy.retake}
           </Link>
           <Link className="secondary-button" href={`/results/${result.sixteenType.toLowerCase()}`}>
-            View shareable type page
+            {copy.shareable}
           </Link>
         </div>
         <div className="share-grid" aria-label="Social share options">
